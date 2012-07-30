@@ -1,0 +1,58 @@
+name = GGP.NET
+description = GGP Networksite
+core = 7.x
+; Core Modules
+dependencies[] = block
+dependencies[] = color
+dependencies[] = comment
+dependencies[] = contextual
+dependencies[] = dashboard
+dependencies[] = help
+dependencies[] = image
+dependencies[] = list
+dependencies[] = locale
+dependencies[] = menu
+dependencies[] = number
+dependencies[] = options
+dependencies[] = path
+dependencies[] = taxonomy
+dependencies[] = dblog
+dependencies[] = search
+dependencies[] = shortcut
+dependencies[] = toolbar
+dependencies[] = overlay
+dependencies[] = field_ui
+dependencies[] = file
+dependencies[] = rdf
+
+dependencies[] = libraries
+
+dependencies[] = ckeditor 
+dependencies[] = navigation404
+dependencies[] = colorbox
+dependencies[] = pathauto
+dependencies[] = backports
+dependencies[] = metatag
+dependencies[] = plupload
+dependencies[] = redirect
+dependencies[] = media
+dependencies[] = media_gallery
+dependencies[] = media_browser_plus
+
+dependencies[] = piwik
+dependencies[] = views
+dependencies[] = views_ui
+dependencies[] = xmlsitemap
+dependencies[] = xmlsitemap_engines
+
+dependencies[] = ggp
+dependencies[] = ggp_network
+dependencies[] = ggp_board
+
+files[] = ggp_net.profile
+
+
+
+
+
+
