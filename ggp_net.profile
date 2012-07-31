@@ -476,7 +476,7 @@ function ggp_net_install_theme() {
   );
   
   theme_enable($enable);
-  write_default_at_layout_css($enable['theme_default']);
+  ggp_net_write_default_at_layout_css($enable['theme_default']);
   foreach ($enable as $var => $theme) {
     if (!is_numeric($var)) {
       variable_set($var, $theme);
@@ -534,7 +534,7 @@ function ggp_net_install_vars() {
 }
 
 // Custom submit function to generate and save the layout css with media queries
-function write_default_at_layout_css($theme) {
+function ggp_net_write_default_at_layout_css($theme) {
 
 
 
@@ -563,7 +563,7 @@ function write_default_at_layout_css($theme) {
     // $method         = $values['smartphone_landscape_layout'];
     // $sidebar_unit   = $values['smartphone_landscape_sidebar_unit'];
     // $page_unit      = $values['smartphone_landscape_page_unit'];
-    // $layout         = at_layout_styles($method, $sidebar_first, $sidebar_second, $sidebar_unit);
+    // $layout         = ggp_net_at_layout_styles($method, $sidebar_first, $sidebar_second, $sidebar_unit);
     // $comment        = "/* Smartphone landscape $method */\n";
     // $width          = "\n" . '.container {width: ' . $page_width . $page_unit . ';}';
 
@@ -591,7 +591,7 @@ function write_default_at_layout_css($theme) {
     // $method         = $values['tablet_portrait_layout'];
     // $sidebar_unit   = $values['tablet_portrait_sidebar_unit'];
     // $page_unit      = $values['tablet_portrait_page_unit'];
-    // $layout         = at_layout_styles($method, $sidebar_first, $sidebar_second, $sidebar_unit);
+    // $layout         = ggp_net_at_layout_styles($method, $sidebar_first, $sidebar_second, $sidebar_unit);
     // $comment        = "/* Tablet portrait $method */\n";
     // $width          = "\n" . '.container {width: ' . $page_width . $page_unit . ';}';
 
@@ -619,7 +619,7 @@ function write_default_at_layout_css($theme) {
     $method         = theme_get_setting('tablet_landscape_layout', $theme);
     $sidebar_unit   = theme_get_setting('tablet_landscape_sidebar_unit', $theme);
     $page_unit      = theme_get_setting('tablet_landscape_page_unit', $theme);
-    $layout         = at_layout_styles($method, $sidebar_first, $sidebar_second, $sidebar_unit);
+    $layout         = ggp_net_at_layout_styles($method, $sidebar_first, $sidebar_second, $sidebar_unit);
     $comment        = "/* Tablet landscape $method */\n";
     $width          = "\n" . '.container {width: ' . $page_width . $page_unit . ';}';
 
@@ -646,7 +646,7 @@ function write_default_at_layout_css($theme) {
     $method         = theme_get_setting('bigscreen_layout', $theme);
     $sidebar_unit   = theme_get_setting('bigscreen_sidebar_unit', $theme);
     $page_unit      = theme_get_setting('bigscreen_page_unit', $theme);
-    $layout         = at_layout_styles($method, $sidebar_first, $sidebar_second, $sidebar_unit);
+    $layout         = ggp_net_at_layout_styles($method, $sidebar_first, $sidebar_second, $sidebar_unit);
     $comment        = "/* Standard layout $method */\n";
     $width          = "\n" . '.container {width: '. $page_width . $page_unit . ';}';
 
@@ -682,7 +682,7 @@ function write_default_at_layout_css($theme) {
 }
 
 // Process layout styles
-function at_layout_styles($method, $sidebar_first, $sidebar_second, $sidebar_unit) {
+function ggp_net_at_layout_styles($method, $sidebar_first, $sidebar_second, $sidebar_unit) {
 
   // Set variables for language direction
   $left = 'left';

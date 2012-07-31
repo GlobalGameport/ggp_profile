@@ -35,7 +35,7 @@ projects[token][version] = 1.0
 
 projects[views][version] = 3.3
 
-prjects[xmlsitemap][version] = 2.0-rc1
+projects[xmlsitemap][version] = 2.0-rc1
 
 projects[ggp][download][type] = git
 projects[ggp][download][url] = https://github.com/GlobalGameport/ggp_module.git
