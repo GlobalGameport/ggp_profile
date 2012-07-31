@@ -77,8 +77,8 @@ libraries[plupload][download][url] = https://github.com/downloads/moxiecode/plup
 libraries[plupload][directory_name] = plupload
 libraries[plupload][type] = library
 
-libraries[colorbox][download][type] = git
-libraries[colorbox][download][url] = https://github.com/jackmoore/colorbox.git
+libraries[colorbox][download][type] = get
+libraries[colorbox][download][url] = http://www.jacklmoore.com/colorbox/colorbox.zip
 libraries[colorbox][directory_name] = colorbox
 libraries[colorbox][type] = library
 
