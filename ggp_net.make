@@ -2,6 +2,8 @@
 core = 7.x
 api = 2
 
+projects[] = nl
+
 ; Modules
 projects[backports][version] = 1.0-alpha1
 
