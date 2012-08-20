@@ -307,7 +307,6 @@ function ggp_net_install_node_types() {
 
   // Default "Basic page" to not be promoted and have comments disabled.
   variable_set('node_options_page', array('status'));
-  variable_set('comment_page', COMMENT_NODE_HIDDEN);
 
   // Don't display date and author information for "Basic page" nodes by default.
   variable_set('node_submitted_page', FALSE);
@@ -317,53 +316,55 @@ function ggp_net_install_taxonomy() {
   // Create a default vocabulary named "Tags", enabled for the 'article' content type.
   $description = st('Use tags to group articles on similar topics into categories.');
   $help = st('Enter a comma-separated list of words to describe your content.');
-  $vocabulary = (object) array(
-    'name' => st('Tags'),
-    'description' => $description,
-    'machine_name' => 'tags',
-    'help' => $help,
+  if(!taxonomy_vocabulary_machine_name_load('tags')) {
+	  $vocabulary = (object) array(
+		'name' => st('Tags'),
+		'description' => $description,
+		'machine_name' => 'tags',
+		'help' => $help,
 
-  );
-  taxonomy_vocabulary_save($vocabulary);
+	  );
+	  taxonomy_vocabulary_save($vocabulary);
 
-  $field = array(
-    'field_name' => 'field_' . $vocabulary->machine_name,
-    'type' => 'taxonomy_term_reference',
-    // Set cardinality to unlimited for tagging.
-    'cardinality' => FIELD_CARDINALITY_UNLIMITED,
-    'settings' => array(
-      'allowed_values' => array(
-        array(
-          'vocabulary' => $vocabulary->machine_name,
-          'parent' => 0,
-        ),
-      ),
-    ),
-  );
-  field_create_field($field);
+	  $field = array(
+		'field_name' => 'field_' . $vocabulary->machine_name,
+		'type' => 'taxonomy_term_reference',
+		// Set cardinality to unlimited for tagging.
+		'cardinality' => FIELD_CARDINALITY_UNLIMITED,
+		'settings' => array(
+		  'allowed_values' => array(
+			array(
+			  'vocabulary' => $vocabulary->machine_name,
+			  'parent' => 0,
+			),
+		  ),
+		),
+	  );
+	  field_create_field($field);
 
-  $instance = array(
-    'field_name' => 'field_' . $vocabulary->machine_name,
-    'entity_type' => 'node',
-    'label' => 'Tags',
-    'bundle' => 'article',
-    'description' => $vocabulary->help,
-    'widget' => array(
-      'type' => 'taxonomy_autocomplete',
-      'weight' => -4,
-    ),
-    'display' => array(
-      'default' => array(
-        'type' => 'taxonomy_term_reference_link',
-        'weight' => 10,
-      ),
-      'teaser' => array(
-        'type' => 'taxonomy_term_reference_link',
-        'weight' => 10,
-      ),
-    ),
-  );
-  field_create_instance($instance);
+	  $instance = array(
+		'field_name' => 'field_' . $vocabulary->machine_name,
+		'entity_type' => 'node',
+		'label' => 'Tags',
+		'bundle' => 'article',
+		'description' => $vocabulary->help,
+		'widget' => array(
+		  'type' => 'taxonomy_autocomplete',
+		  'weight' => -4,
+		),
+		'display' => array(
+		  'default' => array(
+			'type' => 'taxonomy_term_reference_link',
+			'weight' => 10,
+		  ),
+		  'teaser' => array(
+			'type' => 'taxonomy_term_reference_link',
+			'weight' => 10,
+		  ),
+		),
+	  );
+	  field_create_instance($instance);
+	}
 }
 function ggp_net_install_fields() {
   // Create an image field named "Image", enabled for the 'article' content type.
@@ -437,8 +438,8 @@ function ggp_net_install_fields() {
 function ggp_net_install_roles($filtered_html_format) {
   // Enable default permissions for system roles.
   $filtered_html_permission = filter_permission_name($filtered_html_format);
-  user_role_grant_permissions(DRUPAL_ANONYMOUS_RID, array('access content', 'access comments', $filtered_html_permission));
-  user_role_grant_permissions(DRUPAL_AUTHENTICATED_RID, array('access content', 'access comments', 'post comments', 'skip comment approval', $filtered_html_permission));
+  user_role_grant_permissions(DRUPAL_ANONYMOUS_RID, array('access content', $filtered_html_permission));
+  user_role_grant_permissions(DRUPAL_AUTHENTICATED_RID, array('access content', $filtered_html_permission));
 
   // Create a default role for site administrators, with all available permissions assigned.
   $admin_role = new stdClass();
@@ -476,7 +477,7 @@ function ggp_net_install_theme() {
   );
   
   theme_enable($enable);
-  write_default_at_layout_css($enable['theme_default']);
+  ggp_net_write_default_at_layout_css($enable['theme_default']);
   foreach ($enable as $var => $theme) {
     if (!is_numeric($var)) {
       variable_set($var, $theme);
@@ -534,7 +535,7 @@ function ggp_net_install_vars() {
 }
 
 // Custom submit function to generate and save the layout css with media queries
-function write_default_at_layout_css($theme) {
+function ggp_net_write_default_at_layout_css($theme) {
 
 
 
@@ -563,7 +564,7 @@ function write_default_at_layout_css($theme) {
     // $method         = $values['smartphone_landscape_layout'];
     // $sidebar_unit   = $values['smartphone_landscape_sidebar_unit'];
     // $page_unit      = $values['smartphone_landscape_page_unit'];
-    // $layout         = at_layout_styles($method, $sidebar_first, $sidebar_second, $sidebar_unit);
+    // $layout         = ggp_net_at_layout_styles($method, $sidebar_first, $sidebar_second, $sidebar_unit);
     // $comment        = "/* Smartphone landscape $method */\n";
     // $width          = "\n" . '.container {width: ' . $page_width . $page_unit . ';}';
 
@@ -591,7 +592,7 @@ function write_default_at_layout_css($theme) {
     // $method         = $values['tablet_portrait_layout'];
     // $sidebar_unit   = $values['tablet_portrait_sidebar_unit'];
     // $page_unit      = $values['tablet_portrait_page_unit'];
-    // $layout         = at_layout_styles($method, $sidebar_first, $sidebar_second, $sidebar_unit);
+    // $layout         = ggp_net_at_layout_styles($method, $sidebar_first, $sidebar_second, $sidebar_unit);
     // $comment        = "/* Tablet portrait $method */\n";
     // $width          = "\n" . '.container {width: ' . $page_width . $page_unit . ';}';
 
@@ -619,7 +620,7 @@ function write_default_at_layout_css($theme) {
     $method         = theme_get_setting('tablet_landscape_layout', $theme);
     $sidebar_unit   = theme_get_setting('tablet_landscape_sidebar_unit', $theme);
     $page_unit      = theme_get_setting('tablet_landscape_page_unit', $theme);
-    $layout         = at_layout_styles($method, $sidebar_first, $sidebar_second, $sidebar_unit);
+    $layout         = ggp_net_at_layout_styles($method, $sidebar_first, $sidebar_second, $sidebar_unit);
     $comment        = "/* Tablet landscape $method */\n";
     $width          = "\n" . '.container {width: ' . $page_width . $page_unit . ';}';
 
@@ -646,7 +647,7 @@ function write_default_at_layout_css($theme) {
     $method         = theme_get_setting('bigscreen_layout', $theme);
     $sidebar_unit   = theme_get_setting('bigscreen_sidebar_unit', $theme);
     $page_unit      = theme_get_setting('bigscreen_page_unit', $theme);
-    $layout         = at_layout_styles($method, $sidebar_first, $sidebar_second, $sidebar_unit);
+    $layout         = ggp_net_at_layout_styles($method, $sidebar_first, $sidebar_second, $sidebar_unit);
     $comment        = "/* Standard layout $method */\n";
     $width          = "\n" . '.container {width: '. $page_width . $page_unit . ';}';
 
@@ -682,7 +683,7 @@ function write_default_at_layout_css($theme) {
 }
 
 // Process layout styles
-function at_layout_styles($method, $sidebar_first, $sidebar_second, $sidebar_unit) {
+function ggp_net_at_layout_styles($method, $sidebar_first, $sidebar_second, $sidebar_unit) {
 
   // Set variables for language direction
   $left = 'left';
