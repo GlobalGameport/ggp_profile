@@ -2,7 +2,6 @@
 core = 7.x
 api = 2
 
-projects[] = nl
 
 ; Modules
 projects[backports][version] = 1.0-alpha1
@@ -83,4 +82,3 @@ libraries[colorbox][download][type] = get
 libraries[colorbox][download][url] = http://www.jacklmoore.com/colorbox/colorbox.zip
 libraries[colorbox][directory_name] = colorbox
 libraries[colorbox][type] = library
-
