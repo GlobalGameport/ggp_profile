@@ -10,7 +10,7 @@ projects[colorbox][version] = 1.3
 
 projects[ckeditor][version] = 1.9
 
-projects[ctools][version] = 1.0
+projects[ctools][version] = 1.2
 
 projects[media][version] = 1.2
 
@@ -18,13 +18,13 @@ projects[media_browser_plus][version] = 1.0-beta3
 
 projects[media_gallery][version] = 1.0-beta8
 
-projects[metatag][version] = 1.0-alpha3
+projects[metatag][version] = 1.0-alpha8
 
 projects[multiform][version] = 1.0
 
 projects[navigation404][version] = 1.0
 
-projects[pathauto][version] = 1.0
+projects[pathauto][version] = 1.2
 
 projects[piwik][version] = 2.3
 
@@ -32,9 +32,9 @@ projects[plupload][version] = 1.0
 
 projects[redirect][version] = 1.0-beta4
 
-projects[token][version] = 1.0
+projects[token][version] = 1.2
 
-projects[views][version] = 3.3
+projects[views][version] = 3.4
 
 projects[xmlsitemap][version] = 2.0-rc1
 
@@ -44,7 +44,7 @@ projects[ggp][type] = module
 projects[ggp][version] = 1.x-dev
 
 ; Themes
-projects[adaptivetheme][version] = 2.2
+projects[adaptivetheme][version] = 2.3
 projects[adaptivetheme][type] = theme
 
 ; Please fill the following out. Type may be one of get, cvs, git, bzr or svn,
