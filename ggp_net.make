@@ -6,7 +6,7 @@ api = 2
 ; Modules
 projects[backports][version] = 1.0-alpha1
 
-projects[colorbox][version] = 1.3
+projects[colorbox][version] = 1.4
 
 projects[ckeditor][version] = 1.9
 
@@ -18,7 +18,7 @@ projects[media_browser_plus][version] = 1.0-beta3
 
 projects[media_gallery][version] = 1.0-beta8
 
-projects[metatag][version] = 1.0-alpha8
+projects[metatag][version] = 1.0-beta4
 
 projects[multiform][version] = 1.0
 
@@ -26,15 +26,15 @@ projects[navigation404][version] = 1.0
 
 projects[pathauto][version] = 1.2
 
-projects[piwik][version] = 2.3
+projects[piwik][version] = 2.4
 
 projects[plupload][version] = 1.0
 
-projects[redirect][version] = 1.0-beta4
+projects[redirect][version] = 1.0-rc1
 
-projects[token][version] = 1.2
+projects[token][version] = 1.4
 
-projects[views][version] = 3.4
+projects[views][version] = 3.5
 
 projects[xmlsitemap][version] = 2.0-rc1
 
