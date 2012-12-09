@@ -61,6 +61,7 @@ projects[libraries][version] = 1.0
 libraries[ckeditor][download][type] = get
 libraries[ckeditor][download][url] = http://download.cksource.com/CKEditor/CKEditor/CKEditor%203.6.4/ckeditor_3.6.4.tar.gz
 libraries[ckeditor][directory_name] = ckeditor
+libraries[ckeditor][destination] = modules/ckeditor
 libraries[ckeditor][type] = library
 
 ;libraries[fancybox][download][type] = get
