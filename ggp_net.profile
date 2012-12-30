@@ -537,149 +537,84 @@ function ggp_net_install_vars() {
 // Custom submit function to generate and save the layout css with media queries
 function ggp_net_write_default_at_layout_css($theme) {
 
-
-
-  //Smartphone layout - portrait, we only need the media query values
-  // if ($values['smartphone_portrait_media_query']) {
-    // $sidebar_first  = 100;
-    // $sidebar_second = 100;
-    // $media_query    = theme_get_setting['smartphone_portrait_media_query'];
-    // $method         = 'one-col-stack';
-    // $sidebar_unit   = '%';
-    // $page_unit      = '%';
-    // $layout         = at_layout_styles($method, $sidebar_first, $sidebar_second, $sidebar_unit);
-    // $comment        = "/* Smartphone portrait $method */\n";
-    // $width          = "\n" . '.container {width: 100%;}';
-
-    // $styles = implode("\n", $layout) . $width;
-    // $css = $comment . '@media ' . $media_query . ' {' . "\n" . $styles . "\n" . '}';
-    // $layouts[] = check_plain($css);
-  // }
-  //Smartphone layout - landscape
-  // if ($values['smartphone_landscape_layout']) {
-    // $sidebar_first  = $values['smartphone_landscape_sidebar_first'];
-    // $sidebar_second = $values['smartphone_landscape_sidebar_second'];
-    // $media_query    = $values['smartphone_landscape_media_query'];
-    // $page_width     = $values['smartphone_landscape_page_width'];
-    // $method         = $values['smartphone_landscape_layout'];
-    // $sidebar_unit   = $values['smartphone_landscape_sidebar_unit'];
-    // $page_unit      = $values['smartphone_landscape_page_unit'];
-    // $layout         = ggp_net_at_layout_styles($method, $sidebar_first, $sidebar_second, $sidebar_unit);
-    // $comment        = "/* Smartphone landscape $method */\n";
-    // $width          = "\n" . '.container {width: ' . $page_width . $page_unit . ';}';
-
-    // if ($values['smartphone_landscape_set_max_width'] == 1 && $page_unit == '%') {
-      // $max_width = $values['smartphone_landscape_max_width'];
-      // $max_width_unit = $values['smartphone_landscape_max_width_unit'];
-      // if (!empty($max_width)) {
-        // $width = "\n" . '.container {width: ' . $page_width . $page_unit . '; max-width: ' . $max_width . $max_width_unit . ';}';
-      // }
-      // else {
-        // $width = "\n" . '.container {width: ' . $page_width . $page_unit . '; max-width: ' . $page_width . $page_unit . ';}';
-      // }
-    // }
-
-    // $styles = implode("\n", $layout) . $width;
-    // $css = $comment . '@media ' . $media_query . ' {' . "\n" . $styles . "\n" . '}';
-    // $layouts[] = check_plain($css);
-  // }
-  //Tablet layout - portrait
-  // if ($values['tablet_portrait_layout']) {
-    // $sidebar_first  = $values['tablet_portrait_sidebar_first'];
-    // $sidebar_second = $values['tablet_portrait_sidebar_second'];
-    // $media_query    = $values['tablet_portrait_media_query'];
-    // $page_width     = $values['tablet_portrait_page_width'];
-    // $method         = $values['tablet_portrait_layout'];
-    // $sidebar_unit   = $values['tablet_portrait_sidebar_unit'];
-    // $page_unit      = $values['tablet_portrait_page_unit'];
-    // $layout         = ggp_net_at_layout_styles($method, $sidebar_first, $sidebar_second, $sidebar_unit);
-    // $comment        = "/* Tablet portrait $method */\n";
-    // $width          = "\n" . '.container {width: ' . $page_width . $page_unit . ';}';
-
-    // if ($values['tablet_portrait_set_max_width'] == 1 && $page_unit == '%') {
-      // $max_width = $values['tablet_portrait_max_width'];
-      // $max_width_unit = $values['tablet_portrait_max_width_unit'];
-      // if (!empty($max_width)) {
-        // $width = "\n" . '.container {width: ' . $page_width . $page_unit . '; max-width: ' . $max_width . $max_width_unit . ';}';
-      // }
-      // else {
-        // $width = "\n" . '.container {width: ' . $page_width . $page_unit . '; max-width: ' . $page_width . $page_unit . ';}';
-      // }
-    // }
-
-    // $styles = implode("\n", $layout) . $width;
-    // $css = $comment . '@media ' . $media_query . ' {' . "\n" . $styles . "\n" . '}';
-    // $layouts[] = check_plain($css);
-// )
-
  //Tablet layout - landscape
-    $sidebar_first  = theme_get_setting('tablet_landscape_sidebar_first', $theme);
-    $sidebar_second = theme_get_setting('tablet_landscape_sidebar_second', $theme);
-    $media_query    = theme_get_setting('tablet_landscape_media_query', $theme);
-    $page_width     = theme_get_setting('tablet_landscape_page_width', $theme);
-    $method         = theme_get_setting('tablet_landscape_layout', $theme);
-    $sidebar_unit   = theme_get_setting('tablet_landscape_sidebar_unit', $theme);
-    $page_unit      = theme_get_setting('tablet_landscape_page_unit', $theme);
-    $layout         = ggp_net_at_layout_styles($method, $sidebar_first, $sidebar_second, $sidebar_unit);
-    $comment        = "/* Tablet landscape $method */\n";
-    $width          = "\n" . '.container {width: ' . $page_width . $page_unit . ';}';
+  $sidebar_first  = theme_get_setting('tablet_landscape_sidebar_first', $theme);
+  $sidebar_second = theme_get_setting('tablet_landscape_sidebar_second', $theme);
+  $media_query    = theme_get_setting('tablet_landscape_media_query', $theme);
+  $page_width     = theme_get_setting('tablet_landscape_page_width', $theme);
+  $method         = theme_get_setting('tablet_landscape_layout', $theme);
+  $sidebar_unit   = theme_get_setting('tablet_landscape_sidebar_unit', $theme);
+  $page_unit      = theme_get_setting('tablet_landscape_page_unit', $theme);
+  $layout         = ggp_net_at_layout_styles($method, $sidebar_first, $sidebar_second, $sidebar_unit);
+  $comment        = "/* Tablet landscape $method */\n";
+  $width          = "\n" . '.container {width: ' . $page_width . $page_unit . ';}';
 
-    if (theme_get_setting('tablet_landscape_set_max_width', $theme) == 1 && $page_unit == '%') {
-      $max_width = theme_get_setting('tablet_landscape_max_width', $theme);
-      $max_width_unit = theme_get_setting('tablet_landscape_max_width_unit', $theme);
-      if (!empty($max_width)) {
-        $width = "\n" . '.container {width: ' . $page_width . $page_unit . '; max-width: ' . $max_width . $max_width_unit . ';}';
-      }
-      else {
-        $width = "\n" . '.container {width: ' . $page_width . $page_unit . '; max-width: ' . $page_width . $page_unit . ';}';
-      }
+  if (theme_get_setting('tablet_landscape_set_max_width', $theme) == 1 && $page_unit == '%') {
+    $max_width = theme_get_setting('tablet_landscape_max_width', $theme);
+    $max_width_unit = theme_get_setting('tablet_landscape_max_width_unit', $theme);
+    if (!empty($max_width)) {
+      $width = "\n" . '.container {width: ' . $page_width . $page_unit . '; max-width: ' . $max_width . $max_width_unit . ';}';
     }
+    else {
+      $width = "\n" . '.container {width: ' . $page_width . $page_unit . '; max-width: ' . $page_width . $page_unit . ';}';
+    }
+  }
 
-    $styles = implode("\n", $layout) . $width;
-    $css = $comment . '@media ' . $media_query . ' {' . "\n" . $styles . "\n" . '}';
-    $layouts[] = check_plain($css);
+  $styles = implode("\n", $layout) . $width;
+  $css = $comment . '@media ' . $media_query . ' {' . "\n" . $styles . "\n" . '}';
+  $layouts[] = check_plain($css);
     
   // Standard bigscreen layout
-    $sidebar_first  = theme_get_setting('bigscreen_sidebar_first', $theme);
-    $sidebar_second = theme_get_setting('bigscreen_sidebar_second', $theme);
-    $media_query    = theme_get_setting('bigscreen_media_query', $theme);
-    $page_width     = theme_get_setting('bigscreen_page_width', $theme);
-    $method         = theme_get_setting('bigscreen_layout', $theme);
-    $sidebar_unit   = theme_get_setting('bigscreen_sidebar_unit', $theme);
-    $page_unit      = theme_get_setting('bigscreen_page_unit', $theme);
-    $layout         = ggp_net_at_layout_styles($method, $sidebar_first, $sidebar_second, $sidebar_unit);
-    $comment        = "/* Standard layout $method */\n";
-    $width          = "\n" . '.container {width: '. $page_width . $page_unit . ';}';
+  $sidebar_first  = theme_get_setting('bigscreen_sidebar_first', $theme);
+  $sidebar_second = theme_get_setting('bigscreen_sidebar_second', $theme);
+  $media_query    = theme_get_setting('bigscreen_media_query', $theme);
+  $page_width     = theme_get_setting('bigscreen_page_width', $theme);
+  $method         = theme_get_setting('bigscreen_layout', $theme);
+  $sidebar_unit   = theme_get_setting('bigscreen_sidebar_unit', $theme);
+  $page_unit      = theme_get_setting('bigscreen_page_unit', $theme);
+  $layout         = ggp_net_at_layout_styles($method, $sidebar_first, $sidebar_second, $sidebar_unit);
+  $comment        = "/* Standard layout $method */\n";
+  $width          = "\n" . '.container {width: '. $page_width . $page_unit . ';}';
 
-    if (theme_get_setting('bigscreen_set_max_width', $theme) == 1 && $page_unit == '%') {
-      $max_width = theme_get_setting('bigscreen_max_width', $theme);
-      $max_width_unit = theme_get_setting('bigscreen_max_width_unit', $theme);
-      if (!empty($max_width)) {
-        $width = "\n" . '.container {width: ' . $page_width . $page_unit . '; max-width: ' . $max_width . $max_width_unit . ';}';
-      }
-      else {
-        $width = "\n" . '.container {width: ' . $page_width . $page_unit . '; max-width: ' . $page_width . $page_unit . ';}';
-      }
+  if (theme_get_setting('bigscreen_set_max_width', $theme) == 1 && $page_unit == '%') {
+    $max_width = theme_get_setting('bigscreen_max_width', $theme);
+    $max_width_unit = theme_get_setting('bigscreen_max_width_unit', $theme);
+    if (!empty($max_width)) {
+      $width = "\n" . '.container {width: ' . $page_width . $page_unit . '; max-width: ' . $max_width . $max_width_unit . ';}';
     }
+    else {
+      $width = "\n" . '.container {width: ' . $page_width . $page_unit . '; max-width: ' . $page_width . $page_unit . ';}';
+    }
+  }
 
-    $styles = implode("\n", $layout) . $width;
-    $css = $comment . '@media ' . $media_query . ' {' . "\n" . $styles . "\n" . '}';
-    $layouts[] = check_plain($css);
+  $styles = implode("\n", $layout) . $width;
+  $css = $comment . '@media ' . $media_query . ' {' . "\n" . $styles . "\n" . '}';
+  $layouts[] = check_plain($css);
   $layout_data = implode("\n", $layouts);
   
-  $file  = $theme . '.responsive.layout.css';
-  $path  = "public://at_css";
-  $data  = $layout_data;
 
+  // Build and save files
+  $theme = $form_state['build_info']['args'][0];
+  $path  = "public://at_css";
   file_prepare_directory($path, FILE_CREATE_DIRECTORY);
 
-  $filepath = $path . '/' . $file;
-  file_save_data($data, $filepath, FILE_EXISTS_REPLACE);
-  //drupal_chmod($file);
+// IE
+  $lt_ie9_layout_file     = $theme . '.lt-ie9.layout.css';
+  $lt_ie9_layout_data     = $lt_ie9;
+  $lt_ie9_layout_filepath = $path . '/' . $lt_ie9_layout_file;
+  file_save_data($lt_ie9_layout_data, $lt_ie9_layout_filepath, FILE_EXISTS_REPLACE);
 
-  // set variables so we can retrive them later to load the css file
-  variable_set($theme . '_mediaqueries_path', $path);
-  variable_set($theme . '_mediaqueries_css', $file);
+  // Responsive layout
+  $responsive_layout_file     = $theme . '.responsive.layout.css';
+  $responsive_layout_data     = $layout_data;
+  $responsive_layout_filepath = $path . '/' . $responsive_layout_file;
+  file_save_data($responsive_layout_data, $responsive_layout_filepath, FILE_EXISTS_REPLACE);
+
+  // set variables so we can retrive them later to load the css files
+  variable_set($theme . '_ltie9_layout_file_path', $path);
+  variable_set($theme . '_ltie9_layout_file_css', $lt_ie9_layout_file);
+  variable_set($theme . '_responsive_layout_file_path', $path);
+  variable_set($theme . '_responsive_layout_file_css', $file);
 }
 
 // Process layout styles
