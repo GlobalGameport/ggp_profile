@@ -527,6 +527,12 @@ function ggp_net_install_vars() {
   $vars['ggp_board_settings']['more'] = "";
 
 
+  $vars['date_default_timezone'] = "System/Localtime";
+  $vars['date_format_long'] = "l, j. F Y - G:i";
+  $vars['date_format_medium']= "D, d/m/Y - H:i";
+  $vars['date_format_short'] = "j M Y - H:i";
+
+
   $vars['site_footer'] = "GGP.NET";
   foreach ($vars as $key => $val) {
       variable_set($key, $val);
