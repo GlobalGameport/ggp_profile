@@ -8,7 +8,7 @@ projects[backports][version] = 1.0-alpha1
 
 projects[colorbox][version] = 1.4
 
-projects[ckeditor][version] = 1.9
+projects[ckeditor][version] = 1.12
 
 projects[ctools][version] = 1.2
 
@@ -36,7 +36,7 @@ projects[token][version] = 1.4
 
 projects[views][version] = 3.5
 
-projects[xmlsitemap][version] = 2.0-rc1
+projects[xmlsitemap][version] = 2.0-rc2
 
 projects[ggp][download][type] = git
 projects[ggp][download][url] = https://github.com/GlobalGameport/ggp_module.git
