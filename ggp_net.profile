@@ -533,10 +533,25 @@ function ggp_net_install_vars() {
   $vars['date_format_short'] = "j M Y - H:i";
 
 
+  $vars['pathauto_node_pattern'] = '[node:menu-link:parents:join-path]/[node:menu-link]';
+  $vars['pathauto_node_article_pattern'] = 'news/[node:created:custom:Y]/[node:created:custom:m]/[node:created:custom:d]/[node:title]'
+
+
   $vars['site_footer'] = "GGP.NET";
   foreach ($vars as $key => $val) {
       variable_set($key, $val);
   } 
+
+
+
+// Assign user 1 the "administrator" role.
+  db_update('ckeditor_settings')
+    ->fields(array(
+      'settings' => 'a:7:{s:13:"ckeditor_path";s:36:"/profiles/ggp_net/libraries/ckeditor";s:19:"ckeditor_local_path";s:0:"";s:21:"ckeditor_plugins_path";s:44:"/profiles/ggp_net/libraries/ckeditor/plugins";s:27:"ckeditor_plugins_local_path";s:0:"";s:13:"ckfinder_path";s:11:"%m/ckfinder";s:14:"toolbar_wizard";s:1:"t";s:11:"loadPlugins";a:0:{}}'))
+    ->condition('name', 'CKEditor Global Profile')
+    ->execute();
+
+
   return 1;
 }
 

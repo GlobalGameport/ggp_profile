@@ -34,6 +34,8 @@ projects[redirect][version] = 1.0-rc1
 
 projects[token][version] = 1.4
 
+projects[transliteration] = 3.1
+
 projects[views][version] = 3.5
 
 projects[xmlsitemap][version] = 2.0-rc2
@@ -58,16 +60,11 @@ projects[libraries][version] = 1.0
 ; Libraries
 ; Please fill the following out. Type may be one of get, cvs, git, bzr or svn,
 ; and url is the url of the download.
-libraries[ckeditor][download][type] = get
-libraries[ckeditor][download][url] = http://download.cksource.com/CKEditor/CKEditor/CKEditor%203.6.4/ckeditor_3.6.4.tar.gz
-libraries[ckeditor][directory_name] = ckeditor
-libraries[ckeditor][destination] = modules/ckeditor
-libraries[ckeditor][type] = library
-
-;libraries[fancybox][download][type] = get
-;libraries[fancybox][download][url] = http://fancybox.googlecode.com/files/jquery.fancybox-1.3.4.zip
-;libraries[fancybox][directory_name] = fancybox
-;libraries[fancybox][type] = library
+libraries[ckeditorLib][download][type] = get
+libraries[ckeditorLib][download][url] = http://download.cksource.com/CKEditor/CKEditor/CKEditor%203.6.4/ckeditor_3.6.4.tar.gz
+libraries[ckeditorLib][directory_name] = ckeditor
+libraries[ckeditorLib][destination] = modules/ckeditor
+libraries[ckeditorLib][type] = library
 
 libraries[jquery.imgareaselect][download][type] = get
 libraries[jquery.imgareaselect][download][url] = http://odyniec.net/projects/imgareaselect/jquery.imgareaselect-0.9.8.zip
