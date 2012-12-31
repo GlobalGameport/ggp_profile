@@ -534,7 +534,7 @@ function ggp_net_install_vars() {
 
 
   $vars['pathauto_node_pattern'] = '[node:menu-link:parents:join-path]/[node:menu-link]';
-  $vars['pathauto_node_article_pattern'] = 'news/[node:created:custom:Y]/[node:created:custom:m]/[node:created:custom:d]/[node:title]'
+  $vars['pathauto_node_article_pattern'] = 'news/[node:created:custom:Y]/[node:created:custom:m]/[node:created:custom:d]/[node:title]';
 
 
   $vars['site_footer'] = "GGP.NET";
