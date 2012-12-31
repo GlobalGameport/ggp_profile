@@ -537,7 +537,8 @@ function ggp_net_install_vars() {
   $vars['pathauto_node_article_pattern'] = 'news/[node:created:custom:Y]/[node:created:custom:m]/[node:created:custom:d]/[node:title]';
 
 
-  $vars['site_footer'] = "GGP.NET";
+  $vars['site_footer'] = 'GGP.NET';
+
   foreach ($vars as $key => $val) {
       variable_set($key, $val);
   } 
@@ -635,7 +636,7 @@ function ggp_net_write_default_at_layout_css($theme) {
   variable_set($theme . '_ltie9_layout_file_path', $path);
   variable_set($theme . '_ltie9_layout_file_css', $lt_ie9_layout_file);
   variable_set($theme . '_responsive_layout_file_path', $path);
-  variable_set($theme . '_responsive_layout_file_css', $file);
+  variable_set($theme . '_responsive_layout_file_css', $responsive_layout_file);
 }
 
 // Process layout styles
