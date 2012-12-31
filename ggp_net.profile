@@ -502,7 +502,7 @@ $node = new stdClass(); // We create a new node object
 $node->type = "article"; // Or any other content type you want
 $node->title = "Willkommen auf dieser neuen Seite im Seitenverbund von Global Gameport";
 $node->language = LANGUAGE_NONE; // Or any language code if Locale module is enabled. More on this below *
-$node->uid = 1; // Or any id you wish
+$node->name = 'admin'; 
 node_object_prepare($node); // Set some default values.
 
 
