@@ -63,7 +63,6 @@ projects[libraries][version] = 1.0
 libraries[ckeditorLib][download][type] = get
 libraries[ckeditorLib][download][url] = http://download.cksource.com/CKEditor/CKEditor/CKEditor%203.6.4/ckeditor_3.6.4.tar.gz
 libraries[ckeditorLib][directory_name] = ckeditor
-libraries[ckeditorLib][destination] = modules/ckeditor
 libraries[ckeditorLib][type] = library
 
 libraries[jquery.imgareaselect][download][type] = get
