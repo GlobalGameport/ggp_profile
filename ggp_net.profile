@@ -18,8 +18,8 @@ function ggp_net_install() {
   ggp_net_install_roles($formats['filtered_html_format']);
   ggp_net_install_menu();
   
-  ggp_net_install_nodes();
   ggp_net_install_vars();
+  ggp_net_install_nodes();
   return true;
 }
 function ggp_net_install_formats() {
@@ -548,7 +548,7 @@ function ggp_net_install_vars() {
 // Assign user 1 the "administrator" role.
   db_update('ckeditor_settings')
     ->fields(array(
-      'settings' => 'a:7:{s:13:"ckeditor_path";s:36:"/profiles/ggp_net/libraries/ckeditor";s:19:"ckeditor_local_path";s:0:"";s:21:"ckeditor_plugins_path";s:44:"/profiles/ggp_net/libraries/ckeditor/plugins";s:27:"ckeditor_plugins_local_path";s:0:"";s:13:"ckfinder_path";s:11:"%m/ckfinder";s:14:"toolbar_wizard";s:1:"t";s:11:"loadPlugins";a:0:{}}'))
+      'settings' => 'a:10:{s:4:"skin";s:4:"kama";s:13:"ckeditor_path";s:36:"/profiles/ggp_net/libraries/ckeditor";s:19:"ckeditor_local_path";s:37:"./profiles/ggp_net/libraries/ckeditor";s:21:"ckeditor_plugins_path";s:44:"/profiles/ggp_net/libraries/ckeditor/plugins";s:27:"ckeditor_plugins_local_path";s:45:"./profiles/ggp_net/libraries/ckeditor/plugins";s:13:"ckfinder_path";s:0:"";s:19:"ckfinder_local_path";s:0:"";s:18:"ckeditor_aggregate";s:1:"f";s:14:"toolbar_wizard";s:1:"t";s:11:"loadPlugins";a:0:{}}'))
     ->condition('name', 'CKEditor Global Profile')
     ->execute();
 
@@ -616,7 +616,6 @@ function ggp_net_write_default_at_layout_css($theme) {
   
 
   // Build and save files
-  $theme = $form_state['build_info']['args'][0];
   $path  = "public://at_css";
   file_prepare_directory($path, FILE_CREATE_DIRECTORY);
 
