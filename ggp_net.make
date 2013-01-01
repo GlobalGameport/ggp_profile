@@ -32,6 +32,8 @@ projects[plupload][version] = 1.0
 
 projects[redirect][version] = 1.0-rc1
 
+projects[site_verify][version] = 1.0
+
 projects[token][version] = 1.4
 
 projects[transliteration] = 3.1
