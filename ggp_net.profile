@@ -330,13 +330,13 @@ function ggp_net_install_taxonomy() {
 		'field_name' => 'field_' . $vocabulary->machine_name,
 		'type' => 'taxonomy_term_reference',
 		// Set cardinality to unlimited for tagging.
-		'cardinality' => FIELD_CARDINALITY_UNLIMITED,
+		'cardinality' => 1,
 		'settings' => array(
 		  'allowed_values' => array(
-			array(
-			  'vocabulary' => $vocabulary->machine_name,
-			  'parent' => 0,
-			),
+  			array(
+  			  'vocabulary' => $vocabulary->machine_name,
+  			  'parent' => 0,
+  			),
 		  ),
 		),
 	  );
@@ -354,17 +354,86 @@ function ggp_net_install_taxonomy() {
 		),
 		'display' => array(
 		  'default' => array(
-			'type' => 'taxonomy_term_reference_link',
-			'weight' => 10,
+  			'type' => 'taxonomy_term_reference_link',
+        'label' => 'hidden',
 		  ),
 		  'teaser' => array(
-			'type' => 'taxonomy_term_reference_link',
-			'weight' => 10,
+  			'type' => 'taxonomy_term_reference_link',
+        'label' => 'hidden',
 		  ),
 		),
 	  );
 	  field_create_instance($instance);
 	}
+  /**
+   * Create Categories
+   */
+  $description = st('Use categories to categorize them.');
+  $help = st('Select a Category.');
+  $vocabulary = (object) array(
+  'name' => st('Categories'),
+  'description' => $description,
+  'machine_name' => 'categories',
+  'help' => $help,
+
+  );
+  taxonomy_vocabulary_save($vocabulary);
+
+  $names = array(
+    t('Newtork'),
+    t('Site')
+  );
+ 
+  $weight = -15;
+  foreach($names as $name) {   
+    $term = (object) array(
+      'name' => $name,
+      'vid' => $vocabulary->vid,
+      'weight' => $weight,
+    );
+    taxonomy_term_save($term);     
+    $weight += 5;
+    $terms[$name] = $term->tid;
+
+    $field = array(
+      'field_name' => 'field_' . $vocabulary->machine_name,
+      'type' => 'taxonomy_term_reference',
+      // Set cardinality to unlimited for tagging.
+      'cardinality' => 1,
+      'settings' => array(
+        'allowed_values' => array(
+          array(
+            'vocabulary' => $vocabulary->machine_name,
+            'parent' => 0,
+          ),
+        ),
+      ),
+    );
+    field_create_field($field);
+
+    $instance = array(
+      'field_name' => 'field_' . $vocabulary->machine_name,
+      'entity_type' => 'node',
+      'label' => 'Tags',
+      'bundle' => 'article',
+      'description' => $vocabulary->help,
+      'widget' => array(
+        'type' => 'options_select',
+        'weight' => -4,
+      ),
+      'display' => array(
+        'default' => array(
+          'type' => 'taxonomy_term_reference_link',
+          'label' => 'hidden',
+        ),
+        'teaser' => array(
+          'type' => 'taxonomy_term_reference_link',
+          'label' => 'hidden',
+        ),
+      ),
+    );
+    field_create_instance($instance);
+
 }
 function ggp_net_install_fields() {
   // Create an image field named "Image", enabled for the 'article' content type.
