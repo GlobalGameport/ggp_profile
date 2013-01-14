@@ -26,7 +26,7 @@ dependencies[] = rdf
 
 dependencies[] = libraries
 
-dependencies[] = ckeditor 
+dependencies[] = ckeditor
 dependencies[] = navigation404
 dependencies[] = colorbox
 dependencies[] = pathauto
@@ -57,7 +57,7 @@ files[] = ggp_net.profile
 
 
 
-version = "7.x-1.x-dev"
+version = "7.x-1.0-alpha1"
 core = "7.x"
 project = "ggp_net"
 
