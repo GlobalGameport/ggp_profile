@@ -16,13 +16,14 @@ projects[fancybox][version] = 2.0-alpha2
 
 projects[jquery_update][download][type] = git
 projects[jquery_update][download][url] = http://drupalcode.org/project/jquery_update.git
-projects[jqeury_update][download][tag] = 7.x-2.3-alpha1
+projects[jquery_update][download][tag] = 7.x-2.3-alpha1
 
 projects[media][version] = 1.2
 
 projects[media_browser_plus][version] = 1.0-beta3
 
 projects[media_gallery][version] = 1.0-beta8
+projects[media_gallery][patch][] = "http://raw.github.com/GlobalGameport/ggp_profile/7.x-1.x/media_gallery-7.x-1.0-beta8-collection-fix.patch"
 
 projects[metatag][version] = 1.0-beta4
 

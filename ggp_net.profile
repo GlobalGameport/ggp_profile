@@ -601,6 +601,7 @@ function ggp_net_install_vars() {
   $vars['date_format_medium']= "D, d/m/Y - H:i";
   $vars['date_format_short'] = "j M Y - H:i";
 
+  $vars['jquery_update_jquery_version'] = "1.7";
   $vars['fancybox_settings']['helpers']['overlay']['locked'] = 0;
   $vars['fancybox_settings']['settings']['selectors'] = ".fancybox";
 
