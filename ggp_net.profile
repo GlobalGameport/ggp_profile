@@ -1,5 +1,5 @@
 <?php
-	
+
 /**
  * Implements hook_install().
  *
@@ -17,7 +17,7 @@ function ggp_net_install() {
   ggp_net_install_fields();
   ggp_net_install_roles($formats['filtered_html_format']);
   ggp_net_install_menu();
-  
+
   ggp_net_install_vars();
   ggp_net_install_nodes();
   return true;
@@ -83,7 +83,7 @@ function ggp_net_install_formats() {
 function ggp_net_install_blocks() {
   $default_theme = 'ggp_theme';
   $admin_theme = 'seven';
-  
+
   $delta = db_insert('block_custom')
     ->fields(array(
       'body' => '<p>Global Gameport ist seit 2006 ein nicht-kommerzielles Fansite Netzwerk mit über 70 Fanseiten im Bereich Gaming.<br>Unsere Mitarbeiter arbeiten alle ehrenamtlich und das Projekt ist komplett Privat finanziert.</p>',
@@ -91,10 +91,10 @@ function ggp_net_install_blocks() {
       'format' => 'filtered_html',
     ))
     ->execute();
-    
+
     $query = db_insert('block')->fields(array('title', 'module', 'delta', 'theme', 'status', 'weight', 'region', 'pages', 'cache'));
         $query->values(array(
-          'title' => 'Über Global Gameport',         
+          'title' => 'Über Global Gameport',
           'module' => 'block',
           'delta' => $delta,
           'theme' => $default_theme,
@@ -383,15 +383,15 @@ function ggp_net_install_taxonomy() {
     t('Newtork'),
     t('Site')
   );
- 
+
   $weight = -15;
-  foreach($names as $name) {   
+  foreach($names as $name) {
     $term = (object) array(
       'name' => $name,
       'vid' => $vocabulary->vid,
       'weight' => $weight,
     );
-    taxonomy_term_save($term);     
+    taxonomy_term_save($term);
     $weight += 5;
     $terms[$name] = $term->tid;
 
@@ -544,7 +544,7 @@ function ggp_net_install_theme() {
     'admin_theme' => 'seven',
     //'zen'
   );
-  
+
   theme_enable($enable);
   ggp_net_write_default_at_layout_css($enable['theme_default']);
   foreach ($enable as $var => $theme) {
@@ -553,11 +553,11 @@ function ggp_net_install_theme() {
     }
   }
   variable_set('node_admin_theme', '1');
-   
-   
+
+
   // Disable the default Bartik theme
   theme_disable(array('bartik'));
-    
+
 }
 function ggp_net_install_nodes() {
 
@@ -571,7 +571,7 @@ $node = new stdClass(); // We create a new node object
 $node->type = "article"; // Or any other content type you want
 $node->title = "Willkommen auf dieser neuen Seite im Seitenverbund von Global Gameport";
 $node->language = LANGUAGE_NONE; // Or any language code if Locale module is enabled. More on this below *
-$node->name = 'admin'; 
+$node->name = 'admin';
 node_object_prepare($node); // Set some default values.
 
 
@@ -601,6 +601,8 @@ function ggp_net_install_vars() {
   $vars['date_format_medium']= "D, d/m/Y - H:i";
   $vars['date_format_short'] = "j M Y - H:i";
 
+  $vars['fancybox_settings']['helpers']['overlay']['locked'] = 0;
+  $vars['fancybox_settings']['settings']['selectors'] = ".fancybox";
 
   $vars['pathauto_node_pattern'] = '[node:menu-link:parents:join-path]/[node:menu-link]';
   $vars['pathauto_node_article_pattern'] = 'news/[node:created:custom:Y]/[node:created:custom:m]/[node:created:custom:d]/[node:title]';
@@ -610,7 +612,7 @@ function ggp_net_install_vars() {
 
   foreach ($vars as $key => $val) {
       variable_set($key, $val);
-  } 
+  }
 
 
 
@@ -654,7 +656,7 @@ function ggp_net_write_default_at_layout_css($theme) {
   $styles = implode("\n", $layout) . $width;
   $css = $comment . '@media ' . $media_query . ' {' . "\n" . $styles . "\n" . '}';
   $layouts[] = check_plain($css);
-    
+
   // Standard bigscreen layout
   $sidebar_first  = theme_get_setting('bigscreen_sidebar_first', $theme);
   $sidebar_second = theme_get_setting('bigscreen_sidebar_second', $theme);
@@ -682,7 +684,7 @@ function ggp_net_write_default_at_layout_css($theme) {
   $css = $comment . '@media ' . $media_query . ' {' . "\n" . $styles . "\n" . '}';
   $layouts[] = check_plain($css);
   $layout_data = implode("\n", $layouts);
-  
+
 
   // Build and save files
   $path  = "public://at_css";
@@ -779,3 +781,4 @@ function ggp_net_at_layout_styles($method, $sidebar_first, $sidebar_second, $sid
   }
   return $styles;
 }
+

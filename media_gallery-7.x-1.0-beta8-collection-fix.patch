@@ -1,0 +1,10 @@
+--- a/media_gallery.theme.inc       2013-01-14 04:02:39.000000000 +0100
++++ b/media_gallery.theme.inc     2013-01-14 04:03:41.000000000 +0100
+@@ -63,6 +63,7 @@
+   $uri = entity_uri('node', $node);
+   $link_vars['link_path'] = $uri['path'];
+   $link_vars['classes'] = array('media-gallery-thumb');
++  $link_vars['gallery'] = true;
+
+   $output = '<div class="media-collection-item-wrapper"><img class="stack-image" src="' . base_path() . drupal_get_path('module', 'media_gallery') . '/images/stack_bg.png" />' . theme('media_gallery_item', $link_vars) . '</div>';
+

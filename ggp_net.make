@@ -12,6 +12,12 @@ projects[ckeditor][version] = 1.12
 
 projects[ctools][version] = 1.2
 
+projects[fancybox][version] = 2.0-alpha2
+
+projects[jquery_update][download][type] = git
+projects[jquery_update][download][url] = http://drupalcode.org/project/jquery_update.git
+projects[jqeury_update][download][tag] = 7.x-2.3-alpha1
+
 projects[media][version] = 1.2
 
 projects[media_browser_plus][version] = 1.0-beta3
@@ -54,16 +60,18 @@ projects[adaptivetheme][type] = theme
 ; Please fill the following out. Type may be one of get, cvs, git, bzr or svn,
 ; and url is the url of the download.
 projects[ggp_theme][download][type] = git
-projects[ggp_theme][download][url] = https://github.com/GlobalGameport/ggp_theme.git
+projects[ggp_theme][download][url] = https://github.com/GlobalGameport/ggp_theme/tree/7.x-1.0-rc1
 projects[ggp_theme][type] = theme
-projects[ggp_theme][version] = 1.x-dev
+projects[ggp_theme][version] = 1.x-1.0-rc1
 
-projects[libraries][version] = 1.0
+projects[libraries][version] = 2.0
+
+
 ; Libraries
 ; Please fill the following out. Type may be one of get, cvs, git, bzr or svn,
 ; and url is the url of the download.
 libraries[ckeditorLib][download][type] = get
-libraries[ckeditorLib][download][url] = http://download.cksource.com/CKEditor/CKEditor/CKEditor%203.6.4/ckeditor_3.6.4.tar.gz
+libraries[ckeditorLib][download][url] = http://download.cksource.com/CKEditor/CKEditor/CKEditor%204.0.1/ckeditor_4.0.1_standard.tar.gz
 libraries[ckeditorLib][directory_name] = ckeditor
 libraries[ckeditorLib][type] = library
 
@@ -77,7 +85,7 @@ libraries[plupload][download][url] = https://github.com/downloads/moxiecode/plup
 libraries[plupload][directory_name] = plupload
 libraries[plupload][type] = library
 
-libraries[colorbox][download][type] = get
-libraries[colorbox][download][url] = http://www.jacklmoore.com/colorbox/colorbox.zip
-libraries[colorbox][directory_name] = colorbox
-libraries[colorbox][type] = library
+libraries[fanyboxLib][download][type] = get
+libraries[fanyboxLib][download][url] = https://github.com/fancyapps/fancyBox/zipball/v2.1.3
+libraries[fanyboxLib][directory_name] = fancybox
+libraries[fanyboxLib][type] = library
