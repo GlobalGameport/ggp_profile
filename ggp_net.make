@@ -16,7 +16,7 @@ projects[fancybox][version] = 2.0-alpha2
 
 projects[jquery_update][download][type] = git
 projects[jquery_update][download][url] = http://drupalcode.org/project/jquery_update.git
-projects[jquery_update][download][tag] = 7.x-2.3-alpha1
+projects[jquery_update][download][revision] = baff5d15a438cfa8216997e067518f3c1a28bd5e
 
 projects[media][version] = 1.2
 
@@ -61,7 +61,8 @@ projects[adaptivetheme][type] = theme
 ; Please fill the following out. Type may be one of get, cvs, git, bzr or svn,
 ; and url is the url of the download.
 projects[ggp_theme][download][type] = git
-projects[ggp_theme][download][url] = https://github.com/GlobalGameport/ggp_theme/tree/7.x-1.0-rc1
+projects[ggp_theme][download][url] = https://github.com/GlobalGameport/ggp_theme.git
+projects[ggp_theme][download][revision] = 50256cb814468804ddbdb6f21fcf8695c4f635bd
 projects[ggp_theme][type] = theme
 projects[ggp_theme][version] = 1.x-1.0-rc1
 
