@@ -394,6 +394,7 @@ function ggp_net_install_taxonomy() {
     taxonomy_term_save($term);
     $weight += 5;
     $terms[$name] = $term->tid;
+  }
 
     $field = array(
       'field_name' => 'field_' . $vocabulary->machine_name,
@@ -691,7 +692,7 @@ function ggp_net_write_default_at_layout_css($theme) {
   $path  = "public://at_css";
   file_prepare_directory($path, FILE_CREATE_DIRECTORY);
 
-// IE
+  // IE
   $lt_ie9_layout_file     = $theme . '.lt-ie9.layout.css';
   $lt_ie9_layout_data     = $lt_ie9;
   $lt_ie9_layout_filepath = $path . '/' . $lt_ie9_layout_file;
