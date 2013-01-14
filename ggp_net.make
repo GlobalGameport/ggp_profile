@@ -67,6 +67,7 @@ projects[ggp_theme][type] = theme
 projects[ggp_theme][version] = 1.x-1.0-rc2
 
 projects[libraries][version] = 2.0
+projects[libraries][type] = module
 
 
 ; Libraries
@@ -77,15 +78,11 @@ libraries[ckeditorLib][download][url] = http://download.cksource.com/CKEditor/CK
 libraries[ckeditorLib][directory_name] = ckeditor
 libraries[ckeditorLib][type] = library
 
-libraries[jquery.imgareaselect][download][type] = get
-libraries[jquery.imgareaselect][download][url] = http://odyniec.net/projects/imgareaselect/jquery.imgareaselect-0.9.8.zip
-libraries[jquery.imgareaselect][directory_name] = jquery.imgareaselect
-libraries[jquery.imgareaselect][type] = library
 
-libraries[plupload][download][type] = get
-libraries[plupload][download][url] = https://github.com/downloads/moxiecode/plupload/plupload_1_5_4.zip
-libraries[plupload][directory_name] = plupload
-libraries[plupload][type] = library
+libraries[pluploadLib][download][type] = get
+libraries[pluploadLib][download][url] = https://github.com/downloads/moxiecode/plupload/plupload_1_5_4.zip
+libraries[pluploadLib][directory_name] = plupload
+libraries[pluploadLib][type] = library
 
 libraries[fanyboxLib][download][type] = get
 libraries[fanyboxLib][download][url] = https://github.com/fancyapps/fancyBox/zipball/v2.1.3
