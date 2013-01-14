@@ -15,7 +15,8 @@ projects[ctools][version] = 1.2
 projects[fancybox][version] = 2.0-alpha2
 
 projects[jquery_update][download][type] = git
-projects[jquery_update][download][url] = http://drupalcode.org/project/jquery_update.git
+projects[jquery_update][download][url] = http://git.drupal.org/project/jquery_update.git
+projects[jquery_update][download][branch] = 7.x-2.x
 projects[jquery_update][download][revision] = baff5d15a438cfa8216997e067518f3c1a28bd5e
 
 projects[media][version] = 1.2
