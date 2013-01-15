@@ -19,10 +19,13 @@ before_script:
   - phpenv rehash
   - drush make ggp_net.build ../beta.ggp.com
   - cd ../beta.ggp.com
+  - pwd
   - sudo chmod -R 777 sites/all/modules
   - drush si ggp_net --db-url=mysql://root:@127.0.0.1/drupal --account-name=admin --account-pass=VIH@2012 --site-mail=admin@example.com --site-name="beta.ggp.com" --yes
   - drush cc all --yes
-  - cd ../ggp_profile
+  - pwd
+  - cd ..
+  - pwd
 
 script: 
   - test -d ../beta.ggp.com/profiles/ggp_net
