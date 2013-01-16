@@ -24,8 +24,6 @@ before_script:
   - drush si ggp_net --db-url=mysql://root:@127.0.0.1/drupal --account-name=admin --account-pass=VIH@2012 --site-mail=admin@example.com --site-name="beta.ggp.com" --yes
   - drush cc all --yes
   - pwd
-  - cd ..
-  - pwd
 
 script: 
   - test -d ../beta.ggp.com/profiles/ggp_net
