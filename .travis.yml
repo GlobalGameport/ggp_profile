@@ -13,12 +13,12 @@ before_script:
   - pear channel-discover pear.drush.org
   - pear install drush/drush
   - pear install PHP_CodeSniffer
+  - phpenv rehash
   - cd ..
   - ls
   - drush dl coder-7.x-2.x-dev
   - cd ggp_profile
   - pwd
-  - phpenv rehash
   - drush make ggp_net.build ../beta.ggp.com
   - cd ../beta.ggp.com
   - pwd
