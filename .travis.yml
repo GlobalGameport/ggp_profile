@@ -13,8 +13,10 @@ before_script:
   - pear channel-discover pear.drush.org
   - pear install drush/drush
   - pear install PHP_CodeSniffer
-  - wget http://ftp.drupal.org/files/projects/drupalcs-7.x-1.0-beta1.tar.gz -O ../drupalcs.tar.gz
-  - tar -xvzf ../drupalcs.tar.gz -C ../
+  - cd ..
+  - ls
+  - drush dl coder-7.x-2.x-dev
+  - cd ggp_profile
   - pwd
   - phpenv rehash
   - drush make ggp_net.build ../beta.ggp.com
@@ -32,4 +34,4 @@ script:
   - test -d ../beta.ggp.com/profiles/ggp_net/modules/jquery_update
   - test -d ../beta.ggp.com/profiles/ggp_net/libraries/fancybox
   - test -d ../beta.ggp.com/profiles/ggp_net/themes
-  - phpcs . --standard=../drupalcs/Drupal/ruleset.xml --extensions=php,module,inc,install,test,profile,theme
+  - phpcs . --standard=../coder/coder_sniffer/Drupal/ruleset.xml --extensions=php,module,inc,install,test,profile,theme

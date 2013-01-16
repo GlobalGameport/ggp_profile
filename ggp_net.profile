@@ -11,7 +11,6 @@
  *
  * Perform actions to set up the site for this profile.
  *
- * @return TRUE
  * @see system_install()
  */
 function ggp_net_install() {
@@ -30,9 +29,10 @@ function ggp_net_install() {
   return TRUE;
 }
 /**
- * Installs default text formats
+ * Installs default text formats.
+ * 
  * @return array 
- * Array of format link. e.g: array('format1' => array('name' => 'Format 1', 'weight' => 0 ...))
+ *   Array of format link. e.g: array('format1' => array('name' => 'Format 1', 'weight' => 0 ...)).
  */
 function ggp_net_install_formats() {
   // Add text formats.
@@ -94,8 +94,6 @@ function ggp_net_install_formats() {
 }
 /**
  * Install default blocks.
- * @return boolean
- * TRUE
  */
 function ggp_net_install_blocks() {
   $default_theme = 'ggp_theme';
@@ -369,35 +367,35 @@ function ggp_net_install_taxonomy() {
       'cardinality' => 1,
       'settings' => array(
         'allowed_values' => array(
-      		array(
-      		  'vocabulary' => $vocabulary->machine_name,
-      		  'parent' => 0,
-      		),
+          array(
+            'vocabulary' => $vocabulary->machine_name,
+            'parent' => 0,
+          ),
         ),
       ),
     );
     field_create_field($field);
 
     $instance = array(
-    'field_name' => 'field_' . $vocabulary->machine_name,
-    'entity_type' => 'node',
-    'label' => 'Tags',
-    'bundle' => 'article',
-    'description' => $vocabulary->help,
-    'widget' => array(
-      'type' => 'taxonomy_autocomplete',
-      'weight' => -4,
-    ),
-    'display' => array(
-      'default' => array(
-        'type' => 'taxonomy_term_reference_link',
-        'label' => 'hidden',
+      'field_name' => 'field_' . $vocabulary->machine_name,
+      'entity_type' => 'node',
+      'label' => 'Tags',
+      'bundle' => 'article',
+      'description' => $vocabulary->help,
+      'widget' => array(
+        'type' => 'taxonomy_autocomplete',
+        'weight' => -4,
       ),
-      'teaser' => array(
-        'type' => 'taxonomy_term_reference_link',
-        'label' => 'hidden',
+      'display' => array(
+        'default' => array(
+          'type' => 'taxonomy_term_reference_link',
+          'label' => 'hidden',
+        ),
+        'teaser' => array(
+          'type' => 'taxonomy_term_reference_link',
+          'label' => 'hidden',
+        ),
       ),
-    ),
     );
     field_create_instance($instance);
   }
@@ -468,18 +466,15 @@ function ggp_net_install_taxonomy() {
     ),
   );
   field_create_instance($instance);
-
 }
+
 /**
- * Create fields
- * @return boolean
- * TRUE
+ * Create fields.
  */
 function ggp_net_install_fields() {
   // Create an image field named "Image", enabled for the 'article' content type.
   // Many of the following values will be defaulted, they're included here as an illustrative examples.
   // See http://api.drupal.org/api/function/field_create_field/7
-
   $field = array(
     'field_name' => 'field_image',
     'type' => 'image',
@@ -544,13 +539,12 @@ function ggp_net_install_fields() {
   );
   field_create_instance($instance);
 }
+
 /**
  * Installs the default role administrator and set permissions.
- * @param  array $filtered_html_format 
- * array of previously set text filters.
  * 
- * @return boolean 
- * TRUE
+ * @param array $filtered_html_format
+ *   Array of previously set text filters.
  */
 function ggp_net_install_roles($filtered_html_format) {
   // Enable default permissions for system roles.
@@ -572,10 +566,9 @@ function ggp_net_install_roles($filtered_html_format) {
     ->fields(array('uid' => 1, 'rid' => $admin_role->rid))
     ->execute();
 }
+
 /**
  * Place some default links in main-menu.
- * @return boolean 
- * TRUE
  */
 function ggp_net_install_menu() {
   // Create a Home link in the main menu.
@@ -591,11 +584,11 @@ function ggp_net_install_menu() {
 
   return TRUE;
 }
+
 /**
  * Enables the themes given in $enable.
+ * 
  * Themes without key will get a numeric key and will be enabled but not set as variable.
- * @return boolean 
- * TRUE
  */
 function ggp_net_install_theme() {
   $enable = array(
@@ -615,6 +608,7 @@ function ggp_net_install_theme() {
 
   return TRUE;
 }
+
 /**
  * Deploy custom nodes.
  */
@@ -636,7 +630,6 @@ function ggp_net_install_nodes() {
   node_object_prepare($node);
 
 
-
   $node->body[$node->language][0]['value'] = '<p>Diese Seite ist momentan im Aufbau. Besuche doch einfach eine andere von unseren Seiten. Du kannst sie oben über unsere Netzwerkleiste erreichen.</p>';
   $node->body[$node->language][0]['summary'] = '<p>Diese Seite ist momentan im Aufbau. Besuche doch einfach eine andere von unseren Seiten. Du kannst sie oben über unsere Netzwerkleiste erreichen.</p>';
   $node->body[$node->language][0]['format'] = 'filtered_html';
@@ -646,6 +639,7 @@ function ggp_net_install_nodes() {
   node_save($node);
 
 }
+
 /**
  * Set install profiles variables.
  */
