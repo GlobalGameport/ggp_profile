@@ -1,6 +1,8 @@
 <?php
+
 /**
- * GGP_NET Install Profile
+ * @file
+ * Drupal Install Profile installion php script.
  */
 
 
@@ -29,7 +31,8 @@ function ggp_net_install() {
 }
 /**
  * Installs default text formats
- * @return array with format links
+ * @return array 
+ * Array of format link. e.g: array('format1' => array('name' => 'Format 1', 'weight' => 0 ...))
  */
 function ggp_net_install_formats() {
   // Add text formats.
@@ -90,8 +93,9 @@ function ggp_net_install_formats() {
   return array('filtered_html_format' => $filtered_html_format, 'full_html_format' => $full_html_format);
 }
 /**
- * Install default blocks
- * @return TRUE
+ * Install default blocks.
+ * @return boolean
+ * TRUE
  */
 function ggp_net_install_blocks() {
   $default_theme = 'ggp_theme';
@@ -108,14 +112,14 @@ function ggp_net_install_blocks() {
 
   $query = db_insert('block')->fields(
     array(
-      'title', 
-      'module', 
-      'delta', 
-      'theme', 
-      'status', 
-      'weight', 
-      'region', 
-      'pages', 
+      'title',
+      'module',
+      'delta',
+      'theme',
+      'status',
+      'weight',
+      'region',
+      'pages',
       'cache')
   );
   $query->values(array(
@@ -132,7 +136,6 @@ function ggp_net_install_blocks() {
   $query->execute();
 
   // Enable some standard blocks.
-
   $blocks = array(
     array(
       'module' => 'system',
@@ -274,7 +277,7 @@ function ggp_net_install_blocks() {
   return TRUE;
 }
 /**
- * Create ome default rdf mappings
+ * Create ome default rdf mappings.
  */
 function ggp_net_install_node_types() {
   // Insert default pre-defined node types into the database. For a complete
@@ -344,77 +347,75 @@ function ggp_net_install_node_types() {
 }
 
 /**
- * Create Vocabularies
+ * Create Vocabularies.
  */
 function ggp_net_install_taxonomy() {
   // Create a default vocabulary named "Tags", enabled for the 'article' content type.
   $description = st('Use tags to group articles on similar topics into categories.');
   $help = st('Enter a comma-separated list of words to describe your content.');
   if (!taxonomy_vocabulary_machine_name_load('tags')) {
-	  $vocabulary = (object) array(
-		'name' => st('Tags'),
-		'description' => $description,
-		'machine_name' => 'tags',
-		'help' => $help,
+    $vocabulary = (object) array(
+      'name' => st('Tags'),
+      'description' => $description,
+      'machine_name' => 'tags',
+      'help' => $help,
+    );
+    taxonomy_vocabulary_save($vocabulary);
 
-	  );
-	  taxonomy_vocabulary_save($vocabulary);
+    $field = array(
+      'field_name' => 'field_' . $vocabulary->machine_name,
+      'type' => 'taxonomy_term_reference',
+      // Set cardinality to unlimited for tagging.
+      'cardinality' => 1,
+      'settings' => array(
+        'allowed_values' => array(
+      		array(
+      		  'vocabulary' => $vocabulary->machine_name,
+      		  'parent' => 0,
+      		),
+        ),
+      ),
+    );
+    field_create_field($field);
 
-	  $field = array(
-		'field_name' => 'field_' . $vocabulary->machine_name,
-		'type' => 'taxonomy_term_reference',
-		// Set cardinality to unlimited for tagging.
-		'cardinality' => 1,
-		'settings' => array(
-		  'allowed_values' => array(
-  			array(
-  			  'vocabulary' => $vocabulary->machine_name,
-  			  'parent' => 0,
-  			),
-		  ),
-		),
-	  );
-	  field_create_field($field);
-
-	  $instance = array(
-		'field_name' => 'field_' . $vocabulary->machine_name,
-		'entity_type' => 'node',
-		'label' => 'Tags',
-		'bundle' => 'article',
-		'description' => $vocabulary->help,
-		'widget' => array(
-		  'type' => 'taxonomy_autocomplete',
-		  'weight' => -4,
-		),
-		'display' => array(
-		  'default' => array(
-  			'type' => 'taxonomy_term_reference_link',
+    $instance = array(
+    'field_name' => 'field_' . $vocabulary->machine_name,
+    'entity_type' => 'node',
+    'label' => 'Tags',
+    'bundle' => 'article',
+    'description' => $vocabulary->help,
+    'widget' => array(
+      'type' => 'taxonomy_autocomplete',
+      'weight' => -4,
+    ),
+    'display' => array(
+      'default' => array(
+        'type' => 'taxonomy_term_reference_link',
         'label' => 'hidden',
-		  ),
-		  'teaser' => array(
-  			'type' => 'taxonomy_term_reference_link',
+      ),
+      'teaser' => array(
+        'type' => 'taxonomy_term_reference_link',
         'label' => 'hidden',
-		  ),
-		),
-	  );
-	  field_create_instance($instance);
-	}
+      ),
+    ),
+    );
+    field_create_instance($instance);
+  }
 
   // Create Categories.
   $description = st('Use categories to categorize them.');
   $help = st('Select a Category.');
   $vocabulary = (object) array(
-  'name' => st('Categories'),
-  'description' => $description,
-  'machine_name' => 'categories',
-  'help' => $help,
-
+    'name' => st('Categories'),
+    'description' => $description,
+    'machine_name' => 'categories',
+    'help' => $help,
   );
   taxonomy_vocabulary_save($vocabulary);
 
   $names = array(
     t('Newtork'),
-    t('Site')
+    t('Site'),
   );
 
   $weight = -15;
@@ -429,49 +430,50 @@ function ggp_net_install_taxonomy() {
     $terms[$name] = $term->tid;
   }
 
-    $field = array(
-      'field_name' => 'field_' . $vocabulary->machine_name,
-      'type' => 'taxonomy_term_reference',
-      // Set cardinality to unlimited for tagging.
-      'cardinality' => 1,
-      'settings' => array(
-        'allowed_values' => array(
-          array(
-            'vocabulary' => $vocabulary->machine_name,
-            'parent' => 0,
-          ),
+  $field = array(
+    'field_name' => 'field_' . $vocabulary->machine_name,
+    'type' => 'taxonomy_term_reference',
+    // Set cardinality to unlimited for tagging.
+    'cardinality' => 1,
+    'settings' => array(
+      'allowed_values' => array(
+        array(
+          'vocabulary' => $vocabulary->machine_name,
+          'parent' => 0,
         ),
       ),
-    );
-    field_create_field($field);
+    ),
+  );
+  field_create_field($field);
 
-    $instance = array(
-      'field_name' => 'field_' . $vocabulary->machine_name,
-      'entity_type' => 'node',
-      'label' => 'Tags',
-      'bundle' => 'article',
-      'description' => $vocabulary->help,
-      'widget' => array(
-        'type' => 'options_select',
-        'weight' => -4,
+  $instance = array(
+    'field_name' => 'field_' . $vocabulary->machine_name,
+    'entity_type' => 'node',
+    'label' => 'Tags',
+    'bundle' => 'article',
+    'description' => $vocabulary->help,
+    'widget' => array(
+      'type' => 'options_select',
+      'weight' => -4,
+    ),
+    'display' => array(
+      'default' => array(
+        'type' => 'taxonomy_term_reference_link',
+        'label' => 'hidden',
       ),
-      'display' => array(
-        'default' => array(
-          'type' => 'taxonomy_term_reference_link',
-          'label' => 'hidden',
-        ),
-        'teaser' => array(
-          'type' => 'taxonomy_term_reference_link',
-          'label' => 'hidden',
-        ),
+      'teaser' => array(
+        'type' => 'taxonomy_term_reference_link',
+        'label' => 'hidden',
       ),
-    );
-    field_create_instance($instance);
+    ),
+  );
+  field_create_instance($instance);
 
 }
 /**
  * Create fields
- * @return [type]
+ * @return boolean
+ * TRUE
  */
 function ggp_net_install_fields() {
   // Create an image field named "Image", enabled for the 'article' content type.
@@ -543,9 +545,12 @@ function ggp_net_install_fields() {
   field_create_instance($instance);
 }
 /**
- * Installs the default role administrator and set permissions
- * @param  array $filtered_html_format array of previously set text filters
- * @return boolean TRUE
+ * Installs the default role administrator and set permissions.
+ * @param  array $filtered_html_format 
+ * array of previously set text filters.
+ * 
+ * @return boolean 
+ * TRUE
  */
 function ggp_net_install_roles($filtered_html_format) {
   // Enable default permissions for system roles.
@@ -568,8 +573,9 @@ function ggp_net_install_roles($filtered_html_format) {
     ->execute();
 }
 /**
- * Place some default links in main-menu
- * @return TRUE
+ * Place some default links in main-menu.
+ * @return boolean 
+ * TRUE
  */
 function ggp_net_install_menu() {
   // Create a Home link in the main menu.
@@ -586,14 +592,15 @@ function ggp_net_install_menu() {
   return TRUE;
 }
 /**
- * Enables the themes given in $enable
- * themes without key will get a numeric key and will be enabled but not set as variable
- * @return TRUE
+ * Enables the themes given in $enable.
+ * Themes without key will get a numeric key and will be enabled but not set as variable.
+ * @return boolean 
+ * TRUE
  */
 function ggp_net_install_theme() {
   $enable = array(
     'theme_default' => 'ggp_theme',
-    'admin_theme' => 'seven'
+    'admin_theme' => 'seven',
   );
 
   theme_enable($enable);
@@ -609,38 +616,38 @@ function ggp_net_install_theme() {
   return TRUE;
 }
 /**
- * Deploy custom nodes
+ * Deploy custom nodes.
  */
 function ggp_net_install_nodes() {
 
   $term = new stdClass();
   $term->name = 'Netzwerk';
   // ‘1’ is a vocabulary id you wish this term to assign to.
-  $term->vid = 1; 
+  $term->vid = 1;
   $term->field_custom_field_name[LANGUAGE_NONE][0]['value'] = 'Netzwerk';
-  taxonomy_term_save($term); 
+  taxonomy_term_save($term);
 
-  $node = new stdClass(); 
-  $node->type = "article"; 
+  $node = new stdClass();
+  $node->type = "article";
   $node->title = "Willkommen auf dieser neuen Seite im Seitenverbund von Global Gameport";
-  $node->language = LANGUAGE_NONE; 
+  $node->language = LANGUAGE_NONE;
   $node->name = 'admin';
   // Set some default values thorugh prepare magic.
-  node_object_prepare($node); 
+  node_object_prepare($node);
 
 
 
   $node->body[$node->language][0]['value'] = '<p>Diese Seite ist momentan im Aufbau. Besuche doch einfach eine andere von unseren Seiten. Du kannst sie oben über unsere Netzwerkleiste erreichen.</p>';
   $node->body[$node->language][0]['summary'] = '<p>Diese Seite ist momentan im Aufbau. Besuche doch einfach eine andere von unseren Seiten. Du kannst sie oben über unsere Netzwerkleiste erreichen.</p>';
-  $node->body[$node->language][0]['format'] = 'filtered_html'; 
+  $node->body[$node->language][0]['format'] = 'filtered_html';
   $node->field_tags[$node->language][]['tid'] = 1;
 
   $node = node_submit($node);
-  node_save($node); 
+  node_save($node);
 
 }
 /**
- * Set install profiles variables
+ * Set install profiles variables.
  */
 function ggp_net_install_vars() {
   $vars = array();
@@ -654,7 +661,7 @@ function ggp_net_install_vars() {
 
   $vars['date_default_timezone'] = "System/Localtime";
   $vars['date_format_long'] = "l, j. F Y - G:i";
-  $vars['date_format_medium']= "D, d/m/Y - H:i";
+  $vars['date_format_medium'] = "D, d/m/Y - H:i";
   $vars['date_format_short'] = "j M Y - H:i";
 
   $vars['jquery_update_jquery_version'] = "1.7";
@@ -668,7 +675,7 @@ function ggp_net_install_vars() {
   $vars['site_footer'] = 'GGP.NET';
 
   foreach ($vars as $key => $val) {
-      variable_set($key, $val);
+    variable_set($key, $val);
   }
 
   // Set CKEditor Library Path.
@@ -683,11 +690,11 @@ function ggp_net_install_vars() {
 }
 
 /**
- * Custom submit function to generate and save the layout css with media queries
+ * Custom submit function to generate and save the layout css with media queries.
  */
 function ggp_net_write_default_at_layout_css($theme) {
 
- //Tablet layout - landscape.
+  // Tablet layout - landscape.
   $sidebar_first  = theme_get_setting('tablet_landscape_sidebar_first', $theme);
   $sidebar_second = theme_get_setting('tablet_landscape_sidebar_second', $theme);
   $media_query    = theme_get_setting('tablet_landscape_media_query', $theme);
@@ -724,7 +731,7 @@ function ggp_net_write_default_at_layout_css($theme) {
   $page_unit      = theme_get_setting('bigscreen_page_unit', $theme);
   $layout         = ggp_net_at_layout_styles($method, $sidebar_first, $sidebar_second, $sidebar_unit);
   $comment        = "/* Standard layout $method */\n";
-  $width          = "\n" . '.container {width: '. $page_width . $page_unit . ';}';
+  $width          = "\n" . '.container {width: ' . $page_width . $page_unit . ';}';
 
   if (theme_get_setting('bigscreen_set_max_width', $theme) == 1 && $page_unit == '%') {
     $max_width = theme_get_setting('bigscreen_max_width', $theme);
@@ -767,7 +774,7 @@ function ggp_net_write_default_at_layout_css($theme) {
 }
 
 /**
- * Process layout styles
+ * Process layout styles.
  */
 function ggp_net_at_layout_styles($method, $sidebar_first, $sidebar_second, $sidebar_unit) {
 
