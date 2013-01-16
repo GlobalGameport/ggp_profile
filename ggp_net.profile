@@ -1,10 +1,15 @@
 <?php
+/**
+ * GGP_NET Install Profile
+ */
+
 
 /**
  * Implements hook_install().
  *
  * Perform actions to set up the site for this profile.
  *
+ * @return TRUE
  * @see system_install()
  */
 function ggp_net_install() {
@@ -20,10 +25,14 @@ function ggp_net_install() {
 
   ggp_net_install_vars();
   ggp_net_install_nodes();
-  return true;
+  return TRUE;
 }
+/**
+ * Installs default text formats
+ * @return array with format links
+ */
 function ggp_net_install_formats() {
-	// Add text formats.
+  // Add text formats.
   $filtered_html_format = array(
     'format' => 'filtered_html',
     'name' => 'Filtered HTML',
@@ -80,30 +89,46 @@ function ggp_net_install_formats() {
   filter_format_save($full_html_format);
   return array('filtered_html_format' => $filtered_html_format, 'full_html_format' => $full_html_format);
 }
+/**
+ * Install default blocks
+ * @return TRUE
+ */
 function ggp_net_install_blocks() {
   $default_theme = 'ggp_theme';
   $admin_theme = 'seven';
 
   $delta = db_insert('block_custom')
     ->fields(array(
-      'body' => '<p>Global Gameport ist seit 2006 ein nicht-kommerzielles Fansite Netzwerk mit über 70 Fanseiten im Bereich Gaming.<br>Unsere Mitarbeiter arbeiten alle ehrenamtlich und das Projekt ist komplett Privat finanziert.</p>',
+      'body' => '<p>Global Gameport ist seit 2006 ein nicht-kommerzielles Fansite Netzwerk mit über 70 Fanseiten im Bereich Gaming.<br />Unsere Mitarbeiter arbeiten alle ehrenamtlich und das Projekt ist komplett Privat finanziert.</p>',
       'info' => 'About GGP',
       'format' => 'filtered_html',
-    ))
-    ->execute();
+    )
+  )
+  ->execute();
 
-    $query = db_insert('block')->fields(array('title', 'module', 'delta', 'theme', 'status', 'weight', 'region', 'pages', 'cache'));
-        $query->values(array(
-          'title' => 'Über Global Gameport',
-          'module' => 'block',
-          'delta' => $delta,
-          'theme' => $default_theme,
-          'status' => 1,
-          'weight' => 0,
-          'region' => 'three_25_25_50_third',
-          'pages' => '',
-          'cache' => -1,
-        ));
+  $query = db_insert('block')->fields(
+    array(
+      'title', 
+      'module', 
+      'delta', 
+      'theme', 
+      'status', 
+      'weight', 
+      'region', 
+      'pages', 
+      'cache')
+  );
+  $query->values(array(
+    'title' => 'Über Global Gameport',
+    'module' => 'block',
+    'delta' => $delta,
+    'theme' => $default_theme,
+    'status' => 1,
+    'weight' => 0,
+    'region' => 'three_25_25_50_third',
+    'pages' => '',
+    'cache' => -1,
+  ));
   $query->execute();
 
   // Enable some standard blocks.
@@ -245,7 +270,12 @@ function ggp_net_install_blocks() {
     $query->values($block);
   }
   $query->execute();
+
+  return TRUE;
 }
+/**
+ * Create ome default rdf mappings
+ */
 function ggp_net_install_node_types() {
   // Insert default pre-defined node types into the database. For a complete
   // list of available node type attributes, refer to the node type API
@@ -312,11 +342,15 @@ function ggp_net_install_node_types() {
   variable_set('node_submitted_page', FALSE);
 
 }
+
+/**
+ * Create Vocabularies
+ */
 function ggp_net_install_taxonomy() {
   // Create a default vocabulary named "Tags", enabled for the 'article' content type.
   $description = st('Use tags to group articles on similar topics into categories.');
   $help = st('Enter a comma-separated list of words to describe your content.');
-  if(!taxonomy_vocabulary_machine_name_load('tags')) {
+  if (!taxonomy_vocabulary_machine_name_load('tags')) {
 	  $vocabulary = (object) array(
 		'name' => st('Tags'),
 		'description' => $description,
@@ -365,9 +399,8 @@ function ggp_net_install_taxonomy() {
 	  );
 	  field_create_instance($instance);
 	}
-  /**
-   * Create Categories
-   */
+
+  // Create Categories.
   $description = st('Use categories to categorize them.');
   $help = st('Select a Category.');
   $vocabulary = (object) array(
@@ -385,7 +418,7 @@ function ggp_net_install_taxonomy() {
   );
 
   $weight = -15;
-  foreach($names as $name) {
+  foreach ($names as $name) {
     $term = (object) array(
       'name' => $name,
       'vid' => $vocabulary->vid,
@@ -436,6 +469,10 @@ function ggp_net_install_taxonomy() {
     field_create_instance($instance);
 
 }
+/**
+ * Create fields
+ * @return [type]
+ */
 function ggp_net_install_fields() {
   // Create an image field named "Image", enabled for the 'article' content type.
   // Many of the following values will be defaulted, they're included here as an illustrative examples.
@@ -505,6 +542,11 @@ function ggp_net_install_fields() {
   );
   field_create_instance($instance);
 }
+/**
+ * Installs the default role administrator and set permissions
+ * @param  array $filtered_html_format array of previously set text filters
+ * @return boolean TRUE
+ */
 function ggp_net_install_roles($filtered_html_format) {
   // Enable default permissions for system roles.
   $filtered_html_permission = filter_permission_name($filtered_html_format);
@@ -525,6 +567,10 @@ function ggp_net_install_roles($filtered_html_format) {
     ->fields(array('uid' => 1, 'rid' => $admin_role->rid))
     ->execute();
 }
+/**
+ * Place some default links in main-menu
+ * @return TRUE
+ */
 function ggp_net_install_menu() {
   // Create a Home link in the main menu.
   $item = array(
@@ -536,14 +582,18 @@ function ggp_net_install_menu() {
 
   // Update the menu router information.
   menu_rebuild();
+
+  return TRUE;
 }
+/**
+ * Enables the themes given in $enable
+ * themes without key will get a numeric key and will be enabled but not set as variable
+ * @return TRUE
+ */
 function ggp_net_install_theme() {
-    // Any themes without keys here will get numeric keys and so will be enabled,
-  // but not placed into variables.
   $enable = array(
     'theme_default' => 'ggp_theme',
-    'admin_theme' => 'seven',
-    //'zen'
+    'admin_theme' => 'seven'
   );
 
   theme_enable($enable);
@@ -554,39 +604,44 @@ function ggp_net_install_theme() {
     }
   }
   variable_set('node_admin_theme', '1');
-
-
-  // Disable the default Bartik theme
   theme_disable(array('bartik'));
 
+  return TRUE;
 }
+/**
+ * Deploy custom nodes
+ */
 function ggp_net_install_nodes() {
 
-$term = new stdClass();
-$term->name = 'Netzwerk';
-$term->vid = 1; // ‘1’ is a vocabulary id you wish this term to assign to
-$term->field_custom_field_name[LANGUAGE_NONE][0]['value'] = 'Netzwerk'; // OPTIONAL. If your term has a custom field attached it can added as simple as this
-taxonomy_term_save($term); // Finally, save our term
+  $term = new stdClass();
+  $term->name = 'Netzwerk';
+  // ‘1’ is a vocabulary id you wish this term to assign to.
+  $term->vid = 1; 
+  $term->field_custom_field_name[LANGUAGE_NONE][0]['value'] = 'Netzwerk';
+  taxonomy_term_save($term); 
 
-$node = new stdClass(); // We create a new node object
-$node->type = "article"; // Or any other content type you want
-$node->title = "Willkommen auf dieser neuen Seite im Seitenverbund von Global Gameport";
-$node->language = LANGUAGE_NONE; // Or any language code if Locale module is enabled. More on this below *
-$node->name = 'admin';
-node_object_prepare($node); // Set some default values.
+  $node = new stdClass(); 
+  $node->type = "article"; 
+  $node->title = "Willkommen auf dieser neuen Seite im Seitenverbund von Global Gameport";
+  $node->language = LANGUAGE_NONE; 
+  $node->name = 'admin';
+  // Set some default values thorugh prepare magic.
+  node_object_prepare($node); 
 
 
-// Let's add standard body field
-$node->body[$node->language][0]['value'] = '<p>Diese Seite ist momentan im Aufbau. Besuche doch einfach eine andere von unseren Seiten. Du kannst sie oben über unsere Netzwerkleiste erreichen.</p>';
-$node->body[$node->language][0]['summary'] = '<p>Diese Seite ist momentan im Aufbau. Besuche doch einfach eine andere von unseren Seiten. Du kannst sie oben über unsere Netzwerkleiste erreichen.</p>';
-$node->body[$node->language][0]['format'] = 'filtered_html'; // If field has a format, you need to define it. Here we define a default filtered_html format for a body field
 
-$node->field_tags[$node->language][]['tid'] = 1;
+  $node->body[$node->language][0]['value'] = '<p>Diese Seite ist momentan im Aufbau. Besuche doch einfach eine andere von unseren Seiten. Du kannst sie oben über unsere Netzwerkleiste erreichen.</p>';
+  $node->body[$node->language][0]['summary'] = '<p>Diese Seite ist momentan im Aufbau. Besuche doch einfach eine andere von unseren Seiten. Du kannst sie oben über unsere Netzwerkleiste erreichen.</p>';
+  $node->body[$node->language][0]['format'] = 'filtered_html'; 
+  $node->field_tags[$node->language][]['tid'] = 1;
 
-$node = node_submit($node); // Prepare node for a submit
-node_save($node); // After this call we'll get a nid
+  $node = node_submit($node);
+  node_save($node); 
 
 }
+/**
+ * Set install profiles variables
+ */
 function ggp_net_install_vars() {
   $vars = array();
   $vars['colorbox_style'] = "profiles/ggp_net/libraries/colorbox/example5";
@@ -616,9 +671,7 @@ function ggp_net_install_vars() {
       variable_set($key, $val);
   }
 
-
-
-// Assign user 1 the "administrator" role.
+  // Set CKEditor Library Path.
   db_update('ckeditor_settings')
     ->fields(array(
       'settings' => 'a:10:{s:4:"skin";s:4:"kama";s:13:"ckeditor_path";s:36:"/profiles/ggp_net/libraries/ckeditor";s:19:"ckeditor_local_path";s:37:"./profiles/ggp_net/libraries/ckeditor";s:21:"ckeditor_plugins_path";s:44:"/profiles/ggp_net/libraries/ckeditor/plugins";s:27:"ckeditor_plugins_local_path";s:45:"./profiles/ggp_net/libraries/ckeditor/plugins";s:13:"ckfinder_path";s:0:"";s:19:"ckfinder_local_path";s:0:"";s:18:"ckeditor_aggregate";s:1:"f";s:14:"toolbar_wizard";s:1:"t";s:11:"loadPlugins";a:0:{}}'))
@@ -626,13 +679,15 @@ function ggp_net_install_vars() {
     ->execute();
 
 
-  return 1;
+  return TRUE;
 }
 
-// Custom submit function to generate and save the layout css with media queries
+/**
+ * Custom submit function to generate and save the layout css with media queries
+ */
 function ggp_net_write_default_at_layout_css($theme) {
 
- //Tablet layout - landscape
+ //Tablet layout - landscape.
   $sidebar_first  = theme_get_setting('tablet_landscape_sidebar_first', $theme);
   $sidebar_second = theme_get_setting('tablet_landscape_sidebar_second', $theme);
   $media_query    = theme_get_setting('tablet_landscape_media_query', $theme);
@@ -644,7 +699,7 @@ function ggp_net_write_default_at_layout_css($theme) {
   $comment        = "/* Tablet landscape $method */\n";
   $width          = "\n" . '.container {width: ' . $page_width . $page_unit . ';}';
 
-  if (theme_get_setting('tablet_landscape_set_max_width', $theme) == 1 && $page_unit == '%') {
+  if ((theme_get_setting('tablet_landscape_set_max_width', $theme) == 1) && ($page_unit == '%')) {
     $max_width = theme_get_setting('tablet_landscape_max_width', $theme);
     $max_width_unit = theme_get_setting('tablet_landscape_max_width_unit', $theme);
     if (!empty($max_width)) {
@@ -659,7 +714,7 @@ function ggp_net_write_default_at_layout_css($theme) {
   $css = $comment . '@media ' . $media_query . ' {' . "\n" . $styles . "\n" . '}';
   $layouts[] = check_plain($css);
 
-  // Standard bigscreen layout
+  // Standard bigscreen layout.
   $sidebar_first  = theme_get_setting('bigscreen_sidebar_first', $theme);
   $sidebar_second = theme_get_setting('bigscreen_sidebar_second', $theme);
   $media_query    = theme_get_setting('bigscreen_media_query', $theme);
@@ -688,37 +743,39 @@ function ggp_net_write_default_at_layout_css($theme) {
   $layout_data = implode("\n", $layouts);
 
 
-  // Build and save files
+  // Build and save files.
   $path  = "public://at_css";
   file_prepare_directory($path, FILE_CREATE_DIRECTORY);
 
-  // IE
+  // IE.
   $lt_ie9_layout_file     = $theme . '.lt-ie9.layout.css';
   $lt_ie9_layout_data     = $lt_ie9;
   $lt_ie9_layout_filepath = $path . '/' . $lt_ie9_layout_file;
   file_save_data($lt_ie9_layout_data, $lt_ie9_layout_filepath, FILE_EXISTS_REPLACE);
 
-  // Responsive layout
+  // Responsive layout.
   $responsive_layout_file     = $theme . '.responsive.layout.css';
   $responsive_layout_data     = $layout_data;
   $responsive_layout_filepath = $path . '/' . $responsive_layout_file;
   file_save_data($responsive_layout_data, $responsive_layout_filepath, FILE_EXISTS_REPLACE);
 
-  // set variables so we can retrive them later to load the css files
+  // Set variables so we can retrive them later to load the css files.
   variable_set($theme . '_ltie9_layout_file_path', $path);
   variable_set($theme . '_ltie9_layout_file_css', $lt_ie9_layout_file);
   variable_set($theme . '_responsive_layout_file_path', $path);
   variable_set($theme . '_responsive_layout_file_css', $responsive_layout_file);
 }
 
-// Process layout styles
+/**
+ * Process layout styles
+ */
 function ggp_net_at_layout_styles($method, $sidebar_first, $sidebar_second, $sidebar_unit) {
 
-  // Set variables for language direction
+  // Set variables for language direction.
   $left = 'left';
   $right = 'right';
 
-  // build the sytle arrays, params are passed to the function from preprocess_html
+  // Build the sytle arrays, params are passed to the function from preprocess_html.
   $styles = array();
   if ($method == 'three-col-grail') {
     $sidebar_second = $sidebar_second . $sidebar_unit;
@@ -783,4 +840,3 @@ function ggp_net_at_layout_styles($method, $sidebar_first, $sidebar_second, $sid
   }
   return $styles;
 }
-
