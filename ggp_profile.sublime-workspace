@@ -95,47 +95,6 @@
 	},
 	"buffers":
 	[
-		{
-			"file": "ggp_net.profile",
-			"settings":
-			{
-				"buffer_size": 32823,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "ggp_net.build",
-			"settings":
-			{
-				"buffer_size": 298,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "ggp_net.make",
-			"settings":
-			{
-				"buffer_size": 2738,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": ".gitignore",
-			"settings":
-			{
-				"buffer_size": 47,
-				"line_ending": "Windows",
-				"name": "# SublimeText project files"
-			}
-		},
-		{
-			"file": ".travis.yml",
-			"settings":
-			{
-				"buffer_size": 1064,
-				"line_ending": "Windows"
-			}
-		}
 	],
 	"build_system": "Packages/Java/JavaC.sublime-build",
 	"command_palette":
@@ -241,6 +200,11 @@
 	},
 	"file_history":
 	[
+		"/C/Users/Valkum/Documents/GitHub/ggp_profile/ggp_net.make",
+		"/C/Users/Valkum/Documents/GitHub/ggp_profile/ggp_net.build",
+		"/C/Users/Valkum/Documents/GitHub/ggp_profile/.gitignore",
+		"/C/Users/Valkum/Documents/GitHub/ggp_profile/.travis.yml",
+		"/C/Users/Valkum/Documents/GitHub/ggp_profile/ggp_net.profile",
 		"/C/Users/Valkum/Documents/GitHub/ggp_theme/ggp_theme.info",
 		"/C/Users/Valkum/Documents/GitHub/ggp_theme/template.php",
 		"/C/Users/Valkum/Documents/GitHub/ggp_theme/theme-settings.php",
@@ -250,18 +214,15 @@
 		"/C/Users/Valkum/Documents/GitHub/ggp_theme/css/page.css",
 		"/C/Users/Valkum/Documents/GitHub/ggp_theme/php_seiten/ueber_ggp.php",
 		"/C/Users/Valkum/Dropbox/Kunden/GGP/Daten/post_hack.txt",
-		"/C/Users/Valkum/Documents/GitHub/ggp_profile/ggp_net.build",
 		"/C/Users/Valkum/AppData/Roaming/Sublime Text 2/Packages/User/Preferences.sublime-settings",
 		"/C/Users/Valkum/Documents/GitHub/ggp_module/.travis.yml",
 		"/C/Users/Valkum/AppData/Local/Temp/errorFunctionApproximation.m",
 		"/C/Users/Valkum/Dropbox/Kunden/droidcon/web0.droidcon.com Doku.txt",
 		"/C/Users/Valkum/Dropbox/Kunden/droidcon/zugangsdaten.txt",
-		"/C/Users/Valkum/Documents/GitHub/ggp_profile/ggp_net.make",
 		"/C/Users/Valkum/Documents/GitHub/ggp_profile/ggp_net.info",
 		"/C/Users/Valkum/Documents/GitHub/ggp_profile/media_gallery-7.x-1.0-beta8-collection-fix.patch",
 		"/C/Users/Valkum/Documents/GitHub/ggp_profile/README.md",
 		"/C/Users/Valkum/Documents/GitHub/ggp_module/ggp.test.html",
-		"/C/Users/Valkum/Documents/GitHub/ggp_profile/.travis.yml",
 		"/C/Users/Valkum/Documents/GitHub/ggp_module/ggp.info",
 		"/C/Users/Valkum/Dropbox/Uni/1. Semester/Progra/uebungen/Progra12/uebung11/aufgabe4.md",
 		"/C/Users/Valkum/Desktop/Gaus.java",
@@ -366,9 +327,7 @@
 		"/C/Users/Valkum/Downloads/wow/World of Warcraft 3.3.5a/Interface/AddOns/evl_CombatText/evl_CombatText.lua",
 		"/C/Users/Valkum/Dropbox/Uni/1. Semester/Progra/uebungen/Progra12/uebung7/diebe/Stadt.java",
 		"/C/Users/Valkum/Dropbox/Uni/1. Semester/Progra/uebungen/Progra12/uebung7/diebe/Polizist.java",
-		"/C/Users/Valkum/Dropbox/Uni/1. Semester/Progra/uebungen/Progra12/uebung7/diebe/Dieb.java",
-		"/C/Users/Valkum/Dropbox/Uni/1. Semester/Progra/uebungen/Progra12/uebung7/diebe/ReicherBuerger.java",
-		"/C/Users/Valkum/Dropbox/Uni/1. Semester/Progra/uebungen/Progra12/uebung7/diebe/Buerger.java"
+		"/C/Users/Valkum/Dropbox/Uni/1. Semester/Progra/uebungen/Progra12/uebung7/diebe/Dieb.java"
 	],
 	"find":
 	{
@@ -468,144 +427,8 @@
 	"groups":
 	[
 		{
-			"selected": 3,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "ggp_net.profile",
-					"settings":
-					{
-						"buffer_size": 32823,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								27390,
-								27390
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 1091.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "ggp_net.build",
-					"settings":
-					{
-						"buffer_size": 298,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								51,
-								51
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C#/Build.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "ggp_net.make",
-					"settings":
-					{
-						"buffer_size": 2738,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1586,
-								1586
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Makefile/Makefile.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 1197.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": ".gitignore",
-					"settings":
-					{
-						"buffer_size": 47,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								47,
-								47
-							]
-						],
-						"settings":
-						{
-							"auto_name": "# SublimeText project files",
-							"syntax": "Packages/Text/Plain text.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": ".travis.yml",
-					"settings":
-					{
-						"buffer_size": 1064,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								27,
-								27
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/YAML/YAML.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 399.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				}
 			]
 		}
 	],

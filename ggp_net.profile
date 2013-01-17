@@ -698,7 +698,7 @@ function ggp_net_install_vars() {
  * Custom submit function to generate and save the layout css with media queries.
  */
 function ggp_net_write_default_at_layout_css($theme) {
-  // Smartphone layout - portrait, we only need the media query values
+  // Smartphone layout - portrait, we only need the media query values.
   $sidebar_first  = 100;
   $sidebar_second = 100;
   $media_query    = theme_get_setting('smartphone_portrait_media_query', $theme);
@@ -713,7 +713,7 @@ function ggp_net_write_default_at_layout_css($theme) {
   $css = $comment . '@media ' . $media_query . ' {' . "\n" . $styles . "\n" . '}';
   $layouts[] = check_plain($css);
 
-  // Smartphone layout - landscape
+  // Smartphone layout - landscape.
   $sidebar_first  = theme_get_setting('smartphone_landscape_sidebar_first', $theme);
   $sidebar_second = theme_get_setting('smartphone_landscape_sidebar_second', $theme);
   $media_query    = theme_get_setting('smartphone_landscape_media_query', $theme);
