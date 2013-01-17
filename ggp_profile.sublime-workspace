@@ -104,6 +104,31 @@
 			}
 		},
 		{
+			"file": "ggp_net.build",
+			"settings":
+			{
+				"buffer_size": 298,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "ggp_net.make",
+			"settings":
+			{
+				"buffer_size": 2738,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": ".gitignore",
+			"settings":
+			{
+				"buffer_size": 47,
+				"line_ending": "Windows",
+				"name": "# SublimeText project files"
+			}
+		},
+		{
 			"file": ".travis.yml",
 			"settings":
 			{
@@ -443,7 +468,7 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 3,
 			"sheets":
 			[
 				{
@@ -469,13 +494,92 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 15911.0,
+						"translation.y": 1091.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 1,
+					"file": "ggp_net.build",
+					"settings":
+					{
+						"buffer_size": 298,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								51,
+								51
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C#/Build.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "ggp_net.make",
+					"settings":
+					{
+						"buffer_size": 2738,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1586,
+								1586
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Makefile/Makefile.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 1197.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": ".gitignore",
+					"settings":
+					{
+						"buffer_size": 47,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								47,
+								47
+							]
+						],
+						"settings":
+						{
+							"auto_name": "# SublimeText project files",
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
 					"file": ".travis.yml",
 					"settings":
 					{
