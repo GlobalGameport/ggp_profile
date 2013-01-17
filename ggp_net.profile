@@ -266,7 +266,17 @@ function ggp_net_install_blocks() {
       'cache' => -1,
     ),
   );
-  $query = db_insert('block')->fields(array('module', 'delta', 'theme', 'status', 'weight', 'region', 'pages', 'cache'));
+  $query = db_insert('block')->fields(
+    array('module',
+      'delta',
+      'theme',
+      'status',
+      'weight',
+      'region',
+      'pages',
+      'cache'
+    )
+  );
   foreach ($blocks as $block) {
     $query->values($block);
   }
@@ -492,7 +502,6 @@ function ggp_net_install_fields() {
   );
   field_create_field($field);
 
-
   // Many of the following values will be defaulted, they're included here as an illustrative examples.
   // See http://api.drupal.org/api/function/field_create_instance/7
   $instance = array(
@@ -629,7 +638,6 @@ function ggp_net_install_nodes() {
   // Set some default values thorugh prepare magic.
   node_object_prepare($node);
 
-
   $node->body[$node->language][0]['value'] = '<p>Diese Seite ist momentan im Aufbau. Besuche doch einfach eine andere von unseren Seiten. Du kannst sie oben über unsere Netzwerkleiste erreichen.</p>';
   $node->body[$node->language][0]['summary'] = '<p>Diese Seite ist momentan im Aufbau. Besuche doch einfach eine andere von unseren Seiten. Du kannst sie oben über unsere Netzwerkleiste erreichen.</p>';
   $node->body[$node->language][0]['format'] = 'filtered_html';
@@ -637,7 +645,6 @@ function ggp_net_install_nodes() {
 
   $node = node_submit($node);
   node_save($node);
-
 }
 
 /**
@@ -652,19 +659,24 @@ function ggp_net_install_vars() {
   $vars['ggp_board_settings']['ids'] = "0";
   $vars['ggp_board_settings']['more'] = "";
 
-
   $vars['date_default_timezone'] = "System/Localtime";
   $vars['date_format_long'] = "l, j. F Y - G:i";
   $vars['date_format_medium'] = "D, d/m/Y - H:i";
   $vars['date_format_short'] = "j M Y - H:i";
 
   $vars['jquery_update_jquery_version'] = "1.7";
-  $vars['fancybox_settings']['helpers']['overlay']['locked'] = 0;
-  $vars['fancybox_settings']['settings']['selectors'] = ".fancybox";
 
+  $vars['fancybox_settings'] = variable_get('fancybox_settings');
+  $vars['fancybox_settings']['settings']['selectors'] = ".fancybox";
+  $vars['fancybox_settings']['helpers']['overlay']['locked'] = 0;
+  $vars['fancybox_settings']['helpers']['title']['type'] = 'inside';
+  $vars['fancybox_settings']['helpers']['buttons_enabled'] = 1;
+  $vars['fancybox_settings']['helpers']['buttons']['position'] = 'bottom';
+  $vars['fancybox_settings']['helpers']['media_enabled'] = 1;
+
+  $vars['user_register'] = USER_REGISTER_ADMINISTRATORS_ONLY;
   $vars['pathauto_node_pattern'] = '[node:menu-link:parents:join-path]/[node:menu-link]';
   $vars['pathauto_node_article_pattern'] = 'news/[node:created:custom:Y]/[node:created:custom:m]/[node:created:custom:d]/[node:title]';
-
 
   $vars['site_footer'] = 'GGP.NET';
 
@@ -679,7 +691,6 @@ function ggp_net_install_vars() {
     ->condition('name', 'CKEditor Global Profile')
     ->execute();
 
-
   return TRUE;
 }
 
@@ -687,6 +698,74 @@ function ggp_net_install_vars() {
  * Custom submit function to generate and save the layout css with media queries.
  */
 function ggp_net_write_default_at_layout_css($theme) {
+  // Smartphone layout - portrait, we only need the media query values
+  $sidebar_first  = 100;
+  $sidebar_second = 100;
+  $media_query    = theme_get_setting('smartphone_portrait_media_query', $theme);
+  $method         = 'one-col-stack';
+  $sidebar_unit   = '%';
+  $page_unit      = '%';
+  $layout         = at_layout_styles($method, $sidebar_first, $sidebar_second, $sidebar_unit);
+  $comment        = "/* Smartphone portrait $method */\n";
+  $width          = "\n" . '.container {width: 100%;}';
+
+  $styles = implode("\n", $layout) . $width;
+  $css = $comment . '@media ' . $media_query . ' {' . "\n" . $styles . "\n" . '}';
+  $layouts[] = check_plain($css);
+
+  // Smartphone layout - landscape
+  $sidebar_first  = theme_get_setting('smartphone_landscape_sidebar_first', $theme);
+  $sidebar_second = theme_get_setting('smartphone_landscape_sidebar_second', $theme);
+  $media_query    = theme_get_setting('smartphone_landscape_media_query', $theme);
+  $page_width     = theme_get_setting('smartphone_landscape_page_width', $theme);
+  $method         = theme_get_setting('smartphone_landscape_layout', $theme);
+  $sidebar_unit   = theme_get_setting('smartphone_landscape_sidebar_unit', $theme);
+  $page_unit      = theme_get_setting('smartphone_landscape_page_unit', $theme);
+  $layout         = ggp_net_at_layout_styles($method, $sidebar_first, $sidebar_second, $sidebar_unit);
+  $comment        = "/* Smartphone landscape $method */\n";
+  $width          = "\n" . '.container {width: ' . $page_width . $page_unit . ';}';
+
+  if ((theme_get_setting('smartphone_landscape_set_max_width', $theme) == 1) && ($page_unit == '%')) {
+    $max_width = theme_get_setting('smartphone_landscape_max_width', $theme);
+    $max_width_unit = theme_get_setting('smartphone_landscape_max_width_unit', $theme);
+    if (!empty($max_width)) {
+      $width = "\n" . '.container {width: ' . $page_width . $page_unit . '; max-width: ' . $max_width . $max_width_unit . ';}';
+    }
+    else {
+      $width = "\n" . '.container {width: ' . $page_width . $page_unit . '; max-width: ' . $page_width . $page_unit . ';}';
+    }
+  }
+
+  $styles = implode("\n", $layout) . $width;
+  $css = $comment . '@media ' . $media_query . ' {' . "\n" . $styles . "\n" . '}';
+  $layouts[] = check_plain($css);
+
+  // Tablet layout - portrait.
+  $sidebar_first  = theme_get_setting('tablet_portrait_sidebar_first', $theme);
+  $sidebar_second = theme_get_setting('tablet_portrait_sidebar_second', $theme);
+  $media_query    = theme_get_setting('tablet_portrait_media_query', $theme);
+  $page_width     = theme_get_setting('tablet_portrait_page_width', $theme);
+  $method         = theme_get_setting('tablet_portrait_layout', $theme);
+  $sidebar_unit   = theme_get_setting('tablet_portrait_sidebar_unit', $theme);
+  $page_unit      = theme_get_setting('tablet_portrait_page_unit', $theme);
+  $layout         = ggp_net_at_layout_styles($method, $sidebar_first, $sidebar_second, $sidebar_unit);
+  $comment        = "/* Tablet portrait $method */\n";
+  $width          = "\n" . '.container {width: ' . $page_width . $page_unit . ';}';
+
+  if ((theme_get_setting('tablet_portrait_set_max_width', $theme) == 1) && ($page_unit == '%')) {
+    $max_width = theme_get_setting('tablet_portrait_max_width', $theme);
+    $max_width_unit = theme_get_setting('tablet_portrait_max_width_unit', $theme);
+    if (!empty($max_width)) {
+      $width = "\n" . '.container {width: ' . $page_width . $page_unit . '; max-width: ' . $max_width . $max_width_unit . ';}';
+    }
+    else {
+      $width = "\n" . '.container {width: ' . $page_width . $page_unit . '; max-width: ' . $page_width . $page_unit . ';}';
+    }
+  }
+
+  $styles = implode("\n", $layout) . $width;
+  $css = $comment . '@media ' . $media_query . ' {' . "\n" . $styles . "\n" . '}';
+  $layouts[] = check_plain($css);
 
   // Tablet layout - landscape.
   $sidebar_first  = theme_get_setting('tablet_landscape_sidebar_first', $theme);
@@ -739,10 +818,15 @@ function ggp_net_write_default_at_layout_css($theme) {
   }
 
   $styles = implode("\n", $layout) . $width;
+
+  // Set a variable for printing a special layout file for less than IE9.
+  $iecomment = "/* Standard layout $method, for IE8 and below. Note that rounding errors may occur in IE7 and below. */\n";
+  $lt_ie9 = $iecomment . $styles;
+
   $css = $comment . '@media ' . $media_query . ' {' . "\n" . $styles . "\n" . '}';
   $layouts[] = check_plain($css);
-  $layout_data = implode("\n", $layouts);
 
+  $layout_data = implode("\n", $layouts);
 
   // Build and save files.
   $path  = "public://at_css";
