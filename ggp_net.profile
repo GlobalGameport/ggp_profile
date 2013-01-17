@@ -705,7 +705,7 @@ function ggp_net_write_default_at_layout_css($theme) {
   $method         = 'one-col-stack';
   $sidebar_unit   = '%';
   $page_unit      = '%';
-  $layout         = at_layout_styles($method, $sidebar_first, $sidebar_second, $sidebar_unit);
+  $layout         = ggp_net_at_layout_styles($method, $sidebar_first, $sidebar_second, $sidebar_unit);
   $comment        = "/* Smartphone portrait $method */\n";
   $width          = "\n" . '.container {width: 100%;}';
 
