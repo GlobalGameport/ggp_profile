@@ -658,6 +658,7 @@ function ggp_net_install_vars() {
   $vars['ggp_board_settings']['maxposts'] = "5";
   $vars['ggp_board_settings']['ids'] = "0";
   $vars['ggp_board_settings']['more'] = "";
+  $vars['custom_font'] = 'http://fonts.googleapis.com/css?family=Homenaje%7CShanti%7COswald';
 
   $vars['date_default_timezone'] = "System/Localtime";
   $vars['date_format_long'] = "l, j. F Y - G:i";
