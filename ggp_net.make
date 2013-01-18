@@ -64,7 +64,7 @@ projects[ggp_theme][download][type] = git
 projects[ggp_theme][download][url] = http://github.com/GlobalGameport/ggp_theme.git
 projects[ggp_theme][download][tag] = 7.x-1.0-rc3
 projects[ggp_theme][type] = theme
-projects[ggp_theme][version] = 7.x-1.0-rc3
+projects[ggp_theme][version] = 7.x-1.0-rc4
 
 projects[libraries][version] = 2.0
 projects[libraries][type] = module
