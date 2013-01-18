@@ -36,4 +36,4 @@ script:
   - test -d ../beta.ggp.com/profiles/ggp_net/modules/jquery_update
   - test -d ../beta.ggp.com/profiles/ggp_net/libraries/fancybox
   - test -d ../beta.ggp.com/profiles/ggp_net/themes
-  - phpcs . --standard=../coder/coder_sniffer/Drupal/ruleset.xml --extensions=php,module,inc,install,test,profile,theme
+  - phpcs . --standard=../coder/coder_sniffer/Drupal/ruleset.xml --extensions=php,module,inc,install,test,profile,theme -np
