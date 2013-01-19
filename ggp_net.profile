@@ -646,20 +646,20 @@ function ggp_net_install_nodes() {
   $node = node_submit($node);
   node_save($node);
 
-  $node = new stdClass(); // We create a new node object
-  $node->type = "page"; // Or any other content type you want
+  $node = new stdClass();
+  $node->type = "page";
   $node->title = "Impressum";
-  $node->language = LANGUAGE_NONE; // Or any language code if Locale module is enabled. More on this below *
+  $node->language = LANGUAGE_NONE;
   $node->name = 'admin';
-  node_object_prepare($node); // Set some default values.
+  node_object_prepare($node);
 
-  // Let's add standard body field
-  $node->body[$node->language][0]['value'] = '<p>Für Fragen, die unser gesamtes Netzwerk betreffen, wendet euch bitte an folgende Person:</p><p>Boris Jebsen<br>  Am Kosakenholz 18<br>  24816 Hamweddel<br>  <span><a href="mailto:info@globalgameport.com">info@globalgameport.com</a> </span><br>  Telefon: 01525 - 3151455</p><p>Die Telefonnummer ist nicht für Support zu Spielen gedacht.</p><p>Diese persönlichen Daten dürfen nur in Verbindung mit den Seiten des Global Gameport-Netzwerkes verwendet werden. Für Fragen und Anregungen stehe ich gerne zur Verfügung.<br>  Erfolgt allerdings eine zweckfremde Nutzung oder Weitergabe der Daten, wird dies strafrechtlich und / oder ordnungswidrigkeitenrechtlich verfolgt.</p>';
-  $node->body[$node->language][0]['summary'] = '<p>Für Fragen, die unser gesamtes Netzwerk betreffen, wendet euch bitte an folgende Person:</p><p>Boris Jebsen<br>  Am Kosakenholz 18<br>  24816 Hamweddel<br>  <span><a href="mailto:info@globalgameport.com">info@globalgameport.com</a> </span><br>  Telefon: 01525 - 3151455</p><p>Die Telefonnummer ist nicht für Support zu Spielen gedacht.</p><p>Diese persönlichen Daten dürfen nur in Verbindung mit den Seiten des Global Gameport-Netzwerkes verwendet werden. Für Fragen und Anregungen stehe ich gerne zur Verfügung.<br>  Erfolgt allerdings eine zweckfremde Nutzung oder Weitergabe der Daten, wird dies strafrechtlich und / oder ordnungswidrigkeitenrechtlich verfolgt.</p>';
-  $node->body[$node->language][0]['format'] = 'filtered_html'; // If field has a format, you need to define it. Here we define a default filtered_html format for a body field
+  // Let's add standard body field,
+  $node->body[$node->language][0]['value'] = '<p>Für Fragen, die unser gesamtes Netzwerk betreffen, wendet euch bitte an folgende Person:</p><p>Boris Jebsen<br />  Am Kosakenholz 18<br />  24816 Hamweddel<br>  <span><a href="mailto:info@globalgameport.com">info@globalgameport.com</a> </span><br />  Telefon: 01525 - 3151455</p><p>Die Telefonnummer ist nicht für Support zu Spielen gedacht.</p><p>Diese persönlichen Daten dürfen nur in Verbindung mit den Seiten des Global Gameport-Netzwerkes verwendet werden. Für Fragen und Anregungen stehe ich gerne zur Verfügung.<br />  Erfolgt allerdings eine zweckfremde Nutzung oder Weitergabe der Daten, wird dies strafrechtlich und / oder ordnungswidrigkeitenrechtlich verfolgt.</p>';
+  $node->body[$node->language][0]['summary'] = '<p>Für Fragen, die unser gesamtes Netzwerk betreffen, wendet euch bitte an folgende Person:</p><p>Boris Jebsen<br />  Am Kosakenholz 18<br />  24816 Hamweddel<br>  <span><a href="mailto:info@globalgameport.com">info@globalgameport.com</a> </span><br />  Telefon: 01525 - 3151455</p><p>Die Telefonnummer ist nicht für Support zu Spielen gedacht.</p><p>Diese persönlichen Daten dürfen nur in Verbindung mit den Seiten des Global Gameport-Netzwerkes verwendet werden. Für Fragen und Anregungen stehe ich gerne zur Verfügung.<br />  Erfolgt allerdings eine zweckfremde Nutzung oder Weitergabe der Daten, wird dies strafrechtlich und / oder ordnungswidrigkeitenrechtlich verfolgt.</p>';
+  $node->body[$node->language][0]['format'] = 'filtered_html';
 
-  $node = node_submit($node); // Prepare node for a submit
-  node_save($node); // After this call we'll get a nid
+  $node = node_submit($node);
+  node_save($node);
 
 }
 
