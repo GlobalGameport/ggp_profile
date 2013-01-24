@@ -99,39 +99,7 @@ function ggp_net_install_blocks() {
   $default_theme = 'ggp_theme';
   $admin_theme = 'seven';
 
-  $delta = db_insert('block_custom')
-    ->fields(array(
-      'body' => '<p>Global Gameport ist seit 2006 ein nicht-kommerzielles Fansite Netzwerk mit über 70 Fanseiten im Bereich Gaming.<br />Unsere Mitarbeiter arbeiten alle ehrenamtlich und das Projekt ist komplett Privat finanziert.</p>',
-      'info' => 'About GGP',
-      'format' => 'filtered_html',
-    )
-  )
-  ->execute();
 
-  $query = db_insert('block')->fields(
-    array(
-      'title',
-      'module',
-      'delta',
-      'theme',
-      'status',
-      'weight',
-      'region',
-      'pages',
-      'cache')
-  );
-  $query->values(array(
-    'title' => 'Über Global Gameport',
-    'module' => 'block',
-    'delta' => $delta,
-    'theme' => $default_theme,
-    'status' => 1,
-    'weight' => 0,
-    'region' => 'three_25_25_50_third',
-    'pages' => '',
-    'cache' => -1,
-  ));
-  $query->execute();
 
   // Enable some standard blocks.
   $blocks = array(
@@ -186,22 +154,22 @@ function ggp_net_install_blocks() {
       'cache' => -1,
     ),
     array(
-      'module' => 'comment',
-      'delta' => 'recent',
-      'theme' => $default_theme,
-      'status' => 1,
-      'weight' => 0,
-      'region' => 'three_25_25_50_first',
-      'pages' => '',
-      'cache' => -1,
-    ),
-    array(
       'module' => 'ggp_board',
       'delta' => 'ggp_board',
       'theme' => $default_theme,
       'status' => 1,
       'weight' => 0,
       'region' => 'sidebar_second',
+      'pages' => '',
+      'cache' => -1,
+    ),
+    array(
+      'module' => 'ggp_header',
+      'delta' => 'ggp_social',
+      'theme' => $default_theme,
+      'status' => 1,
+      'weight' => 0,
+      'region' => 'header',
       'pages' => '',
       'cache' => -1,
     ),
@@ -668,13 +636,11 @@ function ggp_net_install_nodes() {
  */
 function ggp_net_install_vars() {
   $vars = array();
-  $vars['colorbox_style'] = "profiles/ggp_net/libraries/colorbox/example5";
   $vars['ggp_board_settings'] = array();
   $vars['ggp_board_settings']['board_url'] = "www.globalgameport.com";
   $vars['ggp_board_settings']['maxposts'] = "5";
   $vars['ggp_board_settings']['ids'] = "0";
   $vars['ggp_board_settings']['more'] = "";
-  $vars['custom_font'] = 'http://fonts.googleapis.com/css?family=Homenaje%7CShanti%7COswald';
 
   $vars['date_default_timezone'] = "System/Localtime";
   $vars['date_format_long'] = "l, j. F Y - G:i";
@@ -695,13 +661,14 @@ function ggp_net_install_vars() {
   $vars['pathauto_node_pattern'] = '[node:menu-link:parents:join-path]/[node:menu-link]';
   $vars['pathauto_node_article_pattern'] = 'news/[node:created:custom:Y]/[node:created:custom:m]/[node:created:custom:d]/[node:title]';
 
-  $vars['site_footer'] = 'GGP.NET';
+
 
   foreach ($vars as $key => $val) {
     variable_set($key, $val);
   }
 
   // Set CKEditor Library Path.
+  // @todo use drupal_form_submit
   db_update('ckeditor_settings')
     ->fields(array(
       'settings' => 'a:10:{s:4:"skin";s:4:"kama";s:13:"ckeditor_path";s:36:"/profiles/ggp_net/libraries/ckeditor";s:19:"ckeditor_local_path";s:37:"./profiles/ggp_net/libraries/ckeditor";s:21:"ckeditor_plugins_path";s:44:"/profiles/ggp_net/libraries/ckeditor/plugins";s:27:"ckeditor_plugins_local_path";s:45:"./profiles/ggp_net/libraries/ckeditor/plugins";s:13:"ckfinder_path";s:0:"";s:19:"ckfinder_local_path";s:0:"";s:18:"ckeditor_aggregate";s:1:"f";s:14:"toolbar_wizard";s:1:"t";s:11:"loadPlugins";a:0:{}}'))
@@ -715,230 +682,11 @@ function ggp_net_install_vars() {
  * Custom submit function to generate and save the layout css with media queries.
  */
 function ggp_net_write_default_at_layout_css($theme) {
-  // Smartphone layout - portrait, we only need the media query values.
-  $sidebar_first  = 100;
-  $sidebar_second = 100;
-  $media_query    = theme_get_setting('smartphone_portrait_media_query', $theme);
-  $method         = 'one-col-stack';
-  $sidebar_unit   = '%';
-  $page_unit      = '%';
-  $layout         = ggp_net_at_layout_styles($method, $sidebar_first, $sidebar_second, $sidebar_unit);
-  $comment        = "/* Smartphone portrait $method */\n";
-  $width          = "\n" . '.container {width: 100%;}';
-
-  $styles = implode("\n", $layout) . $width;
-  $css = $comment . '@media ' . $media_query . ' {' . "\n" . $styles . "\n" . '}';
-  $layouts[] = check_plain($css);
-
-  // Smartphone layout - landscape.
-  $sidebar_first  = theme_get_setting('smartphone_landscape_sidebar_first', $theme);
-  $sidebar_second = theme_get_setting('smartphone_landscape_sidebar_second', $theme);
-  $media_query    = theme_get_setting('smartphone_landscape_media_query', $theme);
-  $page_width     = theme_get_setting('smartphone_landscape_page_width', $theme);
-  $method         = theme_get_setting('smartphone_landscape_layout', $theme);
-  $sidebar_unit   = theme_get_setting('smartphone_landscape_sidebar_unit', $theme);
-  $page_unit      = theme_get_setting('smartphone_landscape_page_unit', $theme);
-  $layout         = ggp_net_at_layout_styles($method, $sidebar_first, $sidebar_second, $sidebar_unit);
-  $comment        = "/* Smartphone landscape $method */\n";
-  $width          = "\n" . '.container {width: ' . $page_width . $page_unit . ';}';
-
-  if ((theme_get_setting('smartphone_landscape_set_max_width', $theme) == 1) && ($page_unit == '%')) {
-    $max_width = theme_get_setting('smartphone_landscape_max_width', $theme);
-    $max_width_unit = theme_get_setting('smartphone_landscape_max_width_unit', $theme);
-    if (!empty($max_width)) {
-      $width = "\n" . '.container {width: ' . $page_width . $page_unit . '; max-width: ' . $max_width . $max_width_unit . ';}';
-    }
-    else {
-      $width = "\n" . '.container {width: ' . $page_width . $page_unit . '; max-width: ' . $page_width . $page_unit . ';}';
-    }
+  // Do this to automate saving the theme settings form:
+  foreach (array('adaptivetheme', 'commons_origins') as $theme_name) {
+    $form_state = form_state_defaults();
+    $form_state['build_info']['args'][0] = $theme_name;
+    $form_state['values'] = array();
+    drupal_form_submit('system_theme_settings', $form_state);
   }
-
-  $styles = implode("\n", $layout) . $width;
-  $css = $comment . '@media ' . $media_query . ' {' . "\n" . $styles . "\n" . '}';
-  $layouts[] = check_plain($css);
-
-  // Tablet layout - portrait.
-  $sidebar_first  = theme_get_setting('tablet_portrait_sidebar_first', $theme);
-  $sidebar_second = theme_get_setting('tablet_portrait_sidebar_second', $theme);
-  $media_query    = theme_get_setting('tablet_portrait_media_query', $theme);
-  $page_width     = theme_get_setting('tablet_portrait_page_width', $theme);
-  $method         = theme_get_setting('tablet_portrait_layout', $theme);
-  $sidebar_unit   = theme_get_setting('tablet_portrait_sidebar_unit', $theme);
-  $page_unit      = theme_get_setting('tablet_portrait_page_unit', $theme);
-  $layout         = ggp_net_at_layout_styles($method, $sidebar_first, $sidebar_second, $sidebar_unit);
-  $comment        = "/* Tablet portrait $method */\n";
-  $width          = "\n" . '.container {width: ' . $page_width . $page_unit . ';}';
-
-  if ((theme_get_setting('tablet_portrait_set_max_width', $theme) == 1) && ($page_unit == '%')) {
-    $max_width = theme_get_setting('tablet_portrait_max_width', $theme);
-    $max_width_unit = theme_get_setting('tablet_portrait_max_width_unit', $theme);
-    if (!empty($max_width)) {
-      $width = "\n" . '.container {width: ' . $page_width . $page_unit . '; max-width: ' . $max_width . $max_width_unit . ';}';
-    }
-    else {
-      $width = "\n" . '.container {width: ' . $page_width . $page_unit . '; max-width: ' . $page_width . $page_unit . ';}';
-    }
-  }
-
-  $styles = implode("\n", $layout) . $width;
-  $css = $comment . '@media ' . $media_query . ' {' . "\n" . $styles . "\n" . '}';
-  $layouts[] = check_plain($css);
-
-  // Tablet layout - landscape.
-  $sidebar_first  = theme_get_setting('tablet_landscape_sidebar_first', $theme);
-  $sidebar_second = theme_get_setting('tablet_landscape_sidebar_second', $theme);
-  $media_query    = theme_get_setting('tablet_landscape_media_query', $theme);
-  $page_width     = theme_get_setting('tablet_landscape_page_width', $theme);
-  $method         = theme_get_setting('tablet_landscape_layout', $theme);
-  $sidebar_unit   = theme_get_setting('tablet_landscape_sidebar_unit', $theme);
-  $page_unit      = theme_get_setting('tablet_landscape_page_unit', $theme);
-  $layout         = ggp_net_at_layout_styles($method, $sidebar_first, $sidebar_second, $sidebar_unit);
-  $comment        = "/* Tablet landscape $method */\n";
-  $width          = "\n" . '.container {width: ' . $page_width . $page_unit . ';}';
-
-  if ((theme_get_setting('tablet_landscape_set_max_width', $theme) == 1) && ($page_unit == '%')) {
-    $max_width = theme_get_setting('tablet_landscape_max_width', $theme);
-    $max_width_unit = theme_get_setting('tablet_landscape_max_width_unit', $theme);
-    if (!empty($max_width)) {
-      $width = "\n" . '.container {width: ' . $page_width . $page_unit . '; max-width: ' . $max_width . $max_width_unit . ';}';
-    }
-    else {
-      $width = "\n" . '.container {width: ' . $page_width . $page_unit . '; max-width: ' . $page_width . $page_unit . ';}';
-    }
-  }
-
-  $styles = implode("\n", $layout) . $width;
-  $css = $comment . '@media ' . $media_query . ' {' . "\n" . $styles . "\n" . '}';
-  $layouts[] = check_plain($css);
-
-  // Standard bigscreen layout.
-  $sidebar_first  = theme_get_setting('bigscreen_sidebar_first', $theme);
-  $sidebar_second = theme_get_setting('bigscreen_sidebar_second', $theme);
-  $media_query    = theme_get_setting('bigscreen_media_query', $theme);
-  $page_width     = theme_get_setting('bigscreen_page_width', $theme);
-  $method         = theme_get_setting('bigscreen_layout', $theme);
-  $sidebar_unit   = theme_get_setting('bigscreen_sidebar_unit', $theme);
-  $page_unit      = theme_get_setting('bigscreen_page_unit', $theme);
-  $layout         = ggp_net_at_layout_styles($method, $sidebar_first, $sidebar_second, $sidebar_unit);
-  $comment        = "/* Standard layout $method */\n";
-  $width          = "\n" . '.container {width: ' . $page_width . $page_unit . ';}';
-
-  if (theme_get_setting('bigscreen_set_max_width', $theme) == 1 && $page_unit == '%') {
-    $max_width = theme_get_setting('bigscreen_max_width', $theme);
-    $max_width_unit = theme_get_setting('bigscreen_max_width_unit', $theme);
-    if (!empty($max_width)) {
-      $width = "\n" . '.container {width: ' . $page_width . $page_unit . '; max-width: ' . $max_width . $max_width_unit . ';}';
-    }
-    else {
-      $width = "\n" . '.container {width: ' . $page_width . $page_unit . '; max-width: ' . $page_width . $page_unit . ';}';
-    }
-  }
-
-  $styles = implode("\n", $layout) . $width;
-
-  // Set a variable for printing a special layout file for less than IE9.
-  $iecomment = "/* Standard layout $method, for IE8 and below. Note that rounding errors may occur in IE7 and below. */\n";
-  $lt_ie9 = $iecomment . $styles;
-
-  $css = $comment . '@media ' . $media_query . ' {' . "\n" . $styles . "\n" . '}';
-  $layouts[] = check_plain($css);
-
-  $layout_data = implode("\n", $layouts);
-
-  // Build and save files.
-  $path  = "public://at_css";
-  file_prepare_directory($path, FILE_CREATE_DIRECTORY);
-
-  // IE.
-  $lt_ie9_layout_file     = $theme . '.lt-ie9.layout.css';
-  $lt_ie9_layout_data     = $lt_ie9;
-  $lt_ie9_layout_filepath = $path . '/' . $lt_ie9_layout_file;
-  file_save_data($lt_ie9_layout_data, $lt_ie9_layout_filepath, FILE_EXISTS_REPLACE);
-
-  // Responsive layout.
-  $responsive_layout_file     = $theme . '.responsive.layout.css';
-  $responsive_layout_data     = $layout_data;
-  $responsive_layout_filepath = $path . '/' . $responsive_layout_file;
-  file_save_data($responsive_layout_data, $responsive_layout_filepath, FILE_EXISTS_REPLACE);
-
-  // Set variables so we can retrive them later to load the css files.
-  variable_set($theme . '_ltie9_layout_file_path', $path);
-  variable_set($theme . '_ltie9_layout_file_css', $lt_ie9_layout_file);
-  variable_set($theme . '_responsive_layout_file_path', $path);
-  variable_set($theme . '_responsive_layout_file_css', $responsive_layout_file);
-}
-
-/**
- * Process layout styles.
- */
-function ggp_net_at_layout_styles($method, $sidebar_first, $sidebar_second, $sidebar_unit) {
-
-  // Set variables for language direction.
-  $left = 'left';
-  $right = 'right';
-
-  // Build the sytle arrays, params are passed to the function from preprocess_html.
-  $styles = array();
-  if ($method == 'three-col-grail') {
-    $sidebar_second = $sidebar_second . $sidebar_unit;
-    $sidebar_first  = $sidebar_first . $sidebar_unit;
-    $push_right = $sidebar_second;
-    $push_left  = $sidebar_first;
-    $pull_right = $sidebar_second;
-    $styles[] = '.two-sidebars .content-inner {margin-' . $left . ': ' . $push_left . '; margin-' . $right . ': ' . $push_right . ';}';
-    $styles[] = '.sidebar-first .content-inner {margin-' . $left . ': ' . $push_left . '; margin-' . $right . ': 0;}';
-    $styles[] = '.sidebar-second .content-inner {margin-' . $right . ': ' . $push_right . '; margin-' . $left . ': 0;}';
-    $styles[] = '.region-sidebar-first {width: ' . $sidebar_first . '; margin-' . $left . ': -100%;}';
-    $styles[] = '.region-sidebar-second {width: ' . $sidebar_second . '; margin-' . $left . ': -' . $pull_right . '; clear: none;}';
-  }
-  if ($method == 'three-col-right') {
-    $content_margin = $sidebar_second + $sidebar_first . $sidebar_unit;
-    $push_right     = $sidebar_second . $sidebar_unit;
-    $push_left      = $sidebar_first . $sidebar_unit;
-    $left_margin    = $sidebar_second + $sidebar_first . $sidebar_unit;
-    $right_margin   = $sidebar_second . $sidebar_unit;
-    $styles[] = '.two-sidebars .content-inner {margin-' . $right . ': ' . $content_margin . '; margin-' . $left . ': 0;}';
-    $styles[] = '.sidebar-first .content-inner {margin-' . $right . ': ' . $push_left . '; margin-' . $left . ': 0;}';
-    $styles[] = '.sidebar-second .content-inner {margin-' . $right . ': ' . $push_right . '; margin-' . $left . ': 0;}';
-    $styles[] = '.region-sidebar-first {width: ' . $sidebar_first . $sidebar_unit . '; margin-' . $left . ': -' . $left_margin . ';}';
-    $styles[] = '.region-sidebar-second {width: ' . $sidebar_second . $sidebar_unit . '; margin-' . $left . ': -' . $right_margin . '; clear: none;}';
-    $styles[] = '.sidebar-first .region-sidebar-first {width: ' . $sidebar_first . $sidebar_unit . '; margin-' . $left . ': -' . $sidebar_first . $sidebar_unit . ';}';
-  }
-  if ($method == 'three-col-left') {
-    $content_margin = $sidebar_second + $sidebar_first . $sidebar_unit;
-    $left_margin    = $sidebar_first . $sidebar_unit;
-    $right_margin   = $sidebar_second . $sidebar_unit;
-    $push_right     = $sidebar_first . $sidebar_unit;
-    $styles[] = '.two-sidebars .content-inner {margin-' . $left . ': ' . $content_margin . '; margin-' . $right . ': 0;}';
-    $styles[] = '.sidebar-first .content-inner {margin-' . $left . ': ' . $left_margin . '; margin-' . $right . ': 0;}';
-    $styles[] = '.sidebar-second .content-inner {margin-' . $left . ': ' . $right_margin . '; margin-' . $right . ': 0;}';
-    $styles[] = '.region-sidebar-first {width: ' . $sidebar_first . $sidebar_unit . '; margin-' . $left . ': -100%;}';
-    $styles[] = '.region-sidebar-second {width: ' . $sidebar_second . $sidebar_unit . '; margin-' . $left . ': -100%; clear: none;}';
-    $styles[] = '.two-sidebars .region-sidebar-second {width: ' . $sidebar_second . $sidebar_unit . '; position: relative; ' . $left . ': ' . $push_right . ' ;}';
-  }
-  if ($method == 'two-col-stack') {
-    $push_right = $sidebar_first . $sidebar_unit;
-    $styles[] = '.two-sidebars .content-inner,.sidebar-first .content-inner {margin-' . $left . ': 0; margin-' . $right . ': ' . $push_right . ';}';
-    $styles[] = '.sidebar-second .content-inner {margin-right: 0; margin-left: 0;}';
-    $styles[] = '.region-sidebar-first {width: ' . $sidebar_first . $sidebar_unit . '; margin-' . $left . ': -' . $push_right . ';}';
-    $styles[] = '.region-sidebar-second {width: 100%; margin-left: 0; margin-right: 0; margin-top: 20px; clear: both; overflow: hidden;}';
-    $styles[] = '.region-sidebar-second .block {float: left; clear: none;}';
-  }
-  if ($method == 'one-col-stack') {
-    $styles[] = '.two-sidebars .content-inner,.one-sidebar .content-inner,.region-sidebar-first,.region-sidebar-second {margin-left: 0; margin-right: 0;}';
-    $styles[] = '.region-sidebar-first, .region-sidebar-second, .region-sidebar-first .block, .region-sidebar-second .block {width: 100%;}';
-    $styles[] = '.region-sidebar-second {width: 100%;}';
-    $styles[] = '.content-inner,.region-sidebar-first,.region-sidebar-second {float: none;}';
-    $styles[] = '.region-sidebar-first, .region-sidebar-second {clear: both;}';
-  }
-  if ($method == 'one-col-vert') {
-    $one_sidebar = $sidebar_first + $sidebar_second;
-    $styles[] = '.two-sidebars .content-inner,.one-sidebar .content-inner,.region-sidebar-first,.region-sidebar-second {margin-left: 0; margin-right: 0;}';
-    $styles[] = '.region-sidebar-first {width: ' . $sidebar_first . $sidebar_unit . ';}';
-    $styles[] = '.region-sidebar-second {width: ' . $sidebar_second . $sidebar_unit . ';}';
-    $styles[] = '.one-sidebar .sidebar {width: ' . $one_sidebar . $sidebar_unit . ';}';
-    $styles[] = '.region-sidebar-first, .region-sidebar-second {overflow: hidden; margin-top: 20px;}';
-    $styles[] = '.region-sidebar-first .block, .region-sidebar-second .block {width: 100%;}';
-  }
-  return $styles;
 }

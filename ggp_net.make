@@ -6,8 +6,6 @@ api = 2
 ; Modules
 projects[backports][version] = 1.0-alpha1
 
-projects[colorbox][version] = 1.4
-
 projects[ckeditor][version] = 1.12
 
 projects[ctools][version] = 1.2

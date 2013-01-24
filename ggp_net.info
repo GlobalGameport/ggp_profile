@@ -28,10 +28,11 @@ dependencies[] = libraries
 
 dependencies[] = ckeditor
 dependencies[] = navigation404
-dependencies[] = colorbox
+dependencies[] = fancybox
 dependencies[] = pathauto
 dependencies[] = backports
 dependencies[] = metatag
+dependencies[] = jquery_update
 dependencies[] = plupload
 dependencies[] = redirect
 dependencies[] = media
@@ -52,6 +53,9 @@ dependencies[] = xmlsitemap_engines
 dependencies[] = ggp
 dependencies[] = ggp_network
 dependencies[] = ggp_board
+dependencies[] = ggp_header
+
+dependencies[] = site_verify
 
 files[] = ggp_net.profile
 
