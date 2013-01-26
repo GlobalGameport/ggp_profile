@@ -49,9 +49,9 @@ projects[xmlsitemap][version] = 2.0-rc2
 
 projects[ggp][download][type] = git
 projects[ggp][download][url] = http://github.com/GlobalGameport/ggp_module.git
-projects[ggp][download][tag] = 7.x-1.0-rc1
+projects[ggp][download][tag] = 7.x-1.0-rc3
 projects[ggp][type] = module
-projects[ggp][version] = 7.x-1.0-rc1
+projects[ggp][version] = 7.x-1.0-rc3
 
 ; Themes
 projects[adaptivetheme][version] = 2.3
@@ -61,9 +61,9 @@ projects[adaptivetheme][type] = theme
 ; and url is the url of the download.
 projects[ggp_theme][download][type] = git
 projects[ggp_theme][download][url] = http://github.com/GlobalGameport/ggp_theme.git
-projects[ggp_theme][download][tag] = 7.x-1.0-rc5
+projects[ggp_theme][download][tag] = 7.x-1.0-rc6
 projects[ggp_theme][type] = theme
-projects[ggp_theme][version] = 7.x-1.0-rc5
+projects[ggp_theme][version] = 7.x-1.0-rc6
 
 projects[libraries][version] = 2.0
 projects[libraries][type] = module
@@ -79,7 +79,7 @@ libraries[ckeditorLib][type] = library
 
 
 libraries[pluploadLib][download][type] = get
-libraries[pluploadLib][download][url] = https://github.com/downloads/moxiecode/plupload/plupload_1_5_4.zip
+libraries[pluploadLib][download][url] = http://plupload.com/downloads/plupload_1_5_5.zip
 libraries[pluploadLib][directory_name] = plupload
 libraries[pluploadLib][type] = library
 

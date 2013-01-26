@@ -671,8 +671,7 @@ function ggp_net_install_vars() {
     ->condition('name', 'CKEditor Global Profile')
     ->execute();
 
-
-  //delete update_notify email variable. Not all pages should send mails with update notif. this would spam some mailboxes.
+  // Delete update_notify email variable. Not all pages should send mails with update notif. this would spam some mailboxes.
   variable_del('update_notify_emails');
 
   return TRUE;
