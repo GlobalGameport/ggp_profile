@@ -31,13 +31,11 @@ dependencies[] = navigation404
 dependencies[] = fancybox
 dependencies[] = pathauto
 dependencies[] = backports
-dependencies[] = metatag
 dependencies[] = jquery_update
 dependencies[] = plupload
 dependencies[] = redirect
 dependencies[] = media
 dependencies[] = media_gallery
-dependencies[] = plupload
 dependencies[] = media_browser_plus
 
 dependencies[] = metatag
@@ -45,6 +43,7 @@ dependencies[] = metatag_opengraph
 dependencies[] = metatag_ui
 
 dependencies[] = piwik
+dependencies[] = site_verify
 dependencies[] = views
 dependencies[] = views_ui
 dependencies[] = xmlsitemap
@@ -55,14 +54,6 @@ dependencies[] = ggp_network
 dependencies[] = ggp_board
 dependencies[] = ggp_header
 
-dependencies[] = site_verify
-
 files[] = ggp_net.profile
-
-
-
-version = "7.x-1.0-alpha1"
-core = "7.x"
-project = "ggp_net"
 
 
