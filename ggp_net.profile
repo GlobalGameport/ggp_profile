@@ -530,7 +530,7 @@ function ggp_net_install_roles($filtered_html_format) {
   // Create a default role for site administrators, with all available permissions assigned.
   $admin_role = new stdClass();
   $admin_role->name = 'administrator';
-  $admin_role->weight = 2;
+  $admin_role->weight = 5;
   user_role_save($admin_role);
   user_role_grant_permissions($admin_role->rid, array_keys(module_invoke_all('permission')));
   // Set this as the administrator role.
@@ -540,6 +540,20 @@ function ggp_net_install_roles($filtered_html_format) {
   db_insert('users_roles')
     ->fields(array('uid' => 1, 'rid' => $admin_role->rid))
     ->execute();
+
+  // Create Webmaster and Editor Roles.
+  $roles = array();
+  $roles['editor'] = array('weight' => 3, 'permissions' => array_merge(array('access content', $filtered_html_permission),
+                                                                      ggp_net_permissions('editor')));
+  $roles['webmaster'] = array('weight' => 4, 'permissions' => array_merge(array('access content', $filtered_html_permission), 
+                                                                         ggp_net_permissions('webmaster')));
+  foreach($roles as $name => $role) {
+    $r = new stdClass();
+    $r->name = $name;
+    $r->weight = $role['weight'];
+    user_role_save($r);
+    user_role_grant_permissions($r->rid, $role['permissions']);
+  }
 }
 
 /**
@@ -612,21 +626,6 @@ function ggp_net_install_nodes() {
   $node = node_submit($node);
   node_save($node);
 
-  $node = new stdClass();
-  $node->type = "page";
-  $node->title = "Impressum";
-  $node->language = LANGUAGE_NONE;
-  $node->name = 'admin';
-  node_object_prepare($node);
-
-  // Let's add standard body field,
-  $node->body[$node->language][0]['value'] = '<p>Für Fragen, die unser gesamtes Netzwerk betreffen, wendet euch bitte an folgende Person:</p><p>Boris Jebsen<br />  Am Kosakenholz 18<br />  24816 Hamweddel<br />  <span><a href="mailto:info@globalgameport.com">info@globalgameport.com</a> </span><br />  Telefon: 01525 - 3151455</p><p>Die Telefonnummer ist nicht für Support zu Spielen gedacht.</p><p>Diese persönlichen Daten dürfen nur in Verbindung mit den Seiten des Global Gameport-Netzwerkes verwendet werden. Für Fragen und Anregungen stehe ich gerne zur Verfügung.<br />  Erfolgt allerdings eine zweckfremde Nutzung oder Weitergabe der Daten, wird dies strafrechtlich und / oder ordnungswidrigkeitenrechtlich verfolgt.</p>';
-  $node->body[$node->language][0]['summary'] = '<p>Für Fragen, die unser gesamtes Netzwerk betreffen, wendet euch bitte an folgende Person:</p><p>Boris Jebsen<br />  Am Kosakenholz 18<br />  24816 Hamweddel<br />  <span><a href="mailto:info@globalgameport.com">info@globalgameport.com</a> </span><br />  Telefon: 01525 - 3151455</p><p>Die Telefonnummer ist nicht für Support zu Spielen gedacht.</p><p>Diese persönlichen Daten dürfen nur in Verbindung mit den Seiten des Global Gameport-Netzwerkes verwendet werden. Für Fragen und Anregungen stehe ich gerne zur Verfügung.<br />  Erfolgt allerdings eine zweckfremde Nutzung oder Weitergabe der Daten, wird dies strafrechtlich und / oder ordnungswidrigkeitenrechtlich verfolgt.</p>';
-  $node->body[$node->language][0]['format'] = 'filtered_html';
-
-  $node = node_submit($node);
-  node_save($node);
-
 }
 
 /**
@@ -688,4 +687,55 @@ function ggp_net_write_default_at_layout_css($theme) {
     $form_state['values'] = array();
     drupal_form_submit('system_theme_settings', $form_state);
   }
+}
+
+
+function ggp_net_permissions($role) {
+  $permissions = array();
+  switch($role) {
+    case 'editor':
+      $permissions = array(
+          'create page content',
+          'edit any page content',
+          'edit own page content',
+          'delete own page content',
+          'create article content',
+          'edit any article content',
+          'edit own article content',
+          'delete own article content',
+          'create media_gallery content',
+          'edit any media_gallery content',
+          'edit any media_gallery content',
+          'delete own media_gallery content',
+          'view revisions',
+          'view media',
+          'create url aliases',
+          'edit terms in 1',
+          'edit terms in 2',
+          'edit terms in 3',
+          'use text format full_html',
+          'access dashboard',
+          'access overlay',
+          'access contextual links',
+          'customize shortcut links',
+        );
+    break;
+    case 'webmaster':
+      $permissions = array(
+          'delete any page content',
+          'delete any article content',
+          'delete any media_gallery content',
+          'revert revisions',
+          'administer url aliases',
+          'administer piwik',
+          'administer xmlsitemap',
+          'administer nodes',
+          'administer blocks',
+          'administer media',
+          'administer media galleries',
+        );
+      $permissions = array_merge(ggp_net_permissions('editor'), $permissions);
+    break;
+  }
+  return $permissions;
 }
