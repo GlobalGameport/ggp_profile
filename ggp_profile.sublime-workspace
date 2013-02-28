@@ -99,7 +99,34 @@
 			"file": "ggp_net.profile",
 			"settings":
 			{
-				"buffer_size": 19434,
+				"buffer_size": 20979,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "ggp_net.info",
+			"settings":
+			{
+				"buffer_size": 1302,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "ggp_net.build",
+			"settings":
+			{
+				"buffer_size": 292,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"contents": "<?php\n/**\n * Export to PHP Array plugin for PHPMyAdmin\n * @author Geoffray Warnants\n * @version 0.2b\n */\n\n//\n// Database \"drupal\"\n//\n\n// drupal.role_permission\n$role_permission = array(\n  'access administration pages',\n  'access all views',\n  'access content',\n  'access content overview',\n  'access contextual links',\n  'access dashboard',\n  'access overlay',\n  'access site in maintenance mode',\n  'access site reports',\n  'access toolbar',\n  'access user profiles',\n  'administer actions',\n  'administer blocks',\n  'administer ckeditor',\n  'administer content types',\n  'administer filters',\n  'administer image styles',\n  'administer languages',\n  'administer media',\n  'administer media galleries',\n  'administer menu',\n  'administer meta tags',\n  'administer modules',\n  'administer nodes',\n  'administer pathauto',\n  'administer permissions',\n  'administer piwik',\n  'administer redirects',\n  'administer search',\n  'administer shortcuts',\n  'administer site configuration',\n  'administer software updates',\n  'administer taxonomy',\n  'administer themes',\n  'administer url aliases',\n  'administer users',\n  'administer views',\n  'administer xmlsitemap',\n  'block IP addresses',\n  'bypass node access',\n  'cancel account',\n  'change own username',\n  'create article content',\n  'create media_gallery content',\n  'create page content',\n  'create url aliases',\n  'customize ckeditor',\n  'customize shortcut links',\n  'delete any article content',\n  'delete any media_gallery content',\n  'delete any page content',\n  'delete own article content',\n  'delete own media_gallery content',\n  'delete own page content',\n  'delete revisions',\n  'delete terms in 1',\n  'delete terms in 2',\n  'delete terms in 3',\n  'edit any article content',\n  'edit any media_gallery content',\n  'edit any page content',\n  'edit media',\n  'edit meta tags',\n  'edit own article content',\n  'edit own media_gallery content',\n  'edit own page content',\n  'edit terms in 1',\n  'edit terms in 2',\n  'edit terms in 3',\n  'import media',\n  'notify of path changes',\n  'opt-in or out of tracking',\n  'revert revisions',\n  'search content',\n  'select account cancellation method',\n  'switch shortcut sets',\n  'translate interface',\n  'use advanced search',\n  'use PHP for tracking visibility',\n  'use text format filtered_html',\n  'use text format full_html',\n  'view media',\n  'view own unpublished content',\n  'view revisions',\n  'view the administration theme'\n);\n",
+			"file": "/C/Users/Valkum/Downloads/role_permission.php",
+			"file_size": 4323,
+			"file_write_time": 130059438607246997,
+			"settings":
+			{
+				"buffer_size": 2439,
 				"line_ending": "Windows"
 			}
 		},
@@ -108,6 +135,14 @@
 			"settings":
 			{
 				"buffer_size": 2728,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": ".travis.yml",
+			"settings":
+			{
+				"buffer_size": 1120,
 				"line_ending": "Windows"
 			}
 		}
@@ -216,6 +251,11 @@
 	},
 	"file_history":
 	[
+		"/C/Users/Valkum/Dropbox/Unverdaechtiger Ordner/TI/Klausurzettel 2011-2012/anmerkung.txt",
+		"/C/Users/Valkum/htdocs/drupal/profiles/ggp_net/themes/ggp_theme/ggp_theme.info",
+		"/C/Users/Valkum/htdocs/drupal/profiles/ggp_net/themes/ggp_theme/theme-settings.php",
+		"/C/Users/Valkum/htdocs/drupal/profiles/ggp_net/themes/ggp_theme/template.php",
+		"/C/Users/Valkum/Downloads/role_permission.yml",
 		"/C/Users/Valkum/Documents/GitHub/ggp_profile/.travis.yml",
 		"/C/Users/Valkum/Documents/GitHub/ggp_theme/theme-settings.php",
 		"/C/Users/Valkum/Documents/GitHub/ggp_theme/template.php",
@@ -338,12 +378,7 @@
 		"/C/Users/Valkum/Dropbox/Uni/1. Semester/Progra/uebungen/Progra12/uebung8/de.rwth.rennbahn/wettbewerber/Pferd",
 		"/C/Users/Valkum/Dropbox/Unverdaechtiger Ordner/DS/GGT.java",
 		"/C/Users/Valkum/Downloads/wow/World of Warcraft 3.3.5a/Interface/AddOns/oUF_D3Orbs/oUF_D3Orbs.lua",
-		"/C/Users/Valkum/Downloads/wow/World of Warcraft 3.3.5a/Interface/AddOns/rColors/rColors.lua",
-		"/C/Users/Valkum/Downloads/wow/World of Warcraft 3.3.5a/Interface/AddOns/evl_NamePlates/evl_NamePlates.lua",
-		"/C/Users/Valkum/Downloads/wow/World of Warcraft 3.3.5a/Interface/AddOns/rFilter2/rFilter2.lua",
-		"/C/Users/Valkum/Downloads/wow/World of Warcraft 3.3.5a/Interface/AddOns/OmniCC/basic.lua",
-		"/C/Users/Valkum/Downloads/wow/World of Warcraft 3.3.5a/Interface/AddOns/evl_CombatText/evl_CombatText.lua",
-		"/C/Users/Valkum/Dropbox/Uni/1. Semester/Progra/uebungen/Progra12/uebung7/diebe/Stadt.java"
+		"/C/Users/Valkum/Downloads/wow/World of Warcraft 3.3.5a/Interface/AddOns/rColors/rColors.lua"
 	],
 	"find":
 	{
@@ -361,6 +396,10 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"color",
+			"fan",
+			"array('permission'=>",
+			")",
 			"tablet",
 			"Tablet",
 			"tablet",
@@ -432,6 +471,7 @@
 		"regex": false,
 		"replace_history":
 		[
+			"",
 			"___________"
 		],
 		"reverse": true,
@@ -443,7 +483,7 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 4,
 			"sheets":
 			[
 				{
@@ -451,15 +491,15 @@
 					"file": "ggp_net.profile",
 					"settings":
 					{
-						"buffer_size": 19434,
+						"buffer_size": 20979,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								15899,
-								15899
+								1605,
+								1605
 							]
 						],
 						"settings":
@@ -469,17 +509,17 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 2725.0,
+						"translation.y": 1578.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "ggp_net.make",
+					"file": "ggp_net.info",
 					"settings":
 					{
-						"buffer_size": 2728,
+						"buffer_size": 1302,
 						"regions":
 						{
 						},
@@ -492,10 +532,118 @@
 						],
 						"settings":
 						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 324.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "ggp_net.build",
+					"settings":
+					{
+						"buffer_size": 292,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								51,
+								51
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C#/Build.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "/C/Users/Valkum/Downloads/role_permission.php",
+					"settings":
+					{
+						"buffer_size": 2439,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1419,
+								1392
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 918.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "ggp_net.make",
+					"settings":
+					{
+						"buffer_size": 2728,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								671,
+								674
+							]
+						],
+						"settings":
+						{
 							"syntax": "Packages/Makefile/Makefile.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 956.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": ".travis.yml",
+					"settings":
+					{
+						"buffer_size": 1120,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								626,
+								626
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/YAML/YAML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"

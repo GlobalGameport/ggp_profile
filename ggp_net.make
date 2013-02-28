@@ -10,11 +10,13 @@ projects[ckeditor][version] = 1.12
 
 projects[ctools][version] = 1.2
 
-projects[fancybox][version] = 2.0-alpha2
+projects[fancybox][version] = 2.0-alpha3
 
 projects[jquery_update][download][type] = git
 projects[jquery_update][download][url] = http://git.drupal.org/project/jquery_update.git
 projects[jquery_update][download][tag] = 7.x-2.3-alpha1
+
+projects[imce][version] = 1.7
 
 projects[media][version] = 1.2
 
@@ -33,13 +35,13 @@ projects[pathauto][version] = 1.2
 
 projects[piwik][version] = 2.4
 
-projects[plupload][version] = 1.0
+projects[plupload][version] = 1.1
 
 projects[redirect][version] = 1.0-rc1
 
 projects[site_verify][version] = 1.0
 
-projects[token][version] = 1.4
+projects[token][version] = 1.5
 
 projects[transliteration] = 3.1
 
