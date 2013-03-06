@@ -360,7 +360,7 @@ function ggp_net_install_taxonomy() {
       'description' => $vocabulary->help,
       'widget' => array(
         'type' => 'taxonomy_autocomplete',
-        'weight' => -4,
+        'weight' => 5,
       ),
       'display' => array(
         'default' => array(
@@ -423,12 +423,12 @@ function ggp_net_install_taxonomy() {
   $instance = array(
     'field_name' => 'field_' . $vocabulary->machine_name,
     'entity_type' => 'node',
-    'label' => 'Tags',
+    'label' => 'Category',
     'bundle' => 'article',
     'description' => $vocabulary->help,
     'widget' => array(
       'type' => 'options_select',
-      'weight' => -4,
+      'weight' => 4,
     ),
     'display' => array(
       'default' => array(
@@ -663,14 +663,26 @@ function ggp_net_install_vars() {
   }
 
   // Set CKEditor Library Path.
-  // @todo use drupal_form_submit
-  db_update('ckeditor_settings')
-    ->fields(array(
-      'settings' => 'a:10:{s:4:"skin";s:4:"kama";s:13:"ckeditor_path";s:36:"/profiles/ggp_net/libraries/ckeditor";s:19:"ckeditor_local_path";s:37:"./profiles/ggp_net/libraries/ckeditor";s:21:"ckeditor_plugins_path";s:44:"/profiles/ggp_net/libraries/ckeditor/plugins";s:27:"ckeditor_plugins_local_path";s:45:"./profiles/ggp_net/libraries/ckeditor/plugins";s:13:"ckfinder_path";s:0:"";s:19:"ckfinder_local_path";s:0:"";s:18:"ckeditor_aggregate";s:1:"f";s:14:"toolbar_wizard";s:1:"t";s:11:"loadPlugins";a:0:{}}'))
-    ->condition('name', 'CKEditor Global Profile')
-    ->execute();
+  module_load_include('inc', 'ckeditor', 'ckeditor.admin');
+  // Do this to automate saving the theme settings form:
+  $form_state = form_state_defaults();
+  $form_state['build_info']['args'][0] = 'edit';
+  $form_state['values'] = array();
+  $form_state['values']['ckeditor_path'] = "/profiles/ggp_net/libraries/ckeditor";
+  $form_state['values']['ckeditor_local_path'] = "./profiles/ggp_net/libraries/ckeditor";
+  $form_state['values']['ckeditor_plugins_path'] = "/profiles/ggp_net/libraries/ckeditor/plugins";
+  $form_state['values']['ckeditor_plugins_local_path'] = "./profiles/ggp_net/libraries/ckeditor/plugins";
+  drupal_form_submit('ckeditor_admin_global_profile_form', $form_state);
 
-
+  module_load_include('inc', 'node', 'content_types');
+  // Do this to automate saving the theme settings form:
+  foreach (array('page', 'article') as $content_type_name) {
+    $form_state = form_state_defaults();
+    $form_state['build_info']['args'][0] = node_type_load($content_type_name);
+    $form_state['values'] = array();
+    $form_state['values']['xmlsitemap']['status'] = 1;
+    drupal_form_submit('node_type_form', $form_state);
+  }
 
   return TRUE;
 }

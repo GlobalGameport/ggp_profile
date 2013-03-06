@@ -50,6 +50,8 @@ dependencies[] = views
 dependencies[] = views_ui
 dependencies[] = xmlsitemap
 dependencies[] = xmlsitemap_engines
+dependencies[] = xmlsitemap_menu
+dependencies[] = xmlsitemap_node
 
 dependencies[] = ggp
 dependencies[] = ggp_network
