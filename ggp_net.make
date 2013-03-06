@@ -44,7 +44,7 @@ projects[site_verify][version] = 1.0
 
 projects[token][version] = 1.5
 
-projects[transliteration] = 3.1
+projects[transliteration][version] = 3.1
 
 projects[views][version] = 3.5
 
@@ -56,7 +56,7 @@ projects[ggp][download][tag] = 7.x-1.0-rc3
 projects[ggp][type] = module
 projects[ggp][version] = 7.x-1.0-rc3
 
-projects[disqus[version] = 7.x-1.9
+projects[disqus][version] = 7.x-1.9
 
 ; Themes
 projects[adaptivetheme][version] = 2.3
