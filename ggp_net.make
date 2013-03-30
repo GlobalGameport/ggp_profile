@@ -4,6 +4,8 @@ api = 2
 
 
 ; Modules
+
+projects[admin_menu][version] = 3.0-rc4
 projects[backports][version] = 1.0-alpha1
 
 projects[ckeditor][version] = 1.12
@@ -15,6 +17,9 @@ projects[fancybox][version] = 2.0-alpha2
 projects[jquery_update][download][type] = git
 projects[jquery_update][download][url] = http://git.drupal.org/project/jquery_update.git
 projects[jquery_update][download][tag] = 7.x-2.3-alpha1
+
+
+projects[linkchecker][version] = 1.1
 
 projects[media][version] = 1.2
 

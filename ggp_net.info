@@ -26,12 +26,14 @@ dependencies[] = rdf
 
 dependencies[] = libraries
 
+dependencies[] = admin_menu
 dependencies[] = ckeditor
 dependencies[] = navigation404
 dependencies[] = fancybox
 dependencies[] = pathauto
 dependencies[] = backports
 dependencies[] = jquery_update
+dependencies[] = linkchecker
 dependencies[] = plupload
 dependencies[] = redirect
 dependencies[] = media
