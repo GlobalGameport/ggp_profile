@@ -360,7 +360,7 @@ function ggp_net_install_taxonomy() {
       'description' => $vocabulary->help,
       'widget' => array(
         'type' => 'taxonomy_autocomplete',
-        'weight' => -4,
+        'weight' => 5,
       ),
       'display' => array(
         'default' => array(
@@ -423,12 +423,12 @@ function ggp_net_install_taxonomy() {
   $instance = array(
     'field_name' => 'field_' . $vocabulary->machine_name,
     'entity_type' => 'node',
-    'label' => 'Tags',
+    'label' => 'Category',
     'bundle' => 'article',
     'description' => $vocabulary->help,
     'widget' => array(
       'type' => 'options_select',
-      'weight' => -4,
+      'weight' => 4,
     ),
     'display' => array(
       'default' => array(
@@ -663,14 +663,26 @@ function ggp_net_install_vars() {
   }
 
   // Set CKEditor Library Path.
-  // @todo use drupal_form_submit
-  db_update('ckeditor_settings')
-    ->fields(array(
-      'settings' => 'a:10:{s:4:"skin";s:4:"kama";s:13:"ckeditor_path";s:36:"/profiles/ggp_net/libraries/ckeditor";s:19:"ckeditor_local_path";s:37:"./profiles/ggp_net/libraries/ckeditor";s:21:"ckeditor_plugins_path";s:44:"/profiles/ggp_net/libraries/ckeditor/plugins";s:27:"ckeditor_plugins_local_path";s:45:"./profiles/ggp_net/libraries/ckeditor/plugins";s:13:"ckfinder_path";s:0:"";s:19:"ckfinder_local_path";s:0:"";s:18:"ckeditor_aggregate";s:1:"f";s:14:"toolbar_wizard";s:1:"t";s:11:"loadPlugins";a:0:{}}'))
-    ->condition('name', 'CKEditor Global Profile')
-    ->execute();
+  module_load_include('inc', 'ckeditor', 'ckeditor.admin');
+  // Do this to automate saving the theme settings form:
+  $form_state = form_state_defaults();
+  $form_state['build_info']['args'][0] = 'edit';
+  $form_state['values'] = array();
+  $form_state['values']['ckeditor_path'] = "/profiles/ggp_net/libraries/ckeditor";
+  $form_state['values']['ckeditor_local_path'] = "./profiles/ggp_net/libraries/ckeditor";
+  $form_state['values']['ckeditor_plugins_path'] = "/profiles/ggp_net/libraries/ckeditor/plugins";
+  $form_state['values']['ckeditor_plugins_local_path'] = "./profiles/ggp_net/libraries/ckeditor/plugins";
+  drupal_form_submit('ckeditor_admin_global_profile_form', $form_state);
 
-
+  module_load_include('inc', 'node', 'content_types');
+  // Do this to automate saving the theme settings form:
+  foreach (array('page', 'article') as $content_type_name) {
+    $form_state = form_state_defaults();
+    $form_state['build_info']['args'][0] = node_type_load($content_type_name);
+    $form_state['values'] = array();
+    $form_state['values']['xmlsitemap']['status'] = 1;
+    drupal_form_submit('node_type_form', $form_state);
+  }
 
   return TRUE;
 }
@@ -695,45 +707,61 @@ function ggp_net_permissions($role) {
   switch($role) {
     case 'editor':
       $permissions = array(
-          'create page content',
-          'edit any page content',
-          'edit own page content',
-          'delete own page content',
-          'create article content',
-          'edit any article content',
-          'edit own article content',
-          'delete own article content',
-          'create media_gallery content',
-          'edit any media_gallery content',
-          'edit any media_gallery content',
-          'delete own media_gallery content',
-          'view revisions',
-          'view media',
-          'create url aliases',
-          'edit terms in 1',
-          'edit terms in 2',
-          'edit terms in 3',
-          'use text format full_html',
-          'access dashboard',
-          'access overlay',
-          'access contextual links',
-          'customize shortcut links',
-        );
+        'create page content',
+        'edit any page content',
+        'edit own page content',
+        'delete own page content',
+        'create article content',
+        'edit any article content',
+        'edit own article content',
+        'delete own article content',
+        'create media_gallery content',
+        'edit any media_gallery content',
+        'edit any media_gallery content',
+        'delete own media_gallery content',
+        'use text format full_html',
+        'access administration pages',
+        'access content',
+        'access content overview',
+        'access dashboard',
+        'access overlay',
+        'access contextual links',
+        'access site in maintenance mode',
+        'access toolbar',
+        'administer media',
+        'administer media galleries',
+        'administer menu',
+        'administer nodes',
+        'administer shortcuts',
+        'administer taxonomy',
+        'create url aliases',
+        'customize shortcut links',
+        'customize ckeditor',
+        'edit terms in 1',
+        'edit terms in 2',
+        'edit terms in 3',
+        'view revisions',
+        'view media',
+        'view the administration theme',
+        'view own unpublished content',
+      );
     break;
     case 'webmaster':
       $permissions = array(
-          'delete any page content',
-          'delete any article content',
-          'delete any media_gallery content',
-          'revert revisions',
-          'administer url aliases',
-          'administer piwik',
-          'administer xmlsitemap',
-          'administer nodes',
-          'administer blocks',
-          'administer media',
-          'administer media galleries',
-        );
+        'bypass node access',
+        'delete any page content',
+        'delete any article content',
+        'delete any media_gallery content',
+        'revert revisions',
+        'administer url aliases',
+        'administer piwik',
+        'administer xmlsitemap',
+        'administer blocks',
+        'administer ckeditor',
+        'administer modules',
+        'administer site configuration',
+        'administer themes',
+      );
       $permissions = array_merge(ggp_net_permissions('editor'), $permissions);
     break;
   }

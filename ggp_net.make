@@ -12,7 +12,8 @@ projects[ckeditor][version] = 1.12
 
 projects[ctools][version] = 1.2
 
-projects[fancybox][version] = 2.0-alpha2
+projects[fancybox][version] = 2.0-alpha3
+projects[fancybox][patch][] = "http://drupal.org/files/fancybox-1904006-undefined-index-line-559-v1_0.patch"
 
 projects[jquery_update][download][type] = git
 projects[jquery_update][download][url] = http://git.drupal.org/project/jquery_update.git
@@ -20,6 +21,8 @@ projects[jquery_update][download][tag] = 7.x-2.3-alpha1
 
 
 projects[linkchecker][version] = 1.1
+
+projects[imce][version] = 1.7
 
 projects[media][version] = 1.2
 
@@ -38,15 +41,15 @@ projects[pathauto][version] = 1.2
 
 projects[piwik][version] = 2.4
 
-projects[plupload][version] = 1.0
+projects[plupload][version] = 1.1
 
 projects[redirect][version] = 1.0-rc1
 
 projects[site_verify][version] = 1.0
 
-projects[token][version] = 1.4
+projects[token][version] = 1.5
 
-projects[transliteration] = 3.1
+projects[transliteration][version] = 3.1
 
 projects[views][version] = 3.5
 
@@ -57,6 +60,8 @@ projects[ggp][download][url] = http://github.com/GlobalGameport/ggp_module.git
 projects[ggp][download][tag] = 7.x-1.0-rc3
 projects[ggp][type] = module
 projects[ggp][version] = 7.x-1.0-rc3
+
+projects[disqus][version] = 7.x-1.9
 
 ; Themes
 projects[adaptivetheme][version] = 2.3
