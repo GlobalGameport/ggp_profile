@@ -99,50 +99,7 @@
 			"file": "ggp_net.profile",
 			"settings":
 			{
-				"buffer_size": 21449,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "ggp_net.info",
-			"settings":
-			{
-				"buffer_size": 1423,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "/C/Users/Valkum/htdocs/ggp_net.build",
-			"settings":
-			{
-				"buffer_size": 299,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "/C/Users/Valkum/htdocs/drupal/profiles/ggp_net/modules/fancybox/fancybox.module",
-			"settings":
-			{
-				"buffer_size": 18683,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "ggp_net.build",
-			"settings":
-			{
-				"buffer_size": 292,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"contents": "<?php\n/**\n * Export to PHP Array plugin for PHPMyAdmin\n * @author Geoffray Warnants\n * @version 0.2b\n */\n\n//\n// Database \"drupal\"\n//\n\n// drupal.role_permission\n$role_permission = array(\n  'access administration pages',\n  'access all views',\n  'access content',\n  'access content overview',\n  'access contextual links',\n  'access dashboard',\n  'access overlay',\n  'access site in maintenance mode',\n  'access site reports',\n  'access toolbar',\n  'access user profiles',\n  'administer actions',\n  'administer blocks',\n  'administer ckeditor',\n  'administer content types',\n  'administer filters',\n  'administer image styles',\n  'administer languages',\n  'administer media',\n  'administer media galleries',\n  'administer menu',\n  'administer meta tags',\n  'administer modules',\n  'administer nodes',\n  'administer pathauto',\n  'administer permissions',\n  'administer piwik',\n  'administer redirects',\n  'administer search',\n  'administer shortcuts',\n  'administer site configuration',\n  'administer software updates',\n  'administer taxonomy',\n  'administer themes',\n  'administer url aliases',\n  'administer users',\n  'administer views',\n  'administer xmlsitemap',\n  'block IP addresses',\n  'bypass node access',\n  'cancel account',\n  'change own username',\n  'create article content',\n  'create media_gallery content',\n  'create page content',\n  'create url aliases',\n  'customize ckeditor',\n  'customize shortcut links',\n  'delete any article content',\n  'delete any media_gallery content',\n  'delete any page content',\n  'delete own article content',\n  'delete own media_gallery content',\n  'delete own page content',\n  'delete revisions',\n  'delete terms in 1',\n  'delete terms in 2',\n  'delete terms in 3',\n  'edit any article content',\n  'edit any media_gallery content',\n  'edit any page content',\n  'edit media',\n  'edit meta tags',\n  'edit own article content',\n  'edit own media_gallery content',\n  'edit own page content',\n  'edit terms in 1',\n  'edit terms in 2',\n  'edit terms in 3',\n  'import media',\n  'notify of path changes',\n  'opt-in or out of tracking',\n  'revert revisions',\n  'search content',\n  'select account cancellation method',\n  'switch shortcut sets',\n  'translate interface',\n  'use advanced search',\n  'use PHP for tracking visibility',\n  'use text format filtered_html',\n  'use text format full_html',\n  'view media',\n  'view own unpublished content',\n  'view revisions',\n  'view the administration theme'\n);\n",
-			"file": "/C/Users/Valkum/Downloads/role_permission.php",
-			"file_size": 4323,
-			"file_write_time": 130059438607246997,
-			"settings":
-			{
-				"buffer_size": 2439,
+				"buffer_size": 21908,
 				"line_ending": "Windows"
 			}
 		},
@@ -150,23 +107,15 @@
 			"file": "ggp_net.make",
 			"settings":
 			{
-				"buffer_size": 2904,
+				"buffer_size": 2994,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "/C/Users/Valkum/Documents/GitHub/ggp_module/ggp_comments.module",
+			"file": "ggp_net.info",
 			"settings":
 			{
-				"buffer_size": 6,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": ".travis.yml",
-			"settings":
-			{
-				"buffer_size": 1004,
+				"buffer_size": 1480,
 				"line_ending": "Windows"
 			}
 		}
@@ -275,24 +224,8 @@
 	},
 	"file_history":
 	[
-		"/C/Users/Valkum/htdocs/drupal/.htaccess",
-		"/C/Users/Valkum/htdocs/drupal/profiles/ggp_net/modules/fancybox/fancybox.install",
-		"/C/Users/Valkum/htdocs/drupal/profiles/ggp_net/modules/xmlsitemap/xmlsitemap.admin.inc",
-		"/C/Users/Valkum/htdocs/drupal/profiles/ggp_net/modules/xmlsitemap/xmlsitemap_node/xmlsitemap_node.module",
-		"/C/Users/Valkum/htdocs/drupal/profiles/ggp_net/modules/ckeditor/includes/ckeditor.admin.inc",
-		"/C/Users/Valkum/htdocs/drupal/modules/node/content_types.inc",
-		"/C/Users/Valkum/htdocs/drupal/modules/node/node.admin.inc",
-		"/C/Users/Valkum/htdocs/drupal/profiles/ggp_net/modules/ckeditor/ckeditor.module",
-		"/C/Users/Valkum/htdocs/drupal/scripts/generate-d7-content.sh",
-		"/C/Users/Valkum/htdocs/drupal/scripts/drupal.sh",
-		"/C/Users/Valkum/htdocs/drupal/scripts/dump-database-d7.sh",
-		"/C/Users/Valkum/htdocs/drupal/scripts/code-clean.sh",
-		"/C/Users/Valkum/Documents/GitHub/ggp_module/ggp_comments.info",
-		"/C/Users/Valkum/Dropbox/Unverdaechtiger Ordner/TI/Klausurzettel 2011-2012/anmerkung.txt",
-		"/C/Users/Valkum/htdocs/drupal/profiles/ggp_net/themes/ggp_theme/ggp_theme.info",
-		"/C/Users/Valkum/htdocs/drupal/profiles/ggp_net/themes/ggp_theme/theme-settings.php",
-		"/C/Users/Valkum/htdocs/drupal/profiles/ggp_net/themes/ggp_theme/template.php",
-		"/C/Users/Valkum/Downloads/role_permission.yml",
+		"/C/Users/Valkum/Desktop/elena/Dokumente und Einstellungen/Cordula Hentschel/Anwendungsdaten/Mozilla/Firefox/Profiles/f9k0qyze.default/bookmarkbackups/bookmarks-2009-10-10.json",
+		"/C/Users/Valkum/Desktop/elena/Dokumente und Einstellungen/Cordula Hentschel/Anwendungsdaten/Mozilla/Firefox/Profiles/f9k0qyze.default/formhistory.sqlite",
 		"/C/Users/Valkum/Documents/GitHub/ggp_profile/.travis.yml",
 		"/C/Users/Valkum/Documents/GitHub/ggp_theme/theme-settings.php",
 		"/C/Users/Valkum/Documents/GitHub/ggp_theme/template.php",
@@ -402,7 +335,23 @@
 		"/C/Users/Valkum/AppData/Local/Temp/Newton-1.java",
 		"/C/Users/Valkum/Dropbox/Uni/1. Semester/AFI/newton/Newton.java",
 		"/C/Users/Valkum/Dropbox/Uni/1. Semester/AFI/newton.java",
-		"/C/Users/Valkum/Dropbox/Uni/1. Semester/Progra/uebungen/Progra12/uebung8/rennbahn.sublime-project"
+		"/C/Users/Valkum/Dropbox/Uni/1. Semester/Progra/uebungen/Progra12/uebung8/rennbahn.sublime-project",
+		"/C/Users/Valkum/AppData/Local/Temp/Newton.java",
+		"/C/Users/Valkum/Dropbox/Aufgabe 2 a)",
+		"/C/Users/Valkum/Dropbox/Uni/1. Semester/Progra/uebungen/Progra12/uebung8/de/rwth/rennbahn/Rennbahn.java",
+		"/C/Users/Valkum/Dropbox/Uni/1. Semester/Progra/uebungen/Progra12/uebung8/Supermarkt.java",
+		"/C/Users/Valkum/Dropbox/Uni/1. Semester/Progra/uebungen/Progra12/uebung8/de.rwth.rennbahn/wettbewerber/Fahrradfahrer.java",
+		"/C/Users/Valkum/Dropbox/Uni/1. Semester/Progra/uebungen/Progra12/uebung8/de.rwth.rennbahn/wettbewerber/Kart.java",
+		"/C/Users/Valkum/Dropbox/Uni/1. Semester/Progra/uebungen/Progra12/uebung8/de.rwth.rennbahn/wettbewerber/Auto.java",
+		"/C/Users/Valkum/Dropbox/Uni/1. Semester/Progra/uebungen/Progra12/uebung8/de.rwth.rennbahn/wettbewerber/Wettbewerber.java",
+		"/C/Users/Valkum/Dropbox/Uni/1. Semester/Progra/uebungen/Progra12/uebung7/diebe/Gefangener.java",
+		"/C/Users/Valkum/Dropbox/Uni/1. Semester/Progra/uebungen/Progra12/uebung8/de.rwth.rennbahn/wettbewerber/Pferd",
+		"/C/Users/Valkum/Dropbox/Unverdaechtiger Ordner/DS/GGT.java",
+		"/C/Users/Valkum/Downloads/wow/World of Warcraft 3.3.5a/Interface/AddOns/oUF_D3Orbs/oUF_D3Orbs.lua",
+		"/C/Users/Valkum/Downloads/wow/World of Warcraft 3.3.5a/Interface/AddOns/rColors/rColors.lua",
+		"/C/Users/Valkum/Downloads/wow/World of Warcraft 3.3.5a/Interface/AddOns/evl_NamePlates/evl_NamePlates.lua",
+		"/C/Users/Valkum/Downloads/wow/World of Warcraft 3.3.5a/Interface/AddOns/rFilter2/rFilter2.lua",
+		"/C/Users/Valkum/Downloads/wow/World of Warcraft 3.3.5a/Interface/AddOns/OmniCC/basic.lua"
 	],
 	"find":
 	{
@@ -420,11 +369,6 @@
 		"case_sensitive": false,
 		"find_history":
 		[
-			"ckeditor_admin_global_profile_form",
-			"color",
-			"fan",
-			"array('permission'=>",
-			")",
 			"tablet",
 			"Tablet",
 			"tablet",
@@ -496,7 +440,6 @@
 		"regex": false,
 		"replace_history":
 		[
-			"",
 			"___________"
 		],
 		"reverse": true,
@@ -508,7 +451,7 @@
 	"groups":
 	[
 		{
-			"selected": 2,
+			"selected": 1,
 			"sheets":
 			[
 				{
@@ -516,241 +459,467 @@
 					"file": "ggp_net.profile",
 					"settings":
 					{
-						"buffer_size": 21449,
+						"buffer_size": 21908,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								10494,
-								10494
+								0,
+								0
 							]
 						],
 						"settings":
 						{
+							"annotations":
+							[
+								"TODO",
+								"README",
+								"FIXME"
+							],
+							"bh_regions":
+							[
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close"
+							],
+							"csslint_options":
+							{
+								"adjoining-classes": "warning",
+								"box-model": true,
+								"box-sizing": "warning",
+								"compatible-vendor-prefixes": "warning",
+								"display-property-grouping": true,
+								"duplicate-background-images": "warning",
+								"duplicate-properties": true,
+								"empty-rules": true,
+								"errors": true,
+								"fallback-colors": "warning",
+								"floats": "warning",
+								"font-faces": "warning",
+								"font-sizes": "warning",
+								"gradients": "warning",
+								"ids": "warning",
+								"import": "warning",
+								"important": "warning",
+								"known-properties": true,
+								"outline-none": "warning",
+								"overqualified-elements": "warning",
+								"qualified-headings": "warning",
+								"regex-selectors": "warning",
+								"rules-count": "warning",
+								"shorthand": "warning",
+								"star-property-hack": "warning",
+								"text-indent": "warning",
+								"underscore-property-hack": "warning",
+								"unique-headings": "warning",
+								"universal-selector": "warning",
+								"vendor-prefix": true,
+								"zero-units": "warning"
+							},
+							"gjslint_ignore":
+							[
+								110
+							],
+							"gjslint_options":
+							[
+							],
+							"javascript_linter": "jshint",
+							"jshint_options":
+							{
+								"browser": true,
+								"evil": true,
+								"regexdash": true,
+								"sub": true,
+								"trailing": true,
+								"wsh": true
+							},
+							"pep8": true,
+							"pep8_ignore":
+							[
+								"E501"
+							],
+							"perl_linter": "perlcritic",
+							"pyflakes_ignore":
+							[
+							],
+							"pyflakes_ignore_import_*": true,
+							"sublimelinter": true,
+							"sublimelinter_delay": 2,
+							"sublimelinter_disable":
+							[
+							],
+							"sublimelinter_executable_map":
+							{
+								"php": "php"
+							},
+							"sublimelinter_fill_outlines": true,
+							"sublimelinter_gutter_marks": true,
+							"sublimelinter_mark_style": "outline",
+							"sublimelinter_notes": false,
+							"sublimelinter_objj_check_ascii": false,
+							"sublimelinter_popup_errors_on_save": true,
+							"sublimelinter_syntax_map":
+							{
+								"php": "php"
+							},
+							"sublimelinter_wrap_find": true,
 							"syntax": "Packages/HTML/HTML.tmLanguage",
 							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 7569.0,
+						"translation.y": 2725.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "ggp_net.info",
+					"file": "ggp_net.make",
 					"settings":
 					{
-						"buffer_size": 1423,
+						"buffer_size": 2994,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1287,
-								1287
+								640,
+								640
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Text/Plain text.tmLanguage"
+							"annotations":
+							[
+								"TODO",
+								"README",
+								"FIXME"
+							],
+							"bh_regions":
+							[
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close"
+							],
+							"csslint_options":
+							{
+								"adjoining-classes": "warning",
+								"box-model": true,
+								"box-sizing": "warning",
+								"compatible-vendor-prefixes": "warning",
+								"display-property-grouping": true,
+								"duplicate-background-images": "warning",
+								"duplicate-properties": true,
+								"empty-rules": true,
+								"errors": true,
+								"fallback-colors": "warning",
+								"floats": "warning",
+								"font-faces": "warning",
+								"font-sizes": "warning",
+								"gradients": "warning",
+								"ids": "warning",
+								"import": "warning",
+								"important": "warning",
+								"known-properties": true,
+								"outline-none": "warning",
+								"overqualified-elements": "warning",
+								"qualified-headings": "warning",
+								"regex-selectors": "warning",
+								"rules-count": "warning",
+								"shorthand": "warning",
+								"star-property-hack": "warning",
+								"text-indent": "warning",
+								"underscore-property-hack": "warning",
+								"unique-headings": "warning",
+								"universal-selector": "warning",
+								"vendor-prefix": true,
+								"zero-units": "warning"
+							},
+							"gjslint_ignore":
+							[
+								110
+							],
+							"gjslint_options":
+							[
+							],
+							"javascript_linter": "jshint",
+							"jshint_options":
+							{
+								"browser": true,
+								"evil": true,
+								"regexdash": true,
+								"sub": true,
+								"trailing": true,
+								"wsh": true
+							},
+							"pep8": true,
+							"pep8_ignore":
+							[
+								"E501"
+							],
+							"perl_linter": "perlcritic",
+							"pyflakes_ignore":
+							[
+							],
+							"pyflakes_ignore_import_*": true,
+							"sublimelinter": true,
+							"sublimelinter_delay": 2,
+							"sublimelinter_disable":
+							[
+							],
+							"sublimelinter_executable_map":
+							{
+								"php": "php"
+							},
+							"sublimelinter_fill_outlines": true,
+							"sublimelinter_gutter_marks": true,
+							"sublimelinter_mark_style": "outline",
+							"sublimelinter_notes": false,
+							"sublimelinter_objj_check_ascii": false,
+							"sublimelinter_popup_errors_on_save": true,
+							"sublimelinter_syntax_map":
+							{
+								"php": "php"
+							},
+							"sublimelinter_wrap_find": true,
+							"syntax": "Packages/Makefile/Makefile.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 432.0,
+						"translation.y": 144.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 2,
-					"file": "/C/Users/Valkum/htdocs/ggp_net.build",
+					"file": "ggp_net.info",
 					"settings":
 					{
-						"buffer_size": 299,
+						"buffer_size": 1480,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								299,
-								299
+								0,
+								0
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/C#/Build.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "/C/Users/Valkum/htdocs/drupal/profiles/ggp_net/modules/fancybox/fancybox.module",
-					"settings":
-					{
-						"buffer_size": 18683,
-						"regions":
-						{
-						},
-						"selection":
-						[
+							"annotations":
 							[
-								12707,
-								12725
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 9774.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "ggp_net.build",
-					"settings":
-					{
-						"buffer_size": 292,
-						"regions":
-						{
-						},
-						"selection":
-						[
+								"TODO",
+								"README",
+								"FIXME"
+							],
+							"bh_regions":
 							[
-								291,
-								291
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C#/Build.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "/C/Users/Valkum/Downloads/role_permission.php",
-					"settings":
-					{
-						"buffer_size": 2439,
-						"regions":
-						{
-						},
-						"selection":
-						[
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close"
+							],
+							"csslint_options":
+							{
+								"adjoining-classes": "warning",
+								"box-model": true,
+								"box-sizing": "warning",
+								"compatible-vendor-prefixes": "warning",
+								"display-property-grouping": true,
+								"duplicate-background-images": "warning",
+								"duplicate-properties": true,
+								"empty-rules": true,
+								"errors": true,
+								"fallback-colors": "warning",
+								"floats": "warning",
+								"font-faces": "warning",
+								"font-sizes": "warning",
+								"gradients": "warning",
+								"ids": "warning",
+								"import": "warning",
+								"important": "warning",
+								"known-properties": true,
+								"outline-none": "warning",
+								"overqualified-elements": "warning",
+								"qualified-headings": "warning",
+								"regex-selectors": "warning",
+								"rules-count": "warning",
+								"shorthand": "warning",
+								"star-property-hack": "warning",
+								"text-indent": "warning",
+								"underscore-property-hack": "warning",
+								"unique-headings": "warning",
+								"universal-selector": "warning",
+								"vendor-prefix": true,
+								"zero-units": "warning"
+							},
+							"gjslint_ignore":
 							[
-								1419,
-								1392
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 918.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"file": "ggp_net.make",
-					"settings":
-					{
-						"buffer_size": 2904,
-						"regions":
-						{
-						},
-						"selection":
-						[
+								110
+							],
+							"gjslint_options":
 							[
-								699,
-								712
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Makefile/Makefile.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 7,
-					"file": "/C/Users/Valkum/Documents/GitHub/ggp_module/ggp_comments.module",
-					"settings":
-					{
-						"buffer_size": 6,
-						"regions":
-						{
-						},
-						"selection":
-						[
+							],
+							"javascript_linter": "jshint",
+							"jshint_options":
+							{
+								"browser": true,
+								"evil": true,
+								"regexdash": true,
+								"sub": true,
+								"trailing": true,
+								"wsh": true
+							},
+							"pep8": true,
+							"pep8_ignore":
 							[
-								6,
-								6
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 8,
-					"file": ".travis.yml",
-					"settings":
-					{
-						"buffer_size": 1004,
-						"regions":
-						{
-						},
-						"selection":
-						[
+								"E501"
+							],
+							"perl_linter": "perlcritic",
+							"pyflakes_ignore":
 							[
-								293,
-								293
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/YAML/YAML.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
+							],
+							"pyflakes_ignore_import_*": true,
+							"sublimelinter": true,
+							"sublimelinter_delay": 2,
+							"sublimelinter_disable":
+							[
+							],
+							"sublimelinter_executable_map":
+							{
+								"php": "php"
+							},
+							"sublimelinter_fill_outlines": true,
+							"sublimelinter_gutter_marks": true,
+							"sublimelinter_mark_style": "outline",
+							"sublimelinter_notes": false,
+							"sublimelinter_objj_check_ascii": false,
+							"sublimelinter_popup_errors_on_save": true,
+							"sublimelinter_syntax_map":
+							{
+								"php": "php"
+							},
+							"sublimelinter_wrap_find": true,
+							"syntax": "Packages/Text/Plain text.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 96.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"

@@ -543,11 +543,21 @@ function ggp_net_install_roles($filtered_html_format) {
 
   // Create Webmaster and Editor Roles.
   $roles = array();
-  $roles['editor'] = array('weight' => 3, 'permissions' => array_merge(array('access content', $filtered_html_permission),
-                                                                      ggp_net_permissions('editor')));
-  $roles['webmaster'] = array('weight' => 4, 'permissions' => array_merge(array('access content', $filtered_html_permission), 
-                                                                         ggp_net_permissions('webmaster')));
-  foreach($roles as $name => $role) {
+  $roles['editor'] = array(
+    'weight' => 3,
+    'permissions' => array_merge(
+      array('access content', $filtered_html_permission),
+      ggp_net_permissions('editor')
+    )
+  );
+  $roles['webmaster'] = array(
+    'weight' => 4,
+    'permissions' => array_merge(
+      array('access content', $filtered_html_permission),
+      ggp_net_permissions('webmaster')
+    )
+  );
+  foreach ($roles as $name => $role) {
     $r = new stdClass();
     $r->name = $name;
     $r->weight = $role['weight'];
@@ -701,10 +711,12 @@ function ggp_net_write_default_at_layout_css($theme) {
   }
 }
 
-
+/**
+ * Return permissions for given role.
+ */
 function ggp_net_permissions($role) {
   $permissions = array();
-  switch($role) {
+  switch ($role) {
     case 'editor':
       $permissions = array(
         'create page content',
@@ -745,7 +757,7 @@ function ggp_net_permissions($role) {
         'view the administration theme',
         'view own unpublished content',
       );
-    break;
+      break;
     case 'webmaster':
       $permissions = array(
         'bypass node access',
@@ -763,7 +775,7 @@ function ggp_net_permissions($role) {
         'administer themes',
       );
       $permissions = array_merge(ggp_net_permissions('editor'), $permissions);
-    break;
+      break;
   }
   return $permissions;
 }
