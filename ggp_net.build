@@ -1,6 +1,6 @@
 core = 7.x
 api = 2
-projects[drupal][version] = 7.20
+projects[] = drupal
 
 projects[ggp_net][type] = profile
 projects[ggp_net][download][type] = git
