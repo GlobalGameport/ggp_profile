@@ -655,7 +655,7 @@ function ggp_net_install_vars() {
   $vars['date_format_short'] = "j M Y - H:i";
 
   $vars['jquery_update_jquery_version'] = "1.7";
-
+  $vars["jquery_update_jquery_cdn"] = "google";
   $vars['fancybox_settings'] = variable_get('fancybox_settings');
   $vars['fancybox_settings']['settings']['selectors'] = ".fancybox";
   $vars['fancybox_settings']['helpers']['overlay']['locked'] = 0;
@@ -682,7 +682,21 @@ function ggp_net_install_vars() {
   $form_state['values']['ckeditor_local_path'] = "./profiles/ggp_net/libraries/ckeditor";
   $form_state['values']['ckeditor_plugins_path'] = "/profiles/ggp_net/libraries/ckeditor/plugins";
   $form_state['values']['ckeditor_plugins_local_path'] = "./profiles/ggp_net/libraries/ckeditor/plugins";
+
   drupal_form_submit('ckeditor_admin_global_profile_form', $form_state);
+
+  // Set IMCE as File Browser.
+  $form_state = form_state_defaults();
+  $form_state['build_info']['args'][0] = 'Full';
+  $form_state['values'] = array();
+  $form_state['values']['filebrowser'] = "imce";
+
+  drupal_form_submit('ckeditor_admin_profile_form', $form_state);
+
+  $form_state = form_state_defaults();
+  $form_state['build_info']['args'][0] = 'Advanced';
+
+  drupal_form_submit('ckeditor_admin_profile_form', $form_state);
 
   module_load_include('inc', 'node', 'content_types');
   // Do this to automate saving the theme settings form:
