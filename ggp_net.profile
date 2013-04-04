@@ -674,6 +674,7 @@ function ggp_net_install_vars() {
 
   // Set CKEditor Library Path.
   module_load_include('inc', 'ckeditor', 'ckeditor.admin');
+  require_once(drupal_get_path('module', 'ckeditor') . '/ckeditor.module');
   // Do this to automate saving the theme settings form:
   $form_state = form_state_defaults();
   $form_state['build_info']['args'][0] = 'edit';
@@ -686,17 +687,35 @@ function ggp_net_install_vars() {
   drupal_form_submit('ckeditor_admin_global_profile_form', $form_state);
 
   // Set IMCE as File Browser.
+
   $form_state = form_state_defaults();
-  $form_state['build_info']['args'][0] = 'Full';
+  $form_state['build_info']['args'][0] = 'edit';
   $form_state['values'] = array();
   $form_state['values']['filebrowser'] = "imce";
 
+  $profile = ckeditor_profile_load('Full');
+  $form_state['build_info']['args'][0] = $profile;
+
   drupal_form_submit('ckeditor_admin_profile_form', $form_state);
 
+  $profile = ckeditor_profile_load('Advanced');
+  $form_state['build_info']['args'][0] = $profile;
+
+  drupal_form_submit('ckeditor_admin_profile_form', $form_state);
+/*
+ // Set IMCE Settings
+  module_load_include('inc', 'imce', 'imce.admin');
   $form_state = form_state_defaults();
-  $form_state['build_info']['args'][0] = 'Advanced';
+  $form_state['values'] = array();
+  $form_state['values']['roles'][3]['public_pid'] = "1";
+  $form_state['values']['roles'][3]['private_pid'] = "1";
+  $form_state['values']['roles'][5]['public_pid'] = "1";
+  $form_state['values']['roles'][5]['private_pid'] = "1";
+  $form_state['values']['roles'][4]['public_pid'] = "1";
+  $form_state['values']['roles'][4]['private_pid'] = "1";
 
-  drupal_form_submit('ckeditor_admin_profile_form', $form_state);
+  drupal_form_submit('imce_admin_form', $form_state);
+*/
 
   module_load_include('inc', 'node', 'content_types');
   // Do this to automate saving the theme settings form:
