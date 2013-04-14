@@ -674,7 +674,7 @@ function ggp_net_install_vars() {
 
   // Set CKEditor Library Path.
   module_load_include('inc', 'ckeditor', 'ckeditor.admin');
-  require_once(drupal_get_path('module', 'ckeditor') . '/ckeditor.module');
+  require_once drupal_get_path('module', 'ckeditor') . '/ckeditor.module';
   // Do this to automate saving the theme settings form:
   $form_state = form_state_defaults();
   $form_state['build_info']['args'][0] = 'edit';
@@ -702,8 +702,8 @@ function ggp_net_install_vars() {
   $form_state['build_info']['args'][0] = $profile;
 
   drupal_form_submit('ckeditor_admin_profile_form', $form_state);
-/*
- // Set IMCE Settings
+  /*
+  // Set IMCE Settings
   module_load_include('inc', 'imce', 'imce.admin');
   $form_state = form_state_defaults();
   $form_state['values'] = array();
@@ -715,7 +715,7 @@ function ggp_net_install_vars() {
   $form_state['values']['roles'][4]['private_pid'] = "1";
 
   drupal_form_submit('imce_admin_form', $form_state);
-*/
+  */
 
   module_load_include('inc', 'node', 'content_types');
   // Do this to automate saving the theme settings form:
