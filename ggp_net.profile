@@ -791,6 +791,7 @@ function ggp_net_permissions($role) {
         'view own unpublished content',
       );
       break;
+
     case 'webmaster':
       $permissions = array(
         'bypass node access',
@@ -809,6 +810,7 @@ function ggp_net_permissions($role) {
       );
       $permissions = array_merge(ggp_net_permissions('editor'), $permissions);
       break;
+
   }
   return $permissions;
 }
