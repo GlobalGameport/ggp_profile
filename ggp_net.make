@@ -9,7 +9,7 @@ projects[admin_menu][version] = 3.0-rc4
 projects[backports][version] = 1.0-alpha1
 
 projects[ckeditor][version] = 1.12
-projects[fancybox][patch][] = "http://drupal.org/files/ckeditor-change-to-form-api-args.patch"
+; projects[ckeditor][patch][] = "http://drupal.org/files/ckeditor-change-to-form-api-args.patch"
 
 projects[ctools][version] = 1.2
 
