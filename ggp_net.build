@@ -5,5 +5,5 @@ projects[drupal][version] =  7.22
 projects[ggp_net][type] = profile
 projects[ggp_net][download][type] = git
 projects[ggp_net][download][url] = https://github.com/GlobalGameport/ggp_profile.git
-projects[ggp_net][download][branch] = 7.x-1.2
+projects[ggp_net][download][tag] = 7.22-1.2
 projects[ggp_net][version] = 7.x-1.2
