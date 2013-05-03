@@ -45,7 +45,7 @@ projects[pathauto][version] = 1.2
 projects[piwik][version] = 2.4
 
 projects[plupload][version] = 1.1
-projects[plupload][patch][] = http://drupal.org/files/plupload-1_5_5-remove_examples-1903850-1.patch
+
 
 projects[redirect][version] = 1.0-rc1
 
@@ -94,6 +94,7 @@ libraries[pluploadLib][download][type] = get
 libraries[pluploadLib][download][url] = http://plupload.com/downloads/plupload_1_5_5.zip
 libraries[pluploadLib][directory_name] = plupload
 libraries[pluploadLib][type] = library
+libraries[pluploadLib][patch][] = http://drupal.org/files/plupload-1_5_6-rm_examples-1903850-5.patch
 
 libraries[fanyboxLib][download][type] = get
 libraries[fanyboxLib][download][url] = https://github.com/fancyapps/fancyBox/zipball/v2.1.3
