@@ -45,6 +45,7 @@ projects[pathauto][version] = 1.2
 projects[piwik][version] = 2.4
 
 projects[plupload][version] = 1.1
+projects[plupload][patch][] = http://drupal.org/files/plupload-1_5_5-remove_examples-1903850-1.patch
 
 projects[redirect][version] = 1.0-rc1
 
