@@ -9,7 +9,6 @@ projects[admin_menu][version] = 3.0-rc4
 projects[backports][version] = 1.0-alpha1
 
 projects[ckeditor][version] = 1.12
-projects[fancybox][patch][] = "http://drupal.org/files/ckeditor-change-to-form-api-args.patch"
 
 projects[ctools][version] = 1.2
 
@@ -82,8 +81,6 @@ projects[libraries][type] = module
 
 
 ; Libraries
-; Please fill the following out. Type may be one of get, cvs, git, bzr or svn,
-; and url is the url of the download.
 libraries[ckeditorLib][download][type] = get
 libraries[ckeditorLib][download][url] = http://download.cksource.com/CKEditor/CKEditor/CKEditor%204.0.1/ckeditor_4.0.1_standard.tar.gz
 libraries[ckeditorLib][directory_name] = ckeditor
@@ -94,7 +91,6 @@ libraries[pluploadLib][download][type] = get
 libraries[pluploadLib][download][url] = http://plupload.com/downloads/plupload_1_5_5.zip
 libraries[pluploadLib][directory_name] = plupload
 libraries[pluploadLib][type] = library
-libraries[pluploadLib][patch][] = http://drupal.org/files/plupload-1_5_6-rm_examples-1903850-5.patch
 
 libraries[fanyboxLib][download][type] = get
 libraries[fanyboxLib][download][url] = https://github.com/fancyapps/fancyBox/zipball/v2.1.3
