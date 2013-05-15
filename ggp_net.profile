@@ -701,7 +701,7 @@ function ggp_net_install_vars() {
   $roles[4]['public_pid'] = "1";
   $roles[4]['private_pid'] = "1";
   variable_set('imce_roles_profiles', $roles);
- 
+
   // Adjust Content-types:
   module_load_include('inc', 'node', 'content_types');
   foreach (array('page', 'article') as $content_type_name) {
