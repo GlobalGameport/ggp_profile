@@ -688,11 +688,10 @@ function ggp_net_install_vars() {
   drupal_form_submit('ckeditor_admin_global_profile_form', $form_state);
 
   $profiles = ckeditor_profile_load();
-  foreach($profiles AS $data) {
-    $data['filebrowser'] = "imce";
+  foreach ($profiles as $data) {
+    $data->filebrowser = "imce";
     db_insert('ckeditor_settings')->fields(array("name" => $data->name, "settings" => serialize($data)))->execute();
   }
-
 
   /*
   // Set IMCE Settings
