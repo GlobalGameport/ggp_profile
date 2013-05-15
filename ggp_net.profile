@@ -690,7 +690,7 @@ function ggp_net_install_vars() {
   $profiles = ckeditor_profile_load();
   foreach ($profiles as $data) {
     $data->filebrowser = "imce";
-    db_insert('ckeditor_settings')->fields(array("name" => $data->name, "settings" => serialize($data)))->execute();
+    db_update('ckeditor_settings')->fields(array('settings' => serialize($data)))->condition('name', $data->name)->execute();
   }
 
   /*
