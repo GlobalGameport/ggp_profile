@@ -45,6 +45,7 @@ dependencies[] = metatag_opengraph
 dependencies[] = metatag_ui
 
 dependencies[] = piwik
+dependencies[] = disqus
 dependencies[] = site_verify
 dependencies[] = views
 dependencies[] = views_ui

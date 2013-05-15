@@ -564,6 +564,7 @@ function ggp_net_install_roles($filtered_html_format) {
     user_role_save($r);
     user_role_grant_permissions($r->rid, $role['permissions']);
   }
+  user_role_grant_permissions(1, ggp_net_permissions('guest'));
 }
 
 /**
@@ -685,7 +686,7 @@ function ggp_net_install_vars() {
   $form_state['values']['ckeditor_plugins_local_path'] = "./profiles/ggp_net/libraries/ckeditor/plugins";
 
   drupal_form_submit('ckeditor_admin_global_profile_form', $form_state);
-
+  
   // // Set IMCE as File Browser.
   // foreach (array('Full', 'Advanced') AS $name) {
   //   $form_state = form_state_defaults();
@@ -788,24 +789,26 @@ function ggp_net_permissions($role) {
         'access dashboard',
         'access overlay',
         'access contextual links',
+        'access administration menu',
         'access site in maintenance mode',
-        'access toolbar',
         'administer media',
         'administer media galleries',
         'administer menu',
+        'administer meta tags',
         'administer nodes',
-        'administer shortcuts',
         'administer taxonomy',
         'create url aliases',
-        'customize shortcut links',
         'customize ckeditor',
         'edit terms in 1',
         'edit terms in 2',
         'edit terms in 3',
+        'edit media',
+        'edit meta tags',
         'view revisions',
         'view media',
         'view the administration theme',
         'view own unpublished content',
+        'display drupal links',
       );
       break;
 
@@ -819,13 +822,22 @@ function ggp_net_permissions($role) {
         'administer url aliases',
         'administer piwik',
         'administer xmlsitemap',
+        'administer disqus',
         'administer blocks',
         'administer ckeditor',
         'administer modules',
+        'administer imce',
         'administer site configuration',
         'administer themes',
+        'flush caches',
       );
       $permissions = array_merge(ggp_net_permissions('editor'), $permissions);
+      break;
+
+    case 'webmaster':
+      $permissions = array(
+        'view disqus comments',
+      );
       break;
 
   }
