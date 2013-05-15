@@ -11,7 +11,7 @@ projects[backports][version] = 1.0-alpha1
 projects[ckeditor][version] = 1.12
 ; projects[ckeditor][patch][] = "http://drupal.org/files/ckeditor-change-to-form-api-args.patch"
 
-projects[ctools][version] = 1.2
+projects[ctools][version] = 1.3
 
 projects[disqus][version] = 1.9
 
@@ -27,14 +27,14 @@ projects[linkchecker][version] = 1.1
 
 projects[imce][version] = 1.7
 
-projects[media][version] = 1.2
+projects[media][version] = 1.3
 
 projects[media_browser_plus][version] = 1.0-beta3
 
 projects[media_gallery][version] = 1.0-beta8
 projects[media_gallery][patch][] = "http://raw.github.com/GlobalGameport/ggp_profile/7.x-1.x/media_gallery-7.x-1.0-beta8-collection-fix.patch"
 
-projects[metatag][version] = 1.0-beta4
+projects[metatag][version] = 1.0-beta7
 
 projects[multiform][version] = 1.0
 
@@ -54,7 +54,7 @@ projects[token][version] = 1.5
 
 projects[transliteration][version] = 3.1
 
-projects[views][version] = 3.5
+projects[views][version] = 3.7
 
 projects[xmlsitemap][version] = 2.0-rc2
 
@@ -76,8 +76,7 @@ projects[ggp_theme][download][brnach] = 7.x-1.x
 projects[ggp_theme][type] = theme
 projects[ggp_theme][version] = 7.x-1.x-dev
 
-projects[libraries][version] = 2.0
-projects[libraries][type] = module
+projects[libraries][version] = 2.1
 
 
 ; Libraries
