@@ -24,9 +24,10 @@ before_script:
   - cd ../beta.ggp.com
   - pwd
   - sudo chmod -R 777 sites/all/modules
+  - echo 'sendmail_path=/dev/null' >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
 
 script: 
-  - php -d sendmail_path=/dev/null `which drush` si ggp_net --db-url=mysql://root:@127.0.0.1/drupal --site-name="beta.ggp.com" --yes
+  - drush si ggp_net --db-url=mysql://root:@127.0.0.1/drupal --site-name="beta.ggp.com" --yes
   - drush cc all --yes
   - cd ../ggp_profile
   - test -d ../beta.ggp.com/profiles/ggp_net
