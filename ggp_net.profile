@@ -668,6 +668,7 @@ function ggp_net_install_vars() {
   $vars['user_register'] = USER_REGISTER_ADMINISTRATORS_ONLY;
   $vars['pathauto_node_pattern'] = '[node:menu-link:parents:join-path]/[node:menu-link]';
   $vars['pathauto_node_article_pattern'] = 'news/[node:created:custom:Y]/[node:created:custom:m]/[node:created:custom:d]/[node:title]';
+  $vars['pathauto_transliterate'] = 1;
 
   foreach ($vars as $key => $val) {
     variable_set($key, $val);
