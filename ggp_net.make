@@ -11,6 +11,7 @@ projects[backports][version] = 1.0-alpha1
 projects[ckeditor][version] = 1.12
 ; projects[ckeditor][patch][] = "http://drupal.org/files/ckeditor-change-to-form-api-args.patch"
 
+
 projects[ctools][version] = 1.3
 
 projects[disqus][version] = 1.9
@@ -46,6 +47,7 @@ projects[piwik][version] = 2.4
 
 projects[plupload][version] = 1.1
 
+
 projects[redirect][version] = 1.0-rc1
 
 projects[site_verify][version] = 1.0
@@ -80,8 +82,6 @@ projects[libraries][version] = 2.1
 
 
 ; Libraries
-; Please fill the following out. Type may be one of get, cvs, git, bzr or svn,
-; and url is the url of the download.
 libraries[ckeditorLib][download][type] = get
 libraries[ckeditorLib][download][url] = http://download.cksource.com/CKEditor/CKEditor/CKEditor%204.0.1/ckeditor_4.0.1_standard.tar.gz
 libraries[ckeditorLib][directory_name] = ckeditor
