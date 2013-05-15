@@ -82,18 +82,19 @@ projects[libraries][version] = 2.1
 
 
 ; Libraries
-libraries[ckeditorLib][download][type] = get
-libraries[ckeditorLib][download][url] = http://download.cksource.com/CKEditor/CKEditor/CKEditor%204.0.1/ckeditor_4.0.1_standard.tar.gz
-libraries[ckeditorLib][directory_name] = ckeditor
-libraries[ckeditorLib][type] = library
+libraries[ckeditor][download][type] = get
+libraries[ckeditor][download][url] = http://download.cksource.com/CKEditor/CKEditor/CKEditor%204.1.1/ckeditor_4.1.1_standard.zip
+libraries[ckeditor][directory_name] = ckeditor
+libraries[ckeditor][type] = library
 
 
-libraries[pluploadLib][download][type] = get
-libraries[pluploadLib][download][url] = http://plupload.com/downloads/plupload_1_5_5.zip
-libraries[pluploadLib][directory_name] = plupload
-libraries[pluploadLib][type] = library
+libraries[plupload][download][type] = get
+libraries[plupload][download][url] = http://plupload.com/downloads/plupload_1_5_6.zip
+libraries[plupload][directory_name] = plupload
+libraries[plupload][type] = library
+libraries[plupload][patch][] = "http://drupal.org/files/plupload-1_5_6-rm_examples-1903850-5.patch"
 
-libraries[fanyboxLib][download][type] = get
-libraries[fanyboxLib][download][url] = https://github.com/fancyapps/fancyBox/zipball/v2.1.3
-libraries[fanyboxLib][directory_name] = fancybox
-libraries[fanyboxLib][type] = library
+libraries[fancybox][download][type] = get
+libraries[fancybox][download][url] = https://github.com/fancyapps/fancyBox/zipball/v2.1.4
+libraries[fancybox][directory_name] = fancybox
+libraries[fancybox][type] = library
