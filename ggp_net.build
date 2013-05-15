@@ -7,3 +7,4 @@ projects[ggp_net][download][type] = git
 projects[ggp_net][download][url] = https://github.com/GlobalGameport/ggp_profile.git
 projects[ggp_net][download][tag] = 7.x-1.x
 projects[ggp_net][version] = 7.x-1.x-dev
+
