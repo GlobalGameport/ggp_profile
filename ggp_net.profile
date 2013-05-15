@@ -564,6 +564,7 @@ function ggp_net_install_roles($filtered_html_format) {
     user_role_save($r);
     user_role_grant_permissions($r->rid, $role['permissions']);
   }
+  user_role_grant_permissions(1, ggp_net_permissions('guest'));
 }
 
 /**
@@ -692,6 +693,7 @@ function ggp_net_install_vars() {
     db_insert('ckeditor_settings')->fields(array("name" => $data->name, "settings" => serialize($data)))->execute();
   }
 
+
   /*
   // Set IMCE Settings
   module_load_include('inc', 'imce', 'imce.admin');
@@ -761,10 +763,12 @@ function ggp_net_permissions($role) {
         'access dashboard',
         'access overlay',
         'access contextual links',
+        'access administration menu',
         'access site in maintenance mode',
         'administer media',
         'administer media galleries',
         'administer menu',
+        'administer meta tags',
         'administer nodes',
         'administer taxonomy',
         'create url aliases',
@@ -772,10 +776,13 @@ function ggp_net_permissions($role) {
         'edit terms in 1',
         'edit terms in 2',
         'edit terms in 3',
+        'edit media',
+        'edit meta tags',
         'view revisions',
         'view media',
         'view the administration theme',
         'view own unpublished content',
+        'display drupal links',
       );
       break;
 
@@ -789,13 +796,22 @@ function ggp_net_permissions($role) {
         'administer url aliases',
         'administer piwik',
         'administer xmlsitemap',
+        'administer disqus',
         'administer blocks',
         'administer ckeditor',
         'administer modules',
+        'administer imce',
         'administer site configuration',
         'administer themes',
+        'flush caches',
       );
       $permissions = array_merge(ggp_net_permissions('editor'), $permissions);
+      break;
+
+    case 'guest':
+      $permissions = array(
+        'view disqus comments',
+      );
       break;
 
   }
