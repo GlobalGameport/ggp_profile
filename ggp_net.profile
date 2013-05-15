@@ -693,23 +693,17 @@ function ggp_net_install_vars() {
     db_update('ckeditor_settings')->fields(array('settings' => serialize($data)))->condition('name', $data->name)->execute();
   }
 
-  /*
-  // Set IMCE Settings
-  module_load_include('inc', 'imce', 'imce.admin');
-  $form_state = form_state_defaults();
-  $form_state['values'] = array();
-  $form_state['values']['roles'][3]['public_pid'] = "1";
-  $form_state['values']['roles'][3]['private_pid'] = "1";
-  $form_state['values']['roles'][5]['public_pid'] = "1";
-  $form_state['values']['roles'][5]['private_pid'] = "1";
-  $form_state['values']['roles'][4]['public_pid'] = "1";
-  $form_state['values']['roles'][4]['private_pid'] = "1";
-
-  drupal_form_submit('imce_admin_form', $form_state);
-  */
-
+  $roles = variable_get('imce_roles_profiles');
+  $roles[3]['public_pid'] = "1";
+  $roles[3]['private_pid'] = "1";
+  $roles[5]['public_pid'] = "1";
+  $roles[5]['private_pid'] = "1";
+  $roles[4]['public_pid'] = "1";
+  $roles[4]['private_pid'] = "1";
+  variable_set('imce_roles_profiles', $roles);
+ 
+  // Adjust Content-types:
   module_load_include('inc', 'node', 'content_types');
-  // Do this to automate saving the theme settings form:
   foreach (array('page', 'article') as $content_type_name) {
     $form_state = form_state_defaults();
     $form_state['build_info']['args'][0] = node_type_load($content_type_name);
