@@ -686,38 +686,11 @@ function ggp_net_install_vars() {
 
   drupal_form_submit('ckeditor_admin_global_profile_form', $form_state);
 
-  // // Set IMCE as File Browser.
-  // foreach (array('Full', 'Advanced') AS $name) {
-  //   $form_state = form_state_defaults();
-  //   $form_state['build_info']['args'][1] = 'edit';
-  //   $form_state['values'] = array();
-  //   $form_state['values']['filebrowser'] = "imce";
-  //   $form_state['values']['filebrowser_image'] = "imce";
-  //   $form_state['values']['filebrowser_flash'] = "imce";
-  //   $form_state['values']['input_formats'] = array( 'full_html' => 'full_html', 'plain_text' => 0);
-  //   $form_state['values']['formatting'] = array(
-  //     'custom_formatting_options' => array(
-  //       'indent' => 'indent',
-  //       'breakBeforeOpen' => 'breakBeforeOpen',
-  //       'breakAfterOpen' => 'breakAfterOpen',
-  //       'breakAfterClose' => 'breakAfterClose',
-  //       'breakBeforeClose' => 0,
-  //       'pre_indent' => 0,
-  //     ),
-  //   );
-  //   $form_state['values']['loadPlugins'] = array(
-  //     'drupalbreaks' => 'drupalbreaks',
-  //     'counter' => 0,
-  //     'imce' => 0,
-  //     'media' => 0,
-  //     'mediaembed' => 0,
-  //   );
-
-  //   $profile = ckeditor_profile_load($name);
-  //   $form_state['build_info']['args'][0] = $profile;
-
-  //   drupal_form_submit('ckeditor_admin_profile_form', $form_state);
-  // }
+  $profiles = ckeditor_profile_load();
+  foreach($profiles AS $data) {
+    $data['filebrowser'] = "imce";
+    db_insert('ckeditor_settings')->fields(array("name" => $data->name, "settings" => serialize($data)))->execute();
+  }
 
   /*
   // Set IMCE Settings
