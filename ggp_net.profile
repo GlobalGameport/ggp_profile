@@ -676,22 +676,20 @@ function ggp_net_install_vars() {
   // Set CKEditor Library Path.
   module_load_include('inc', 'ckeditor', 'ckeditor.admin');
   require_once drupal_get_path('module', 'ckeditor') . '/ckeditor.module';
-  // Do this to automate saving the theme settings form:
-  $form_state = form_state_defaults();
-  $form_state['build_info']['args'][0] = 'edit';
-  $form_state['values'] = array();
-  $form_state['values']['ckeditor_path'] = "profiles/ggp_net/libraries/ckeditor";
-  $form_state['values']['ckeditor_local_path'] = "./profiles/ggp_net/libraries/ckeditor";
-  $form_state['values']['ckeditor_plugins_path'] = "profiles/ggp_net/libraries/ckeditor/plugins";
-  $form_state['values']['ckeditor_plugins_local_path'] = "./profiles/ggp_net/libraries/ckeditor/plugins";
 
-  drupal_form_submit('ckeditor_admin_global_profile_form', $form_state);
+  $arr = array();
+  $arr['skin'] = 'moono';
+  $arr['ckeditor_path'] = "/profiles/ggp_net/libraries/ckeditor";
+  $arr['ckeditor_local_path']= "./profiles/ggp_net/libraries/ckeditor";
+  db_update('ckeditor_settings')->fields(array("settings" => serialize($arr)))->condition('name', "CKEditor Global Profile")->execute();
 
   $profiles = ckeditor_profile_load();
   foreach ($profiles as $data) {
-    $data->filebrowser = "imce";
-    $data->js_conf = "config.allowedContent = true;"; 
-    db_update('ckeditor_settings')->fields(array('settings' => serialize($data)))->condition('name', $data->name)->execute();
+    if(in_array($data->name, array('Advanced', 'Full'))) {
+      $data->settings['filebrowser'] = "imce";
+      $data->js_conf = "config.allowedContent = true;"; 
+      db_update('ckeditor_settings')->fields(array('settings' => serialize($data->settings)))->condition('name', $data->name)->execute();
+    }
   }
 
   $roles = variable_get('imce_roles_profiles');
