@@ -16,8 +16,12 @@ projects[ctools][version] = 1.3
 
 projects[disqus][version] = 1.9
 
-projects[fancybox][version] = 2.0-alpha3
-projects[fancybox][patch][] = "http://drupal.org/files/fancybox-1904006-undefined-index-line-559-v1_0.patch"
+projects[fancybox][version] = 2.0-alpha5
+; projects[fancybox][patch][] = "http://drupal.org/files/fancybox-1904006-undefined-index-line-559-v1_0.patch"
+
+projects[fontyourface][version] = 7.x-2.8
+projects[google_webfont_loader_api][version] = 7.x-1.10 
+
 
 projects[jquery_update][download][type] = git
 projects[jquery_update][download][url] = http://git.drupal.org/project/jquery_update.git
@@ -83,7 +87,7 @@ projects[libraries][version] = 2.1
 
 ; Libraries
 libraries[ckeditor][download][type] = get
-libraries[ckeditor][download][url] = http://download.cksource.com/CKEditor/CKEditor/CKEditor%204.1.1/ckeditor_4.1.1_standard.zip
+libraries[ckeditor][download][url] = http://download.cksource.com/CKEditor/CKEditor/CKEditor%204.1.1/ckeditor_4.1.1_full.zip
 libraries[ckeditor][directory_name] = ckeditor
 libraries[ckeditor][type] = library
 

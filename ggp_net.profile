@@ -680,9 +680,9 @@ function ggp_net_install_vars() {
   $form_state = form_state_defaults();
   $form_state['build_info']['args'][0] = 'edit';
   $form_state['values'] = array();
-  $form_state['values']['ckeditor_path'] = "/profiles/ggp_net/libraries/ckeditor";
+  $form_state['values']['ckeditor_path'] = "profiles/ggp_net/libraries/ckeditor";
   $form_state['values']['ckeditor_local_path'] = "./profiles/ggp_net/libraries/ckeditor";
-  $form_state['values']['ckeditor_plugins_path'] = "/profiles/ggp_net/libraries/ckeditor/plugins";
+  $form_state['values']['ckeditor_plugins_path'] = "profiles/ggp_net/libraries/ckeditor/plugins";
   $form_state['values']['ckeditor_plugins_local_path'] = "./profiles/ggp_net/libraries/ckeditor/plugins";
 
   drupal_form_submit('ckeditor_admin_global_profile_form', $form_state);
@@ -690,6 +690,7 @@ function ggp_net_install_vars() {
   $profiles = ckeditor_profile_load();
   foreach ($profiles as $data) {
     $data->filebrowser = "imce";
+    $data->js_conf = "config.allowedContent = true;"; 
     db_update('ckeditor_settings')->fields(array('settings' => serialize($data)))->condition('name', $data->name)->execute();
   }
 
