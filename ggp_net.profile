@@ -680,14 +680,14 @@ function ggp_net_install_vars() {
   $arr = array();
   $arr['skin'] = 'moono';
   $arr['ckeditor_path'] = "/profiles/ggp_net/libraries/ckeditor";
-  $arr['ckeditor_local_path']= "./profiles/ggp_net/libraries/ckeditor";
+  $arr['ckeditor_local_path'] = "./profiles/ggp_net/libraries/ckeditor";
   db_update('ckeditor_settings')->fields(array("settings" => serialize($arr)))->condition('name', "CKEditor Global Profile")->execute();
 
   $profiles = ckeditor_profile_load();
   foreach ($profiles as $data) {
-    if(in_array($data->name, array('Advanced', 'Full'))) {
+    if (in_array($data->name, array('Advanced', 'Full'))) {
       $data->settings['filebrowser'] = "imce";
-      $data->js_conf = "config.allowedContent = true;"; 
+      $data->js_conf = "config.allowedContent = true;";
       db_update('ckeditor_settings')->fields(array('settings' => serialize($data->settings)))->condition('name', $data->name)->execute();
     }
   }
