@@ -19,9 +19,8 @@ projects[disqus][version] = 1.9
 projects[fancybox][version] = 2.0-alpha5
 ; projects[fancybox][patch][] = "http://drupal.org/files/fancybox-1904006-undefined-index-line-559-v1_0.patch"
 
-projects[fontyourface][version] = 7.x-2.8
-projects[google_webfont_loader_api][version] = 7.x-1.10 
-
+projects[fontyourface][version] = 2.8
+projects[google_webfont_loader_api][version] = 1.10 
 
 projects[jquery_update][download][type] = git
 projects[jquery_update][download][url] = http://git.drupal.org/project/jquery_update.git
@@ -68,7 +67,7 @@ projects[ggp][download][type] = git
 projects[ggp][download][url] = http://github.com/GlobalGameport/ggp_module.git
 projects[ggp][download][branch] = 7.x-1.x
 projects[ggp][type] = module
-projects[ggp][version] = 7.x-1.x-dev
+projects[ggp][version] = 1.x-dev
 
 ; Themes
 projects[adaptivetheme][version] = 2.3
@@ -80,7 +79,7 @@ projects[ggp_theme][download][type] = git
 projects[ggp_theme][download][url] = http://github.com/GlobalGameport/ggp_theme.git
 projects[ggp_theme][download][brnach] = 7.x-1.x
 projects[ggp_theme][type] = theme
-projects[ggp_theme][version] = 7.x-1.x-dev
+projects[ggp_theme][version] = 1.x-dev
 
 projects[libraries][version] = 2.1
 
