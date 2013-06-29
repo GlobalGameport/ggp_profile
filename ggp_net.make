@@ -20,7 +20,7 @@ projects[fancybox][version] = 2.0-alpha5
 ; projects[fancybox][patch][] = "http://drupal.org/files/fancybox-1904006-undefined-index-line-559-v1_0.patch"
 
 projects[fontyourface][version] = 2.8
-projects[google_webfont_loader_api][version] = 1.10 
+projects[google_webfont_loader_api][version] = 1.10
 
 projects[jquery_update][download][type] = git
 projects[jquery_update][download][url] = http://git.drupal.org/project/jquery_update.git
@@ -70,7 +70,7 @@ projects[ggp][type] = module
 projects[ggp][version] = 1.x-dev
 
 ; Themes
-projects[adaptivetheme][version] = 2.3
+projects[adaptivetheme][version] = 3.1
 projects[adaptivetheme][type] = theme
 
 ; Please fill the following out. Type may be one of get, cvs, git, bzr or svn,
