@@ -673,16 +673,6 @@ function ggp_net_install_vars() {
     variable_set($key, $val);
   }
 
-  // Set CKEditor Library Path.
-  module_load_include('inc', 'ckeditor', 'ckeditor.admin');
-  require_once drupal_get_path('module', 'ckeditor') . '/ckeditor.module';
-
-  $arr = array();
-  $arr['skin'] = 'moono';
-  $arr['ckeditor_path'] = "/profiles/ggp_net/libraries/ckeditor";
-  $arr['ckeditor_local_path'] = "./profiles/ggp_net/libraries/ckeditor";
-  db_update('ckeditor_settings')->fields(array("settings" => serialize($arr)))->condition('name', "CKEditor Global Profile")->execute();
-
   $profiles = ckeditor_profile_load();
   foreach ($profiles as $data) {
     if (in_array($data->name, array('Advanced', 'Full'))) {
