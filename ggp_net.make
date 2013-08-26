@@ -8,7 +8,7 @@ api = 2
 projects[admin_menu][version] = 3.0-rc4
 projects[backports][version] = 1.0-alpha1
 
-projects[ckeditor][version] = 1.12
+projects[ckeditor][version] = 1.13
 ; projects[ckeditor][patch][] = "http://drupal.org/files/ckeditor-change-to-form-api-args.patch"
 
 
@@ -16,10 +16,10 @@ projects[ctools][version] = 1.3
 
 projects[disqus][version] = 1.9
 
-projects[fancybox][version] = 2.0-alpha5
-; projects[fancybox][patch][] = "http://drupal.org/files/fancybox-1904006-undefined-index-line-559-v1_0.patch"
+projects[fancybox][version] = 2.0-beta2
 
 projects[fontyourface][version] = 2.8
+
 projects[google_webfont_loader_api][version] = 1.10
 
 projects[jquery_update][download][type] = git
@@ -48,7 +48,7 @@ projects[pathauto][version] = 1.2
 
 projects[piwik][version] = 2.4
 
-projects[plupload][version] = 1.1
+projects[plupload][version] = 1.3
 
 
 projects[redirect][version] = 1.0-rc1
