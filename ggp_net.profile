@@ -710,7 +710,7 @@ function ggp_net_install_vars() {
 function ggp_net_write_default_at_layout_css($theme) {
   module_load_include('inc', 'system', 'system.admin');
   // Do this to automate saving the theme settings form:
-  foreach (array('adaptivetheme', 'ggp_theme') as $theme_name) {
+  foreach (array('ggp_theme') as $theme_name) {
     $form_state = form_state_defaults();
     $form_state['build_info']['args'][0] = $theme_name;
     $form_state['values'] = array();

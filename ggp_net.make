@@ -6,6 +6,9 @@ api = 2
 ; Modules
 
 projects[admin_menu][version] = 3.0-rc4
+
+projects[administerusersbyrole][version] = 1.0-beta1
+
 projects[backports][version] = 1.0-alpha1
 
 projects[ckeditor][version] = 1.13
@@ -52,6 +55,7 @@ projects[plupload][version] = 1.3
 
 
 projects[redirect][version] = 1.0-rc1
+projects[redirect][patch][] = "https://drupal.org/files/redirect-prevent_circular_redirects_in_hook_path_update-1817976-25_1.patch"
 
 projects[site_verify][version] = 1.0
 
