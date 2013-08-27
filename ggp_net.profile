@@ -752,6 +752,8 @@ function ggp_net_permissions($role) {
         'administer menu',
         'administer meta tags',
         'administer nodes',
+        'administer users',
+        'administer permissions',
         'administer taxonomy',
         'create url aliases',
         'customize ckeditor',
