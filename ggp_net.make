@@ -74,7 +74,10 @@ projects[ggp][type] = module
 projects[ggp][version] = 1.x-dev
 
 ; Themes
-projects[adaptivetheme][version] = 3.1
+projects[adaptivetheme][download][type] = git
+projects[adaptivetheme][download][url] = http://git.drupal.org/project/adaptivetheme.git
+projects[adaptivetheme][download][branch] = 7.x-3.x
+projects[adaptivetheme][download][revision] = b4b38c3c01d066e733c2942020c51962cd64231c
 projects[adaptivetheme][type] = theme
 
 ; Please fill the following out. Type may be one of get, cvs, git, bzr or svn,
