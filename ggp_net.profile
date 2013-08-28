@@ -388,7 +388,7 @@ function ggp_net_install_taxonomy() {
   taxonomy_vocabulary_save($vocabulary);
 
   $names = array(
-    t('Newtork'),
+    t('Network'),
     t('Site'),
   );
 
