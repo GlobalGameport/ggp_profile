@@ -109,3 +109,8 @@ libraries[fancybox][download][type] = get
 libraries[fancybox][download][url] = https://github.com/fancyapps/fancyBox/zipball/v2.1.4
 libraries[fancybox][directory_name] = fancybox
 libraries[fancybox][type] = library
+
+libraries[socialshareprivacy][download][type] = get
+libraries[socialshareprivacy][download][url] = http://www.heise.de/extras/socialshareprivacy/jquery.socialshareprivacy.tar.gz
+libraries[socialshareprivacy][directory_name] = socialshareprivacy
+libraries[socialshareprivacy][type] = library

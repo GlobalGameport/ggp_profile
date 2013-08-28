@@ -35,6 +35,7 @@ dependencies[] = linkchecker
 dependencies[] = plupload
 dependencies[] = redirect
 dependencies[] = secureshare
+dependencies[] = secureshare_fields
 dependencies[] = imce
 dependencies[] = transliteration
 dependencies[] = media
