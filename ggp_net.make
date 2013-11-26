@@ -12,8 +12,6 @@ projects[administerusersbyrole][version] = 1.0-beta1
 projects[backports][version] = 1.0-alpha1
 
 projects[ckeditor][version] = 1.13
-; projects[ckeditor][patch][] = "http://drupal.org/files/ckeditor-change-to-form-api-args.patch"
-
 
 projects[ctools][version] = 1.3
 
@@ -23,12 +21,9 @@ projects[fancybox][version] = 2.0-beta2
 
 projects[fontyourface][version] = 2.8
 
-projects[google_webfont_loader_api][version] = 1.10
+projects[google_webfont_loader_api][version] = 1.11
 
-projects[jquery_update][download][type] = git
-projects[jquery_update][download][url] = http://git.drupal.org/project/jquery_update.git
-projects[jquery_update][download][tag] = 7.x-2.3-alpha1
-
+projects[jquery_update][version] = 7.x-2.3
 
 projects[linkchecker][version] = 1.1
 
@@ -51,7 +46,7 @@ projects[pathauto][version] = 1.2
 
 projects[piwik][version] = 2.4
 
-projects[plupload][version] = 1.3
+projects[plupload][version] = 1.4
 
 
 projects[redirect][version] = 1.0-rc1
@@ -59,7 +54,7 @@ projects[redirect][patch][] = "https://drupal.org/files/redirect-prevent_circula
 
 projects[site_verify][version] = 1.0
 
-projects[secureshare][version] = 2.1
+;projects[secureshare][version] = 2.1
 
 projects[token][version] = 1.5
 
@@ -68,6 +63,8 @@ projects[transliteration][version] = 3.1
 projects[views][version] = 3.7
 
 projects[xmlsitemap][version] = 2.0-rc2
+
+projects[joomla][version] = 7.x-1.0-alpha3
 
 projects[ggp][download][type] = git
 projects[ggp][download][url] = http://github.com/GlobalGameport/ggp_module.git
