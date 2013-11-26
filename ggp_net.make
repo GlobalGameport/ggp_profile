@@ -23,7 +23,7 @@ projects[fontyourface][version] = 2.8
 
 projects[google_webfont_loader_api][version] = 1.11
 
-projects[jquery_update][version] = 7.x-2.3
+projects[jquery_update][version] = 2.3
 
 projects[linkchecker][version] = 1.1
 
