@@ -64,7 +64,7 @@ projects[views][version] = 3.7
 
 projects[xmlsitemap][version] = 2.0-rc2
 
-projects[joomla][version] = 7.x-1.0-alpha3
+projects[joomla][version] = 1.0-alpha3
 
 projects[ggp][download][type] = git
 projects[ggp][download][url] = http://github.com/GlobalGameport/ggp_module.git
