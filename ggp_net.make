@@ -48,7 +48,6 @@ projects[piwik][version] = 2.4
 
 projects[plupload][version] = 1.4
 
-
 projects[redirect][version] = 1.0-rc1
 projects[redirect][patch][] = "https://drupal.org/files/redirect-prevent_circular_redirects_in_hook_path_update-1817976-25_1.patch"
 
@@ -65,6 +64,11 @@ projects[views][version] = 3.7
 projects[xmlsitemap][version] = 2.0-rc2
 
 projects[joomla][version] = 1.0-alpha3
+
+; Module die nachträglich auf Live hinzugefügr wurden
+projects[imce_mkdir][version] = 1.0
+
+projects[views_rss][version] = 2.0-rc3
 
 projects[ggp][download][type] = git
 projects[ggp][download][url] = https://github.com/GlobalGameport/ggp_module.git
