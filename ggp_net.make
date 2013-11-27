@@ -34,7 +34,7 @@ projects[media][version] = 1.3
 projects[media_browser_plus][version] = 1.0-beta3
 
 projects[media_gallery][version] = 1.0-beta8
-projects[media_gallery][patch][] = "http://raw.github.com/GlobalGameport/ggp_profile/7.x-1.x/media_gallery-7.x-1.0-beta8-collection-fix.patch"
+projects[media_gallery][patch][] = "https://raw.github.com/GlobalGameport/ggp_profile/7.x-1.x/media_gallery-7.x-1.0-beta8-collection-fix.patch"
 
 projects[metatag][version] = 1.0-beta7
 
@@ -67,7 +67,7 @@ projects[xmlsitemap][version] = 2.0-rc2
 projects[joomla][version] = 1.0-alpha3
 
 projects[ggp][download][type] = git
-projects[ggp][download][url] = http://github.com/GlobalGameport/ggp_module.git
+projects[ggp][download][url] = https://github.com/GlobalGameport/ggp_module.git
 projects[ggp][download][branch] = 7.x-1.x
 projects[ggp][type] = module
 projects[ggp][version] = 1.x-dev
@@ -81,7 +81,7 @@ projects[adaptivetheme][type] = theme
 ; Please fill the following out. Type may be one of get, cvs, git, bzr or svn,
 ; and url is the url of the download.
 projects[ggp_theme][download][type] = git
-projects[ggp_theme][download][url] = http://github.com/GlobalGameport/ggp_theme.git
+projects[ggp_theme][download][url] = https://github.com/GlobalGameport/ggp_theme.git
 projects[ggp_theme][download][brnach] = 7.x-1.x
 projects[ggp_theme][type] = theme
 projects[ggp_theme][version] = 1.x-dev
