@@ -1,0 +1,28 @@
+<?php
+/**
+* @file
+* Install, update and uninstall functions for the system module.
+*/
+
+
+/**
+ * Delete update_notify email variable. Not all pages should send mails with update notif. this would spam some mailboxes.
+ */
+function ggp_update_7101(&$sandbox) {
+  variable_del('update_notify_emails');
+}
+
+
+/**
+ * Update Theme Settings. Enable social
+ */
+function ggp_update_7102(&$sandbox) {
+	module_load_include('inc', 'system', 'system.admin');
+	// Do this to automate saving the theme settings form:
+	foreach (array('ggp_theme') as $theme_name) {
+		$form_state = form_state_defaults();
+		$form_state['build_info']['args'][0] = $theme_name;
+		$form_state['values'] = array();
+		drupal_form_submit('system_theme_settings', $form_state);
+	}
+}

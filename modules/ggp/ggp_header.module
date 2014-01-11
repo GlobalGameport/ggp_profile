@@ -1,0 +1,156 @@
+<?php
+
+
+/**
+* Generate HTML for the block
+* @param op the operation from the URL
+* @param delta offset
+* @returns block HTML
+*/
+function ggp_header_block_info() {
+
+  $blocks["ggp_social"] = array(
+    'info' => t('Social Buttons'),
+    'cache' => DRUPAL_CACHE_PER_ROLE,
+  );
+  $blocks["ggp_countdown"] = array(
+    'info' => t('Countdown'),
+    'cache' => DRUPAL_CACHE_PER_ROLE,
+  );
+
+    return $blocks;
+}// end ggp_forum_block_info
+
+function ggp_header_block_view($delta = '') {
+ $block = array();
+
+  switch ($delta) {
+  case 'ggp_social':
+    drupal_add_css(drupal_get_path('module', 'ggp_header') . '/ggp_header.css');
+    $saved_settings = variable_get('ggp_social_settings');
+    $block['content'] = '<div id="folge_uns"><div id="Lmenu_folge_uns">';
+    if($saved_settings['twitter']) {
+      $block['content'] .= '<div><a id="twitter1" target="_blank" href="' . $saved_settings['twitter_link'] . '"><span class="pop_info">Folge uns<br />bei Twitter!</span></a></div>';
+    }
+    if($saved_settings['youtube']) {
+    $block['content'] .= '<div><a id="youtube1" target="_blank" href="' . $saved_settings['youtube_link'] . '"><span class="pop_info">Abonniere unseren You Tube-Kanal!</span></a><div>';
+    }
+    if($saved_settings['facebook']) {
+      $block['content'] .= '<div><a id="facebook1" target="_blank" href="' . $saved_settings['facebook_link'] . '"><span class="pop_info">Like unsere Facebook-Page!</span></a><div>';
+    }
+    $block['content'] .= '<div><a id="rss1" target="_blank" href="rss.xml"><span class="pop_info">Abonniere unseren RSS-Feed!</span></a><div>';
+    $block['content'] .= '</div></div>';
+  break;
+  case 'ggp_countdown':
+    $saved_settings = variable_get('ggp_countdown_settings');
+    if($saved_settings['countdown']){
+      $block['content'] = '<div id="counter_pos"><div id="counter_box"><div id="counter_top"></div>';
+      $block['content'] .= '<div id="counter_txt" data-end="' . $saved_settings['date'] . '">';
+      $block['content'] .= '<div id="counter_d">315</div>';
+      $block['content'] .= '<div id="counter_h">3</div>';
+      $block['content'] .= '<div id="counter_m">45</div>';
+      $block['content'] .= '</div></div></div>';
+    }
+  break;
+  }
+  return $block;
+}  // end ggp_forum_block_view
+
+
+function ggp_header_menu(){
+  $items = array();
+
+  $items['admin/config/ggp/social'] = array(
+    'title' => t('GGP Social Buttons'),
+    'description' => 'Einstellungen für den Social Block im Header (YT Channel, Twitter Feed etc)',
+    'access callback' => 'user_access',
+    'access arguments' => array('access administration pages'),
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('ggp_header_social_form'),
+  );
+  $items['admin/config/ggp/countdown'] = array(
+    'title' => t('GGP Countdown'),
+    'description' => 'Einstellungen für den Countdown im Header',
+    'access callback' => 'user_access',
+    'access arguments' => array('access administration pages'),
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('ggp_header_countdown_form'),
+  );
+
+  return $items;
+}
+
+/**
+* Form function, called by drupal_get_form()
+* in current_posts_menu().
+*/
+function ggp_header_social_form($form, &$form_state) {
+  $saved_settings = variable_get('ggp_social_settings');
+
+  $settings['twitter'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Show twitter icon'),
+    '#return_value' => 1,
+    '#default_value' => $saved_settings['twitter'],
+    );
+  $settings['twitter_link'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Link to the Twitter Wall'),
+    '#default_value' => $saved_settings['twitter_link'],
+    '#size' => 50,
+    '#maxlength' => 50,
+  );
+  $settings['youtube'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Show youtube icon'),
+    '#return_value' => 1,
+    '#default_value' => $saved_settings['youtube'],
+    );
+  $settings['youtube_link'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Link to the Youtube Channel'),
+    '#default_value' => $saved_settings['youtube_link'],
+    '#size' => 50,
+    '#maxlength' => 50,
+  );
+  $settings['facebook'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Show facebook icon'),
+    '#return_value' => 1,
+    '#default_value' => $saved_settings['facebook'],
+    );
+  $settings['facebook_link'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Link to the FB Page'),
+    '#default_value' => $saved_settings['facebook_link'],
+    '#size' => 50,
+    '#maxlength' => 50,
+  );
+  $form['#tree'] = TRUE;
+  $form['ggp_social_settings'] = $settings;
+  return system_settings_form($form);
+}
+/**
+* Form function, called by drupal_get_form()
+* in current_posts_menu().
+*/
+function ggp_header_countdown_form($form, &$form_state) {
+  $saved_settings = variable_get('ggp_countdown_settings');
+
+  $settings['countdown'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Show countdown'),
+    '#return_value' => 1,
+    '#default_value' => $saved_settings['countdown'],
+    );
+  $settings['date'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Date to count to'),
+    '#default_value' => $saved_settings['date'],
+    '#size' => 50,
+    '#maxlength' => 50,
+  );
+  $form['#tree'] = TRUE;
+  $form['ggp_countdown_settings'] = $settings;
+  return system_settings_form($form);
+}

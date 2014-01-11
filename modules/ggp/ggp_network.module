@@ -1,0 +1,91 @@
+<?php
+function ggp_network_init() {
+	if (!drupal_installation_attempted()) {
+		_ggp_network_doheader();
+	}
+}
+function ggp_network_process_html(&$variables) {
+	$variables['page_bottom'] .= '<div id="h1dden" style="overflow: hidden; width: 728px; height: 90px; margin: 0pt; padding: 0pt; position: absolute; top: -90px; left: -728px;">';
+	$variables['page_bottom'] .= '	<script type="text/javascript">';
+	$variables['page_bottom'] .= '	/* <![CDATA[ */';
+	$variables['page_bottom'] .= variable_get('ggp_network_leaderboard_code');
+	$variables['page_bottom'] .= '	/* ]]> */ ';
+	$variables['page_bottom'] .= '	</script>';
+	$variables['page_bottom'] .= '	</div>';
+	
+}
+
+function ggp_network_menu(){
+  $items = array();
+
+  $items['admin/config/ggp/advertising'] = array(
+    'title' => t('GGP Werbung'),
+    'description' => 'Set GGP Advertisment Settings',
+    'access callback' => 'user_access',
+    'access arguments' => array('access administration pages'),
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('ggp_network_form'),
+
+  );
+
+  return $items;
+}
+function ggp_network_form() {
+  $form = array();
+
+
+  $form['ggp_network_leaderboard_code'] = array(
+    '#type' => 'textarea',
+    '#title' => t('Leaderboard Code'),
+    '#default_value' => variable_get('ggp_network_leaderboard_code'),
+    '#description' => t("Code for Leaderboard Ad."),
+  );
+  
+  $form['ggp_network_pages'] = array(
+    '#type' => 'textarea',
+    '#title' => t('Deactivate Networklist on specific pages'),
+    '#default_value' => variable_get('ggp_network_pages', "admin*\nimg_assist*\nimce*\nnode/add/*\nnode/*/edit"),
+    '#description' => t("Enter one page per line as Drupal paths. The '*' character is a wildcard. Example paths are %blog for the blog page and %blog-wildcard for every personal blog. %front is the front page.", array('%blog' => 'blog', '%blog-wildcard' => 'blog/*', '%front' => '<front>')),
+  
+  );
+  return system_settings_form($form);
+}
+
+/**
+ * Check if Colorbox should be active for the current URL.
+ *
+ * @return
+ *   TRUE if Colorbox should be active for the current page.
+ */
+function _ggp_network_active() {
+  // Make it possible deactivate Colorbox with
+  // parameter ?colorbox=no in the url.
+  if (isset($_GET['nl']) && $_GET['nl'] == 'no') {
+    return FALSE;
+  }
+
+  // Code from the block_list funtion in block.module.
+  $path = drupal_get_path_alias($_GET['q']);
+  $nl_pages = variable_get('ggp_network_pages', "admin*\nimg_assist*\nmedia/*\nimce*\nnode/add/*\nnode/*/edit");
+  // Compare with the internal and path alias (if any).
+  $page_match = drupal_match_path($path, $nl_pages);
+  if ($path != $_GET['q']) {
+    $page_match = $page_match || drupal_match_path($_GET['q'], $nl_pages);
+  }
+
+  return !$page_match;
+}
+
+function _ggp_network_doheader() {
+	static $already_added = FALSE;
+	if ($already_added) {
+	return; // Don't add the JavaScript and CSS multiple times.
+	}
+	if (!_ggp_network_active()) {
+	return; // Don't add the JavaScript and CSS on specified paths.
+	}
+
+	drupal_add_js('http://static.globalgameport.com/network/leiste.min.js', array('type' => 'external', 'scope' => 'footer', 'weight' => 5));
+	drupal_add_js("jQuery.ggpleiste({adcont: 'h1dden'});", array('type' => 'inline', 'scope' => 'footer', 'weight' => 6));
+	$already_added = TRUE;
+}

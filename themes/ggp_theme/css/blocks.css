@@ -1,0 +1,137 @@
+.region-leaderboard { height:27px;margin:0 0;padding:0; }
+
+/* Blocks */
+.block {
+  margin-bottom: 20px;
+}
+
+.sidebar .block-inner {
+background:rgba(221,221,221,0.10);
+border: 1px solid rgba(221,221,221,0.08);
+} /* set block background styles on .block-inner */
+.block-title {
+
+ text-transform: uppercase;
+ background:rgba(224,0,0,0.55);
+}
+.block-content {
+}
+
+/* Mini panels get a special title class */
+.mini-panel-title {
+  margin: 0 10px;
+}
+
+/* Target sidebar blocks */
+.sidebar .block {}
+.sidebar .block-inner {}
+.sidebar .block-title {}
+.sidebar .block-content {}
+
+/* First Sidebar */ 
+.region-sidebar-first .block {
+  margin:0 6px 12px 12px;
+}
+.region-sidebar-first .block-inner {}
+.region-sidebar-first .block-title {
+font-family: Arial;
+color: #ddd;
+text-shadow: 3px 3px 4px #000;
+padding: 2px 1px 5px;
+height: 21px;
+font-size: 1.308em;
+font-weight: 400;
+display: block;
+margin: 0 4px;
+border-bottom: 1px solid rgba(221,221,221,0.20);
+background: none; /* < < < bg_img_menue_titel */ 
+}
+.region-sidebar-first .block-content {}
+
+/* Second Sidebar */ 
+.region-sidebar-second .block-inner {}
+.region-sidebar-second .block-title {
+font-family: Arial;
+color: #ddd;
+text-shadow: 3px 3px 4px #000;
+padding: 2px 1px 5px;
+height: 21px;
+font-size: 1.308em;
+font-weight: 400;
+display: block;
+margin: 0 4px;
+border-bottom: 1px solid rgba(221,221,221,0.20);
+background: none; /* < < < bg_img_menue_titel */
+}
+
+/* Gpanel blocks */
+.gpanel .block {}
+.gpanel .block-inner {}
+.gpanel .block-title {
+  border-bottom:2px solid #A00000;
+}
+.gpanel .block-content {}
+
+/* Block wrapper for Mini Panels */
+.block-panels_mini {}
+.block-panels_mini .block-inner {}
+.block-panels_mini .block-content {}
+.block-panels_mini .mini-panel-title {
+  margin: 0 10px;
+}
+
+/* Login block - horizontal (theme setting) basic styles */
+.lb-h {
+  min-width: 320px;
+  margin-top: 1px;
+}
+.region-header .lb-h {
+  float: right;
+}
+.lb-h .block-inner,
+.lb-h .block-content {
+  background: none;
+  padding: 0;
+}
+.lb-h #user-login-form {
+  margin: 0;
+}
+.lb-h #user-login-form label {
+  line-height: 1.2
+}
+.lb-h .form-item {
+  float:left;
+  margin: 0;
+}
+.lb-h input.form-text {
+  margin:0 3px 0 0;
+  width:110px;
+}
+.lb-h #edit-actions {
+  margin: 0;
+}
+.lb-h input.form-submit {
+  position: absolute;
+  margin: 0;
+  top: 1.2em;
+}
+.lb-h .form-required,
+.lb-h .item-list {
+  display: none;
+}
+.lb-h h2 {
+  position: absolute !important;
+  clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+  clip: rect(1px, 1px, 1px, 1px);
+}
+
+/* Reset margins and padding for the Help block .block-inner */
+#block-system-help .block-inner {
+  padding: 0;
+  margin: 0;
+}
+
+/* Reset block ul in the dashboard */
+#dashboard .block ul {
+  margin-left: 0;
+}

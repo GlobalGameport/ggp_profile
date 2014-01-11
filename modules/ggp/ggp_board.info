@@ -1,0 +1,7 @@
+name = GGP Foren News
+description = Zeigt die letzten News aus dem entsprechenden Forum an.
+core = 7.x
+
+package = Global Gameport
+dependencies[] = ggp
+configure = admin/config/ggp/board

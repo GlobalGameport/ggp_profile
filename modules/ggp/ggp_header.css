@@ -1,0 +1,24 @@
+/* Folge uns */
+#folge_uns {width:216px;display:block;margin:-215px 0 0 -10px;padding:0;float:left;}
+.Lmenu_folge_uns div {height:32px;}
+#folge_uns a .pop_info {
+  visibility:hidden;
+  background:none;
+  color:#eee;
+  font:bold 0.923em/14px arial,serif;
+  margin-left:31px;
+  display:block;
+  height:30px;
+  vertical-align:middle;
+  padding:0 5px;
+}
+#folge_uns a:hover .pop_info {visibility:visible;background:rgba(0,0,0,0.60);}
+
+#twitter1:link, #twitter1:visited { margin:0;width:166px;height:32px;display:block;background: url('images/2013_socials.png') no-repeat left 0; }
+#twitter1:hover { text-decoration: none;background-position:left -96px; }
+#youtube1:link, #youtube1:visited { margin:0;width:166px;height:32px;display:block;background: url('images/2013_socials.png') no-repeat left -32px; }
+#youtube1:hover { text-decoration: none;background-position:left -128px; }
+#rss1:link, #rss1:visited { margin:0;width:166px;height:32px;display:block;background: url('images/2013_socials.png') no-repeat left -64px; }
+#rss1:hover { text-decoration: none;background-position:left -160px; }
+#facebook1:link, #facebook1:visited { margin:0;width:166px;height:32px;display:block;background: url('images/2013_socials.png') no-repeat scroll left -192px; }
+#facebook1:hover { text-decoration: none; background-position:left -224px; }

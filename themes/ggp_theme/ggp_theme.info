@@ -1,0 +1,351 @@
+
+;----------// Theme Information
+
+	name = GGP Standard Theme
+	description = Tabellenloses standard theme für GGP basierend auf AdaptiveTheme-7.x-3.x
+	core = 7.x
+	screenshot = screenshot.png
+	engine = phptemplate
+	base theme  = adaptivetheme
+
+
+	;----------// Modular stylesheets
+
+	stylesheets[all][] = css/html-elements.css
+	stylesheets[all][] = css/forms.css
+	stylesheets[all][] = css/tables.css
+	stylesheets[all][] = css/fields.css
+	stylesheets[all][] = css/page.css
+	stylesheets[all][] = css/navigation.css
+	stylesheets[all][] = css/articles.css
+	stylesheets[all][] = css/comments.css
+	stylesheets[all][] = css/blocks.css
+	stylesheets[all][] = css/grid.css
+	stylesheets[all][] = css/theme.css
+	stylesheets[all][] = css/color.css
+	stylesheets[all][] = css/tabs.css
+	stylesheets[all][] = css/dark.css
+	stylesheets[print][] = css/print.css
+
+
+	; Disabled styles - un-comment if you need these.
+	;stylesheets[all][] = css/admin-section.css
+	;stylesheets[all][] = css/panel-panes.css
+
+
+  scripts[] = js/ggp_theme.js
+  scripts[] = js/jquery.backstretch.min.js
+
+	;----------// Regions
+
+	regions[sidebar_first]     = Sidebar first
+	regions[sidebar_second]    = Sidebar second
+
+	regions[content]           = Main Content
+
+	regions[highlighted]       = Highlighted
+	regions[content_aside]     = Aside
+
+	regions[secondary_content] = Secondary
+	regions[tertiary_content]  = Tertiary
+
+	regions[footer]            = Footer
+	regions[leaderboard]       = Leaderboard
+	regions[header]            = Header
+	regions[menu_bar]          = Menu Bar
+	regions[help]              = Help
+
+	regions[page_top]          = Page top
+	regions[page_bottom]       = Page bottom
+
+	; 3 col 25-25-50
+  regions[three_25_25_50_first]  = 3col 25-25-50 Gpanel col 1
+  regions[three_25_25_50_second] = 3col 25-25-50 Gpanel col 2
+  regions[three_25_25_50_third]  = 3col 25-25-50 Gpanel col 3
+
+;----------// Site Features
+	features[] = logo
+	features[] = node_user_picture
+	features[] = favicon
+	features[] = main_menu
+	features[] = secondary_menu
+
+;----------// Theme Settings
+
+
+
+  ; plugins[page_layout][layouts] = layouts/core
+
+  ; plugins[gpanels][layouts] = layouts/gpanels
+
+  ; Layout settings
+
+  ; CSS
+  settings[disable_responsive_styles]     = 0
+  settings[enable_custom_media_queries]   = 1
+  settings[global_default_layout]         = 'standard-layout'
+  settings[global_default_layout_toggle]  = 0
+  settings[global_files_path]             = 'public_files'
+
+
+  ; Polyfills
+  settings[load_html5js]       = 1
+  settings[load_respondjs]     = 0
+  settings[load_ltie8css]      = 0
+  settings[load_scalefixjs]    = 0
+
+
+  ; Debug
+  settings[expose_regions]              = 0
+  settings[load_all_panels]             = 0
+  settings[load_all_panels_no_sidebars] = 0
+  settings[show_window_size]            = 0
+  settings[rebuild_theme_data]          = 0
+
+
+  ; Enable extensions
+  settings[enable_extensions]          = 0
+  settings[enable_font_settings]       = 0
+  settings[enable_heading_settings]    = 0
+  settings[enable_image_settings]      = 0
+  settings[enable_apple_touch_icons]   = 0
+  settings[enable_exclude_css]         = 0
+  settings[enable_custom_css]          = 0
+  settings[enable_context_regions]     = 0
+  settings[enable_float_region_blocks] = 0
+  settings[enable_markup_overides]     = 0
+
+
+  ; Standard bigscreen
+  settings[bigscreen_layout]         = 'three_col_grail'
+  settings[bigscreen_page_width]     = 1088
+  settings[bigscreen_page_unit]      = 'px'
+  settings[bigscreen_sidebar_first]  = 184
+  settings[bigscreen_sidebar_second] = 324
+  settings[bigscreen_sidebar_unit]   = 'px'
+  settings[bigscreen_set_max_width]  = 0
+  settings[bigscreen_max_width]      = 1088
+  settings[bigscreen_max_width_unit] = 'px'
+  settings[bigscreen_media_query]    = 'only screen and (min-width:1025px)'
+
+  ; Tablet landscape
+  settings[tablet_landscape_layout]         = 'two_sidebars_left_stack'
+  settings[tablet_landscape_page_unit]      = 'px'
+  settings[tablet_landscape_sidebar_unit]   = 'px'
+  settings[tablet_landscape_max_width_unit] = 'px'
+  settings[tablet_landscape_page_width]     = 1024
+  settings[tablet_landscape_sidebar_first]  = 184
+  settings[tablet_landscape_sidebar_second] = 200
+  settings[tablet_landscape_set_max_width]  = 0
+  settings[tablet_landscape_max_width]      = 960
+  settings[tablet_landscape_media_query]    = 'only screen and (min-width:769px) and (max-width:1024px)'
+
+  ; Tablet portrait
+  settings[tablet_portrait_layout]         = 'one_col_vert'
+  settings[tablet_portrait_page_unit]      = '%'
+  settings[tablet_portrait_sidebar_unit]   = '%'
+  settings[tablet_portrait_max_width_unit] = 'px'
+  settings[tablet_portrait_page_width]     = 100
+  settings[tablet_portrait_sidebar_first]  = 50
+  settings[tablet_portrait_sidebar_second] = 50
+  settings[tablet_portrait_set_max_width]  = 0
+  settings[tablet_portrait_max_width]      = 780
+  settings[tablet_portrait_media_query]    = 'only screen and (min-width:481px) and (max-width:768px)'
+
+  ; smartphone landscape
+  settings[smartphone_landscape_layout]         = 'one_col_vert'
+  settings[smartphone_landscape_page_unit]      = '%'
+  settings[smartphone_landscape_sidebar_unit]   = '%'
+  settings[smartphone_landscape_max_width_unit] = 'px'
+  settings[smartphone_landscape_page_width]     = 100
+  settings[smartphone_landscape_sidebar_first]  = 50
+  settings[smartphone_landscape_sidebar_second] = 50
+  settings[smartphone_landscape_set_max_width]  = 0
+  settings[smartphone_landscape_max_width]      = 520
+  settings[smartphone_landscape_media_query]    = 'only screen and (min-width:321px) and (max-width:480px)'
+
+  ; smartphone portrait
+  settings[smartphone_portrait_media_query] = 'only screen and (max-width:320px)'
+
+  ; Search
+  settings[display_search_form_label] = 1
+  settings[search_snippet]            = 1
+  settings[search_info_type]          = 1
+  settings[search_info_user]          = 1
+  settings[search_info_date]          = 1
+  settings[search_info_comment]       = 1
+  settings[search_info_upload]        = 1
+  settings[search_info_separator]     = ' - '
+
+  ; Login block options
+  settings[horizontal_login_block]        = 0
+  settings[horizontal_login_block_enable] = 'off'
+
+  ; Comments
+  settings[comments_hide_title] = 0
+
+  ; Style settings
+  settings[style_enable_schemes] = 'off'
+  settings[style_schemes]        = 'style-default.css'
+
+
+  ; Extra markup
+  settings[menu_item_span_elements] = 0
+
+
+  settings[bg_image_path] = 'profiles/ggp_net/themes/ggp_theme/images/default_bg.jpg'
+
+  ; Font type
+  settings[base_font_type]           = 'gwf'
+  settings[base_font_gwf] = 'Shanti'
+  settings[site_name_font_type]      = '<none>'
+  settings[site_slogan_font_type]    = '<none>'
+  settings[page_title_font_type]     = 'gwf'
+  settings[page_title_font_gwf] = 'Oswald'
+  settings[node_title_font_type]     = 'gwf'
+  settings[node_title_font_gwf] = 'Oswald'
+  settings[comment_title_font_type]  = '<none>'
+  settings[block_title_font_type]    = 'gwf'
+  settings[block_title_font_gwf] = 'Homenaje'
+  settings[main_menu_font_type]      = '<none>'
+  settings[secondary_menu_font_type] = '<none>'
+  settings[block_menu_font_type]     = '<none>'
+  settings[selectors_font_type]      = '<none>'
+  settings[content_headings_h1h4_font_type] = '<none>'
+  settings[content_headings_h5h6_font_type] = '<none>'
+
+
+  ; Font size
+  settings[base_font_size]           = '<none>'
+  settings[site_name_font_size]      = '<none>'
+  settings[site_slogan_font_size]    = '<none>'
+  settings[page_title_font_size]     = '<none>'
+  settings[node_title_font_size]     = '<none>'
+  settings[comment_title_font_size]  = '<none>'
+  settings[block_title_font_size]    = '<none>'
+  settings[main_menu_font_size]      = '<none>'
+  settings[secondary_menu_font_size] = '<none>'
+  settings[block_menu_font_size]     = '<none>'
+
+
+  ; Font size heading levels
+  settings[h1_font_size] = '2em'
+  settings[h2_font_size] = '1.6em'
+  settings[h3_font_size] = '1.4em'
+  settings[h4_font_size] = '1.2em'
+  settings[h5_font_size] = '1em'
+  settings[h6_font_size] = '1em'
+
+
+  ; Site name
+  settings[site_name_case]      = 'snc-n'
+  settings[site_name_weight]    = 'snw-b'
+  settings[site_name_alignment] = 'sna-l'
+  settings[site_name_shadow]    = 'sns-n'
+
+
+  ; Site slogan
+  settings[site_slogan_case]      = 'ssc-n'
+  settings[site_slogan_weight]    = 'ssw-b'
+  settings[site_slogan_alignment] = 'ssa-l'
+  settings[site_slogan_shadow]    = 'sss-n'
+
+
+  ; Page title
+  settings[page_title_case]      = 'ptc-n'
+  settings[page_title_weight]    = 'ptw-b'
+  settings[page_title_alignment] = 'pta-l'
+  settings[page_title_shadow]    = 'pts-n'
+
+
+  ; Node title
+  settings[node_title_case]      = 'ntc-n'
+  settings[node_title_weight]    = 'ntw-b'
+  settings[node_title_alignment] = 'nta-l'
+  settings[node_title_shadow]    = 'nts-n'
+
+
+  ; Comment title
+  settings[comment_title_case]      = 'ctc-n'
+  settings[comment_title_weight]    = 'ctw-b'
+  settings[comment_title_alignment] = 'cta-l'
+  settings[comment_title_shadow]    = 'cts-n'
+
+
+  ; Block title
+  settings[block_title_case]      = 'btc-n'
+  settings[block_title_weight]    = 'btw-b'
+  settings[block_title_alignment] = 'bta-l'
+  settings[block_title_shadow]    = 'bts-n'
+
+
+  ; Images
+  settings[image_alignment]        = 'ia-n'
+  settings[image_alignment_teaser] = 'iat-n'
+  settings[image_caption_full]     = 0
+  settings[image_caption_teaser]   = 0
+  settings[image_teaser]           = 0
+
+
+  ; Breadcrumb
+  settings[breadcrumb_display]   = 1
+  settings[breadcrumb_home]      = 0
+  settings[breadcrumb_label]     = 0
+  settings[breadcrumb_title]     = 0
+  settings[breadcrumb_separator] = ' &#187; '
+
+
+  ; Login block options
+  settings[horizontal_login_block_enable] = 'on'
+  settings[horizontal_login_block]    = 0
+  settings[login_block_remove_links]  = 0
+  settings[login_block_remove_openid] = 0
+
+
+  ; Design
+  settings[global_gutter_width]           = ''
+  settings[page_full_width_wrappers]      = 0
+  settings[page_content_type_suggestions] = 0
+  settings[menu_item_span_elements]       = 0
+
+
+  ; Extra CSS classes
+  settings[extra_page_classes]      = 1
+  settings[extra_article_classes]   = 1
+  settings[extra_comment_classes]   = 1
+  settings[extra_block_classes]     = 1
+  settings[extra_menu_classes]      = 1
+  settings[extra_item_list_classes] = 1
+
+
+  ; Remove or Hide
+  settings[comments_hide_title]           = 0
+  settings[feed_icons]                    = 0
+  settings[unset_block_system_main_front] = 0
+  settings[unset_menu_titles]             = 0
+
+
+  ; Accessibility
+  settings[skip_link_target] = '#main-content'
+  settings[adv_search_extra_fieldsets] = 0
+
+
+  ; SEO
+  settings[rel_author] = 0
+
+
+  ; Mobile metatags
+  settings[mobile_friendly_metatags] = 1
+  settings[adaptivetheme_meta_viewport] = 'width=device-width, initial-scale=1.0, user-scalable=yes'
+  settings[adaptivetheme_meta_mobileoptimized]  = 'width'
+  settings[adaptivetheme_meta_handheldfriendly] = 'true'
+  settings[adaptivetheme_meta_apple_mobile_web_app_capable] = 'yes'
+  settings[adaptivetheme_meta_ie_document_mode] = ''
+  settings[adaptivetheme_meta_clear_type] = 0
+
+
+  ; Touch icons
+  settings[apple_touch_icon_enable] = 0
+  settings[apple_touch_icon_path_l] = 'images/touch-icon-l.png'
+  settings[apple_touch_icon_path_m] = 'images/touch-icon-m.png'
+  settings[apple_touch_icon_path_h] = 'images/touch-icon-h.png'

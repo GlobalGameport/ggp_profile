@@ -1,0 +1,97 @@
+<?php
+
+
+/**
+* Generate HTML for the block
+* @param op the operation from the URL
+* @param delta offset
+* @returns block HTML
+*/
+function ggp_board_block_info() {
+
+    $blocks["ggp_board"] = array(
+		'info' => t('Forendiskussion'),
+		'cache' => DRUPAL_CACHE_PER_ROLE,
+	);
+
+    return $blocks;
+}// end ggp_forum_block_info
+
+function ggp_board_block_view($delta = '') {
+ $block = array();
+
+  switch ($delta) {
+  case 'ggp_board':
+    drupal_add_css(drupal_get_path('module', 'ggp_board') . '/ggp_board.css');
+    drupal_add_js(drupal_get_path('module', 'ggp_board') . '/ggp_board.js');
+    drupal_add_js(array('ggp_board' => variable_get('ggp_board_settings')), 'setting');
+    $block['subject'] = t('Forendiskussion');
+    $block['content'] = '<div id="latestposts"></div>';
+	
+  break;
+  }
+  return $block;
+}  // end ggp_forum_block_view
+
+
+function ggp_board_menu(){
+  $items = array();
+
+  $items['admin/config/ggp/board'] = array(
+    'title' => t('GGP Forendiskussion'),
+    'description' => 'Einstellungen für den Forendiskussion Block. (Forenid, etc.)',
+    'access callback' => 'user_access',
+    'access arguments' => array('access administration pages'),
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('ggp_board_form'),
+  );
+
+  return $items;
+}
+
+/**
+* Form function, called by drupal_get_form()
+* in current_posts_menu().
+*/
+function ggp_board_form($form, &$form_state) {
+  $saved_settings = variable_get('ggp_board_settings');
+
+  $settings['board_url'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Host'),
+    '#default_value' => $saved_settings['board_url'],
+    '#size' => 50,
+    '#maxlength' => 50,
+    '#description' => t('Hostname of Board e.g.: <em>www.vbulletin.org</em> or <em>www.vbulletin-germany.org/forum</em>'),
+    '#required' => TRUE,
+  );
+  $settings['maxposts'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Maximum number of posts'),
+    '#default_value' => $saved_settings['maxposts'],
+    '#size' => 2,
+    '#maxlength' => 2,
+    '#description' => t('The maximum number of links to display in the block.'),
+    '#required' => TRUE,
+  );
+  $settings['more'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Link to the Forum'),
+    '#default_value' => $saved_settings['more'],
+    '#size' => 4,
+    '#maxlength' => 4,
+    '#description' => t('Shown as <em>More</em> link.'),
+  );
+  $settings['ids'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Forumids'),
+    '#default_value' => $saved_settings['ids'],
+    '#size' => 50,
+    '#maxlength' => 50,
+    '#description' => t('Comma-seperated list of Forum Ids which are displayed.'),
+    '#required' => TRUE,
+  );
+  $form['#tree'] = TRUE;
+  $form['ggp_board_settings'] = $settings;
+  return system_settings_form($form);
+}

@@ -1,0 +1,9 @@
+/* ##################### Counter ##################### */
+
+
+#counter_box { background: url(bg_counter_01.png) no-repeat;width:300px;height:150px;margin:0 0 0 800px;border-top:47px solid transparent;display:block; }
+#counter_top { display:block;width:100%;height:102px; }
+#counter_txt { text-align:center;font-size: 1.1em;font-family: Trebuchet MS,Arial,Helvetica,sans-serif;color:#fff;font-weight:normal;padding:0px 20px 0 0px; }
+
+#counter_d { display:block;width:31px;height:22px;margin:0 0 0 175px;float:left;text-align:center;overflow:hidden;color:#d61322;font-size:1.3em;font-weight:bold;font-family: Trebuchet MS,Arial,Helvetica,sans-serif;text-align:center; }
+#counter_h, #counter_m { display:block;width:25px;height:22px;margin:0 0 0 2px;float:left;text-align:center;overflow:hidden;color:#d61322;font-size:1.3em;font-weight:bold;font-family: Trebuchet MS,Arial,Helvetica,sans-serif;text-align:center; }

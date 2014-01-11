@@ -1,0 +1,111 @@
+/* Articles (nodes) */
+.article {
+  margin:0 0 17px;
+  padding-top:0;
+  color:#aeaeae;
+  line-height:130%;
+}
+
+.article > header {
+background:none;
+margin:0 0px
+padding:0px;
+}
+
+/* Title */
+.article-title {
+  font-family: Arial,serif;
+  color:#ccc;
+  padding:0 0 4px;
+  font-weight:400;
+  text-shadow: 0px 1px 10px #555;
+  line-height:135%;
+}
+.article-title a:link,
+.article-title a:visited,
+.article-title a:active {
+color:#ccc;
+text-decoration:none;text-shadow: 0px 1px 10px #555;
+}
+
+.article-title a:hover,
+.article-title a:focus {
+color:#fff;
+text-decoration:none;text-shadow: 0px 1px 10px #ccc;
+}
+
+/* User Picture */
+.article .user-picture {}
+.article .user-picture img {}
+
+/* Submitted */
+.article .submitted {}
+.article .submitted  a {}
+.article .submitted  a.username {
+color:#aaa;
+text-decoration:none;
+}
+.article .submitted  a:hover,
+.article .submitted  a.username:hover {
+color: #777;
+}
+
+.article .submitted  p.author-datetime { color:#666;margin:0 0 3px 7px;font: 0.923em georgia,serif; }
+.article .submitted  time {}
+
+/* Links */
+.article nav { }
+nav .inline { margin:0;text-align:left; }
+.article ul.links {font-size:1.154em;font-family:georgia,serif;line-height:200%;}
+.article ul.links li {}
+.article ul.links li a {}
+.article ul.links li.node_read_more a {}
+.article ul.links li.comment_add a {}
+.article ul.links li.comment_comments a {}
+.article ul.links li.comment_new_comments a {}
+.article ul.links li.blog_usernames_blog a {}
+.article ul.links li.print_html a {}
+.article ul.links li.print_email a {}
+.article ul.links li.print_pdf a {}
+
+/* UL link first and last classes */
+.article ul.links li.first {}
+.article ul.links li.last  {}
+
+/* Workflow states */
+.article-add    {}
+.article-edit   {}
+.article-delete {}
+.article-preview  {}
+.article-sticky   {}
+.article-promoted {}
+
+/* Status */
+.article-unpublished {}
+
+/* Theme the teaser */
+.article-teaser {}
+
+
+.article-content {
+padding:0 0;
+}
+article .tags, .article-content .field-type-taxonomy-term-reference {
+    border-left: 1px solid #717171;
+    display: inline;
+    font-style: italic;
+    margin-left: 0.6em;
+    padding: 0 0 0 0.6em;
+}
+
+article .tags .field-label, .article-content .field-type-taxonomy-term-reference h2.field-label {
+    display: inline;
+    font-size: 1em;
+    font-weight: normal;
+    margin: 0;
+}
+
+.article-content .field-type-taxonomy-term-reference ul, .article-content .field-type-taxonomy-term-reference ul li {
+    display: inline;
+	font-size: 1em;
+}

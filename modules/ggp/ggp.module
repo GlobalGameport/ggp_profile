@@ -1,0 +1,55 @@
+<?php 
+
+function ggp_menu(){
+	$items = array();
+
+	$items['admin/config/ggp'] = array(
+	    'title' => 'Global Gameport',
+	    'description' => 'Modules related to Global Gameport.',
+	    'position' => 'right',
+	    'weight' => 0,
+	    'page callback' => 'system_admin_menu_block_page',
+	    'access arguments' => array('access administration pages'),
+	    'file' => 'system.admin.inc',
+		'file path' => drupal_get_path('module', 'system'),
+	);
+	$items['impressum'] = array(
+	    'title' => 'Impressum',
+	    'description' => 'Impressum',
+	    'page callback' => 'ggp_get_content',
+	    'page arguments' => array('impress'),
+	    'access callback' => TRUE,
+	    'type' => MENU_CALLBACK,
+	);
+	$items['disclaimer'] = array(
+	    'title' => 'Disclaimer',
+	    'description' => 'Disclaimer',
+	    'page callback' => 'ggp_get_content',
+	    'page arguments' => array('disclaimer'),
+	    'access callback' => TRUE,
+	    'type' => MENU_CALLBACK,
+	);
+	$items['ueber-global-gameport'] = array(
+	    'title' => 'Über Global Gameport',
+	    'description' => 'Über Global Gameport',
+	    'page callback' => 'ggp_get_content',
+	    'page arguments' => array('about'),
+	    'access callback' => TRUE,
+	    'type' => MENU_CALLBACK,
+	);
+	return $items;
+}
+
+function ggp_get_content($ctx) {
+	switch($ctx) {
+		case 'impress':
+			return file_get_contents(drupal_get_path('module', 'ggp') . '/php_seiten/impressum.php');
+		break;
+		case 'disclaimer':
+			return file_get_contents(drupal_get_path('module', 'ggp') . '/php_seiten/disclaimer.php');
+		break;
+		case 'about':
+			return file_get_contents(drupal_get_path('module', 'ggp') . '/php_seiten/ueber_ggp.php');
+		break;
+	}
+}

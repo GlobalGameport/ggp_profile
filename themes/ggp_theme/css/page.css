@@ -1,0 +1,173 @@
+/* Page */
+
+/**
+ * Font sizes (reference)
+ * Based on 13px body (81.3%).
+ *
+ *  8px = 0.615em          30px = 2.308em          52px = 4em
+ *  9px = 0.692em          31px = 2.385em          53px = 4.077em
+ * 10px = 0.769em          32px = 2.462em          54px = 4.154em
+ * 11px = 0.846em          33px = 2.538em          55px = 4.231em
+ * 12px = 0.923em          34px = 2.615em          56px = 4.308em
+ * 13px = 1em              35px = 2.692em          57px = 4.385em
+ * 14px = 1.077em          36px = 2.769em          58px = 4.462em
+ * 15px = 1.154em          37px = 2.846em          59px = 4.538em
+ * 16px = 1.231em          38px = 2.923em          60px = 4.615em
+ * 17px = 1.308em          39px = 3em              61px = 4.692em
+ * 18px = 1.385em          40px = 3.077em          62px = 4.769em
+ * 19px = 1.462em          41px = 3.154em          63px = 4.846em
+ * 20px = 1.538em          42px = 3.231em          64px = 4.923em
+ * 21px = 1.615em          43px = 3.308em          65px = 5em
+ * 22px = 1.692em          44px = 3.385em          66px = 5.077em
+ * 23px = 1.769em          45px = 3.462em          67px = 5.154em
+ * 24px = 1.846em          46px = 3.538em          68px = 5.231em
+ * 25px = 1.923em          47px = 3.615em          69px = 5.308em
+ * 26px = 2em              48px = 3.692em          70px = 5.385em
+ * 27px = 2.077em          49px = 3.769em          71px = 5.462em
+ * 28px = 2.154em          50px = 3.846em          72px = 5.538em
+ * 29px = 2.231em          51px = 3.923em
+ */
+
+.container {background: rgba(0,0,0,0.75);} 
+#lines_top {background:url(../images/img_lines_top.png) repeat-x center -26px;}
+/* #incredible_bg {background:url(../images/temp_bg_ds3.jpg) no-repeat center top fixed;} */
+ 
+/* Header */
+#page > header { width:1064px;height:282px;border-bottom: 1px solid #333;margin:0 auto 12px;}
+#logo {
+  margin: 0;padding-top:12px;
+}
+#page > header > hgroup {
+  margin: 0 12px;
+}
+#page {box-shadow: 0 0 4px #333;margin:0 auto -18px;}
+
+#site-name {}
+#site-name a    {}
+#site-name a:visited {}
+#site-name a:hover   {}
+#site-name a:focus   {}
+#site-name a:active  {}
+#site-slogan {}
+
+/* Page title */
+h1#page-title {
+  color:#ccc;
+  padding:0 0 4px;
+  font-family: Arial,serif;
+  font-weight:400;
+  text-shadow: 0px 1px 10px #555;
+  line-height:135%;
+}
+
+#columns {
+  /*background: transparent url('http://www.watchdogs-game.de/templates/watch_dogs2012/images/bg_contentbg_top.jpg') no-repeat;*/
+}
+.columns-inner {
+  padding-top: 0px;
+}
+
+
+/* Regions */
+.region-leaderboard {}
+.region-header {}
+.region-secondary-content {}
+.region-highlighted {}
+.region-content-aside {}
+.region-tertiary-content {}
+.region-footer {}
+
+/* Sidebars */
+.sidebar {
+}
+.region-sidebar-first {}
+.region-sidebar-second {
+  //background: url('../images/sidebar-right-bg.png') no-repeat;
+}
+
+#main-content {
+padding:0;
+}
+#main-content > header {
+  background:none;  
+}
+
+/* Footer - the main page footer only */
+#page > footer {
+  border-top: 1px solid #333;margin:0 12px;
+}
+
+/* Feed icons */
+#feed-icons {}
+#feed-icons .feed-icon {}
+#feed-icons .feed-icon img {}
+#feed-icons a.feed-icon {}
+
+/* Search results list. */
+.search-results {}
+.search-results .search-result {}
+.search-results .title {}
+.search-results .search-snippet-info {}
+.search-results p {}
+.search-results .search-snippet {}
+.search-results .search-info {}
+
+span.search-info-type {}
+span.search-info-user {}
+span.search-info-date {}
+span.search-info-comment {}
+span.search-info-upload  {}
+
+/* Aggregator */
+.feed-item {}
+.feed-item header {}
+.feed-item-title {}
+.feed-item-meta {}
+.feed-item .content {}
+.feed-item footer {}
+.feed-source {}
+.feed-description {}
+
+/* Maintenance page */
+.maintenance-page #skip-link {
+  position: absolute;
+  top: -99em;
+}
+.maintenance-page footer {
+  margin: 10px 0 0;
+}
+.maintenance-page footer a {
+  text-decoration: none;
+  color: #ccc;
+}
+
+/* Prevent overflowing content */
+header[role=banner],
+.content-inner,
+.nav,
+.region-sidebar-first,
+.region-sidebar-second,
+.region-secondary-content,
+.region-tertiary-content,
+.region-footer {
+  overflow: visible;
+  word-wrap: break-word;
+}
+
+/* Add gutters */
+.block-inner,
+.region-help,
+.messages,
+#primary-nav,
+#secondary-nav,
+#breadcrumb,
+#main-content > header,
+#branding,
+#attribution {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+/* Strip block margin inside content column area. */
+.content-inner .block {
+  margin: 0;
+}
