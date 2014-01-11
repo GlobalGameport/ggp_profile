@@ -25,9 +25,7 @@ projects[fontyourface][version] = 2.8
 
 projects[google_webfont_loader_api][version] = 1.10
 
-projects[jquery_update][download][type] = git
-projects[jquery_update][download][url] = http://git.drupal.org/project/jquery_update.git
-projects[jquery_update][download][tag] = 7.x-2.3-alpha1
+projects[jquery_update][version] = 7.x-2.3
 
 
 projects[linkchecker][version] = 1.1
