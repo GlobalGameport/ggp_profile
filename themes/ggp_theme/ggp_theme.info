@@ -20,7 +20,7 @@
 	stylesheets[all][] = css/articles.css
 	stylesheets[all][] = css/comments.css
 	stylesheets[all][] = css/blocks.css
-	stylesheets[all][] = css/grid.css
+  stylesheets[all][] = css/responsive.css
 	stylesheets[all][] = css/theme.css
 	stylesheets[all][] = css/color.css
 	stylesheets[all][] = css/tabs.css
