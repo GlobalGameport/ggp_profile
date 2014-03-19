@@ -1,0 +1,86 @@
+<?php
+
+
+/**
+* Generate HTML for the block
+* @param op the operation from the URL
+* @param delta offset
+* @returns block HTML
+*/
+function ggp_header_block_info() {
+  $blocks["ggp_countdown"] = array(
+    'info' => t('Countdown'),
+    'cache' => DRUPAL_CACHE_PER_ROLE,
+  );
+
+    return $blocks;
+}// end ggp_forum_block_info
+
+function ggp_countdown_block_view($delta = '') {
+ $block = array();
+
+  switch ($delta) {
+  case 'ggp_countdown':
+    $saved_settings = variable_get('ggp_countdown_settings');
+    drupal_add_js(drupal_get_path('module', 'ggp_header') . '/countdown.js');
+    drupal_add_js(array('ggp_board' => variable_get('ggp_countdown')), 'setting');
+    if($saved_settings['countdown']){
+      $block['content'] = <<EOF
+        <div class="timer-area">
+          <ul id="countdown">
+              <li><span class="days">00</span>
+              <p class="timeRefDays">days</p>
+              </li>
+              <li><span class="hours">00</span>
+              <p class="timeRefHours">hours</p>
+              </li>
+              <li><span class="minutes">00</span>
+              <p class="timeRefMinutes">minutes</p>
+              </li>
+              <li><span class="seconds">00</span>
+              <p class="timeRefSeconds">seconds</p>
+              </li>
+          </ul>
+        </div>
+      EOF;
+    }
+  break;
+  }
+  return $block;
+}  // end ggp_forum_block_view
+
+
+function ggp_social_menu(){
+  $items = array();
+
+  $items['admin/config/ggp/countdown'] = array(
+    'title' => t('GGP Countdown'),
+    'description' => 'Einstellungen für den Countdown im Header',
+    'access callback' => 'user_access',
+    'access arguments' => array('access administration pages'),
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('ggp_countdown_form'),
+  );
+
+  return $items;
+}
+
+
+/**
+* Form function, called by drupal_get_form()
+* in current_posts_menu().
+*/
+function ggp_countdown_form($form, &$form_state) {
+  $saved_settings = variable_get('ggp_countdown_settings');
+
+  $settings['date'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Date to count to'),
+    '#default_value' => $saved_settings['date'],
+    '#size' => 50,
+    '#maxlength' => 50,
+  );
+  $form['#tree'] = TRUE;
+  $form['ggp_countdown_settings'] = $settings;
+  return system_settings_form($form);
+}

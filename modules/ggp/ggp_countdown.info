@@ -1,0 +1,6 @@
+name = GGP Countdown
+description = Fügt einen Countdownblock ein
+core = 7.x
+package = Global Gameport
+dependencies[] = ggp
+configure = admin/config/ggp
