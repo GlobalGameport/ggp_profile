@@ -43,13 +43,27 @@ function ggp_header_block_view($delta = '') {
   break;
   case 'ggp_countdown':
     $saved_settings = variable_get('ggp_countdown_settings');
+    drupal_add_js(drupal_get_path('module', 'ggp_header') . '/countdown.js');
+    drupal_add_js(drupal_get_path('module', 'ggp_header') . '/final-time.js');
     if($saved_settings['countdown']){
-      $block['content'] = '<div id="counter_pos"><div id="counter_box"><div id="counter_top"></div>';
-      $block['content'] .= '<div id="counter_txt" data-end="' . $saved_settings['date'] . '">';
-      $block['content'] .= '<div id="counter_d">315</div>';
-      $block['content'] .= '<div id="counter_h">3</div>';
-      $block['content'] .= '<div id="counter_m">45</div>';
-      $block['content'] .= '</div></div></div>';
+      $block['content'] = <<EOF
+        <div class="timer-area">
+          <ul id="countdown">
+              <li><span class="days">00</span>
+              <p class="timeRefDays">days</p>
+              </li>
+              <li><span class="hours">00</span>
+              <p class="timeRefHours">hours</p>
+              </li>
+              <li><span class="minutes">00</span>
+              <p class="timeRefMinutes">minutes</p>
+              </li>
+              <li><span class="seconds">00</span>
+              <p class="timeRefSeconds">seconds</p>
+              </li>
+          </ul>
+        </div>
+      EOF;
     }
   break;
   }

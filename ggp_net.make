@@ -66,25 +66,12 @@ projects[xmlsitemap][version] = 2.0-rc2
 
 projects[joomla][version] = 7.x-1.0-alpha3
 
-projects[ggp][download][type] = git
-projects[ggp][download][url] = http://github.com/GlobalGameport/ggp_module.git
-projects[ggp][download][branch] = 7.x-1.x
-projects[ggp][type] = module
-projects[ggp][version] = 1.x-dev
 
 ; Themes
 projects[adaptivetheme][download][type] = git
 projects[adaptivetheme][download][url] = http://git.drupal.org/project/adaptivetheme.git
 projects[adaptivetheme][download][branch] = 7.x-3.x
 projects[adaptivetheme][type] = theme
-
-; Please fill the following out. Type may be one of get, cvs, git, bzr or svn,
-; and url is the url of the download.
-projects[ggp_theme][download][type] = git
-projects[ggp_theme][download][url] = http://github.com/GlobalGameport/ggp_theme.git
-projects[ggp_theme][download][brnach] = 7.x-1.x
-projects[ggp_theme][type] = theme
-projects[ggp_theme][version] = 1.x-dev
 
 projects[libraries][version] = 2.1
 
