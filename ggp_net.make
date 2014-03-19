@@ -5,17 +5,22 @@ api = 2
 
 ; Modules
 
-projects[admin_menu][version] = 3.0-rc4
+projects[addthis][version] = 4.x
 
 projects[administerusersbyrole][version] = 1.0-beta1
+
+projects[admin_menu][version] = 3.0-rc4
+
+projects[apachesolr][version] = 1.6
+projects[apachesolr_multilingual][version] = 1.0-rc2
 
 projects[backports][version] = 1.0-alpha1
 
 projects[ckeditor][version] = 1.13
 
-projects[ctools][version] = 1.3
+projects[ctools][version] = 1.4
 
-projects[disqus][version] = 1.9
+projects[disqus][version] = 1.10
 
 projects[fancybox][version] = 2.0-beta2
 
@@ -23,20 +28,24 @@ projects[fontyourface][version] = 2.8
 
 projects[google_webfont_loader_api][version] = 1.11
 
+projects[imce][version] = 1.8
+
+projects[imce_mkdir][version] = 1.0
+
 projects[jquery_update][version] = 7.x-2.3
+
+projects[l10n_update][version] = 1.0-beta3
 
 projects[linkchecker][version] = 1.1
 
-projects[imce][version] = 1.7
-
-projects[media][version] = 1.3
+projects[media][version] = 1.4
 
 projects[media_browser_plus][version] = 1.0-beta3
 
 projects[media_gallery][version] = 1.0-beta8
 projects[media_gallery][patch][] = "http://raw.github.com/GlobalGameport/ggp_profile/7.x-1.x/media_gallery-7.x-1.0-beta8-collection-fix.patch"
 
-projects[metatag][version] = 1.0-beta7
+projects[metatag][version] = 1.0-beta9
 
 projects[multiform][version] = 1.0
 
@@ -46,23 +55,26 @@ projects[pathauto][version] = 1.2
 
 projects[piwik][version] = 2.4
 
-projects[plupload][version] = 1.4
-
+projects[plupload][version] = 1.6
 
 projects[redirect][version] = 1.0-rc1
 projects[redirect][patch][] = "https://drupal.org/files/redirect-prevent_circular_redirects_in_hook_path_update-1817976-25_1.patch"
 
-projects[site_verify][version] = 1.0
+projects[scheduler][version] = 1.1
 
-;projects[secureshare][version] = 2.1
+projects[site_verify][version] = 1.0
 
 projects[token][version] = 1.5
 
-projects[transliteration][version] = 3.1
+projects[transliteration][version] = 3.2
+
+projects[variable][version] = 2.3
 
 projects[views][version] = 3.7
 
-projects[xmlsitemap][version] = 2.0-rc2
+projects[views_rss][version] = 2.0-rc3
+
+projects[xmlsitemap][version] = 2.0
 
 projects[joomla][version] = 7.x-1.0-alpha3
 
@@ -73,7 +85,7 @@ projects[adaptivetheme][download][url] = http://git.drupal.org/project/adaptivet
 projects[adaptivetheme][download][branch] = 7.x-3.x
 projects[adaptivetheme][type] = theme
 
-projects[libraries][version] = 2.1
+projects[libraries][version] = 2.2
 
 
 ; Libraries
@@ -94,7 +106,3 @@ libraries[fancybox][download][url] = https://github.com/fancyapps/fancyBox/zipba
 libraries[fancybox][directory_name] = fancybox
 libraries[fancybox][type] = library
 
-libraries[socialshareprivacy][download][type] = get
-libraries[socialshareprivacy][download][url] = http://www.heise.de/extras/socialshareprivacy/jquery.socialshareprivacy.tar.gz
-libraries[socialshareprivacy][directory_name] = socialshareprivacy
-libraries[socialshareprivacy][type] = library
