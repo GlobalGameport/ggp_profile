@@ -96,7 +96,7 @@ libraries[ckeditor][type] = library
 
 
 libraries[plupload][download][type] = get
-libraries[plupload][download][url] = http://plupload.com/downloads/plupload_1_5_6.zip
+libraries[plupload][download][url] = https://github.com/moxiecode/plupload/archive/v1.5.8.zip
 libraries[plupload][directory_name] = plupload
 libraries[plupload][type] = library
 libraries[plupload][patch][] = "http://drupal.org/files/plupload-1_5_6-rm_examples-1903850-5.patch"
