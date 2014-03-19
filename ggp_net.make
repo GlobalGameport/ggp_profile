@@ -76,7 +76,7 @@ projects[views_rss][version] = 2.0-rc3
 
 projects[xmlsitemap][version] = 2.0
 
-projects[joomla][version] = 7.x-1.0-alpha3
+projects[joomla][version] = 1.0-alpha3
 
 
 ; Themes
