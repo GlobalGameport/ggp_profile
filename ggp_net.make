@@ -32,7 +32,7 @@ projects[imce][version] = 1.8
 
 projects[imce_mkdir][version] = 1.0
 
-projects[jquery_update][version] = 7.x-2.3
+projects[jquery_update][version] = 2.3
 
 projects[l10n_update][version] = 1.0-beta3
 
