@@ -33,7 +33,7 @@ projects[jquery_update][version] = 2.4
 projects[jquery_update][subdir] = "drupalorg"
 
 projects[linkchecker][version] = 1.2
-projects[linkchecker]projects[][subdir] = "drupalorg"
+projects[linkchecker][subdir] = "drupalorg"
 
 projects[imce][version] = 1.9
 projects[imce][subdir] = "drupalorg"
