@@ -26,6 +26,9 @@ projects[disqus][subdir] = "drupalorg"
 projects[fancybox][version] = 2.0-beta2
 projects[fancybox][subdir] = "drupalorg"
 
+projects[features][version] = 2.2
+projects[features][subdir] = "drupalorg"
+
 projects[google_webfont_loader_api][version] = 1.11
 projects[google_webfont_loader_api][subdir] = "drupalorg"
 
