@@ -6,77 +6,106 @@ api = 2
 ; Modules
 
 projects[admin_menu][version] = 3.0-rc4
+projects[admin_menu][subdir] = "drupalorg"
 
 projects[administerusersbyrole][version] = 1.0-beta1
+projects[administerusersbyrole][subdir] = "drupalorg"
 
 projects[backports][version] = 1.0-alpha1
+projects[backports][subdir] = "drupalorg"
 
-projects[ckeditor][version] = 1.13
+projects[ckeditor][version] = 1.15
+projects[ckeditor][subdir] = "drupalorg"
 
-projects[ctools][version] = 1.3
+projects[ctools][version] = 1.4
+projects[ctools][subdir] = "drupalorg"
 
-projects[disqus][version] = 1.9
+projects[disqus][version] = 1.10
+projects[disqus][subdir] = "drupalorg"
 
 projects[fancybox][version] = 2.0-beta2
-
-projects[fontyourface][version] = 2.8
+projects[fancybox][subdir] = "drupalorg"
 
 projects[google_webfont_loader_api][version] = 1.11
+projects[google_webfont_loader_api][subdir] = "drupalorg"
 
-projects[jquery_update][version] = 7.x-2.3
+projects[jquery_update][version] = 2.4
+projects[jquery_update][subdir] = "drupalorg"
 
-projects[linkchecker][version] = 1.1
+projects[linkchecker][version] = 1.2
+projects[linkchecker]projects[][subdir] = "drupalorg"
 
-projects[imce][version] = 1.7
+projects[imce][version] = 1.9
+projects[imce][subdir] = "drupalorg"
 
-projects[media][version] = 1.3
+projects[imce_mkdir][version] = 1.0
+projects[imce_mkdir][subdir] = "drupalorg"
+
+projects[l10n_update][version] = 1.0
+projects[l10n_update][subdir] = "drupalorg"
+
+projects[media][version] = 1.4
+projects[media][subdir] = "drupalorg"
 
 projects[media_browser_plus][version] = 1.0-beta3
+projects[media_browser_plus][subdir] = "drupalorg"
 
-projects[metatag][version] = 1.0-beta7
+projects[metatag][version] = 1.0-rc2
+projects[metatag][subdir] = "drupalorg"
 
-projects[multiform][version] = 1.0
+projects[multiform][version] = 1.1
+projects[multiform][subdir] = "drupalorg"
 
 projects[navigation404][version] = 1.0
+projects[navigation404][subdir] = "drupalorg"
 
 projects[pathauto][version] = 1.2
+projects[pathauto][subdir] = "drupalorg"
 
-projects[piwik][version] = 2.4
+projects[piwik][version] = 2.5
+projects[piwik][subdir] = "drupalorg"
 
-projects[plupload][version] = 1.4
+projects[plupload][version] = 1.6
+projects[plupload][subdir] = "drupalorg"
 
 projects[redirect][version] = 1.0-rc1
+projects[redirect][subdir] = "drupalorg"
 projects[redirect][patch][] = "https://drupal.org/files/redirect-prevent_circular_redirects_in_hook_path_update-1817976-25_1.patch"
 
-projects[site_verify][version] = 1.0
+projects[site_verify][version] = 1.1
+projects[site_verify][subdir] = "drupalorg"
 
 projects[token][version] = 1.5
+projects[token][subdir] = "drupalorg"
 
-projects[transliteration][version] = 3.1
+projects[transliteration][version] = 3.2
+projects[transliteration][subdir] = "drupalorg"
 
-projects[views][version] = 3.7
+projects[views][version] = 3.8
+projects[views][subdir] = "drupalorg"
 
-projects[xmlsitemap][version] = 2.0-rc2
+projects[xmlsitemap][version] = 2.0
+projects[xmlsitemap][subdir] = "drupalorg"
 
-projects[joomla][version] = 7.x-1.0-alpha3
+projects[joomla][download][type] = git
+projects[joomla][download][url] = "https://github.com/GlobalGameport/joomla.git"
+projects[joomla][download][branch] = master
+projects[joomla][type] = module
+projects[joomla][version] = 1.x-dev
+projects[joomla][subdir] = "drupalorg"
 
-projects[libraries][version] = 2.1
+projects[libraries][version] = 2.2
+projects[libraries][subdir] = "drupalorg"
 
 
 ; Libraries
-libraries[ckeditor][download][type] = get
-libraries[ckeditor][download][url] = http://download.cksource.com/CKEditor/CKEditor/CKEditor%204.1.1/ckeditor_4.1.1_full.zip
-libraries[ckeditor][directory_name] = ckeditor
-libraries[ckeditor][type] = library
-
 libraries[plupload][download][type] = get
-libraries[plupload][download][url] = http://plupload.com/downloads/plupload_1_5_6.zip
+libraries[plupload][download][url] = https://github.com/valkum/plupload/archive/1.5.8-1.zip
 libraries[plupload][directory_name] = plupload
 libraries[plupload][type] = library
-libraries[plupload][patch][] = "http://drupal.org/files/plupload-1_5_6-rm_examples-1903850-5.patch"
 
 libraries[fancybox][download][type] = get
-libraries[fancybox][download][url] = https://github.com/fancyapps/fancyBox/zipball/v2.1.4
+libraries[fancybox][download][url] = https://github.com/fancyapps/fancyBox/zipball/v2.1.5
 libraries[fancybox][directory_name] = fancybox
 libraries[fancybox][type] = library
 
