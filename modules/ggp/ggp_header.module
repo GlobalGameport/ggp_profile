@@ -13,10 +13,6 @@ function ggp_header_block_info() {
     'info' => t('Social Buttons'),
     'cache' => DRUPAL_CACHE_PER_ROLE,
   );
-  $blocks["ggp_countdown"] = array(
-    'info' => t('Countdown'),
-    'cache' => DRUPAL_CACHE_PER_ROLE,
-  );
 
     return $blocks;
 }// end ggp_forum_block_info
@@ -41,16 +37,7 @@ function ggp_header_block_view($delta = '') {
     $block['content'] .= '<div><a id="rss1" target="_blank" href="rss.xml"><span class="pop_info">Abonniere unseren RSS-Feed!</span></a><div>';
     $block['content'] .= '</div></div>';
   break;
-  case 'ggp_countdown':
-    $saved_settings = variable_get('ggp_countdown_settings');
-    if($saved_settings['countdown']){
-      $block['content'] = '<div id="counter_pos"><div id="counter_box"><div id="counter_top"></div>';
-      $block['content'] .= '<div id="counter_txt" data-end="' . $saved_settings['date'] . '">';
-      $block['content'] .= '<div id="counter_d">315</div>';
-      $block['content'] .= '<div id="counter_h">3</div>';
-      $block['content'] .= '<div id="counter_m">45</div>';
-      $block['content'] .= '</div></div></div>';
-    }
+  default:
   break;
   }
   return $block;
@@ -130,27 +117,4 @@ function ggp_header_social_form($form, &$form_state) {
   $form['ggp_social_settings'] = $settings;
   return system_settings_form($form);
 }
-/**
-* Form function, called by drupal_get_form()
-* in current_posts_menu().
-*/
-function ggp_header_countdown_form($form, &$form_state) {
-  $saved_settings = variable_get('ggp_countdown_settings');
 
-  $settings['countdown'] = array(
-    '#type' => 'checkbox',
-    '#title' => t('Show countdown'),
-    '#return_value' => 1,
-    '#default_value' => $saved_settings['countdown'],
-    );
-  $settings['date'] = array(
-    '#type' => 'textfield',
-    '#title' => t('Date to count to'),
-    '#default_value' => $saved_settings['date'],
-    '#size' => 50,
-    '#maxlength' => 50,
-  );
-  $form['#tree'] = TRUE;
-  $form['ggp_countdown_settings'] = $settings;
-  return system_settings_form($form);
-}
