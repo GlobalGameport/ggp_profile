@@ -53,6 +53,10 @@ projects[media][subdir] = "drupalorg"
 projects[media_browser_plus][version] = 1.0-beta3
 projects[media_browser_plus][subdir] = "drupalorg"
 
+projects[media_gallery][version] = 1.0-beta8
+projects[media_gallery][patch][] = "http://raw.github.com/GlobalGameport/ggp_profile/7.x-1.x/media_gallery-7.x-1.0-beta8-collection-fix.patch"
+projects[media_gallery][subdir] = "drupalorg"
+
 projects[metatag][version] = 1.0-rc2
 projects[metatag][subdir] = "drupalorg"
 
@@ -99,6 +103,11 @@ projects[joomla][subdir] = "drupalorg"
 
 projects[libraries][version] = 2.2
 projects[libraries][subdir] = "drupalorg"
+
+projects[adaptivetheme][download][type] = git
+projects[adaptivetheme][download][url] = http://git.drupal.org/project/adaptivetheme.git
+projects[adaptivetheme][download][branch] = 7.x-3.x
+projects[adaptivetheme][type] = theme
 
 
 ; Libraries

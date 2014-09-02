@@ -1,9 +1,17 @@
 <?php
+define('VERSION', "03");
 /**
 * @file
 * Install, update and uninstall functions for the system module.
 */
-
+function ggp_install() {
+  for ($i = 7101; $i < 8000; $i++) {
+    $candidate = 'ggp_update_' . $i;
+    if (function_exists($candidate)) {
+      $candidate();
+    }
+  }
+}
 
 /**
  * Delete update_notify email variable. Not all pages should send mails with update notif. this would spam some mailboxes.
@@ -12,17 +20,47 @@ function ggp_update_7101(&$sandbox) {
   variable_del('update_notify_emails');
 }
 
+function ggp_update_7103(&$sandbox) {
+  $vars = array();
+  $vars['ggp_board_settings'] = array();
+  $vars['ggp_board_settings']['board_url'] = "www.globalgameport.com";
+  $vars['ggp_board_settings']['maxposts'] = "5";
+  $vars['ggp_board_settings']['ids'] = "0";
+  $vars['ggp_board_settings']['more'] = "";
 
-/**
- * Update Theme Settings. Enable social
- */
-function ggp_update_7102(&$sandbox) {
-	module_load_include('inc', 'system', 'system.admin');
-	// Do this to automate saving the theme settings form:
-	foreach (array('ggp_theme') as $theme_name) {
-		$form_state = form_state_defaults();
-		$form_state['build_info']['args'][0] = $theme_name;
-		$form_state['values'] = array();
-		drupal_form_submit('system_theme_settings', $form_state);
-	}
+  $vars['date_default_timezone'] = "System/Localtime";
+  $vars['date_format_long'] = "l, j. F Y - G:i";
+  $vars['date_format_medium'] = "D, d/m/Y - H:i";
+  $vars['date_format_short'] = "j M Y - H:i";
+
+  $vars['jquery_update_jquery_version'] = "1.7";
+  $vars["jquery_update_jquery_cdn"] = "google";
+  $vars['fancybox_settings'] = variable_get('fancybox_settings');
+  $vars['fancybox_settings']['settings']['selectors'] = ".fancybox";
+  $vars['fancybox_settings']['helpers']['overlay']['locked'] = 0;
+  $vars['fancybox_settings']['helpers']['title']['type'] = 'inside';
+  $vars['fancybox_settings']['helpers']['buttons_enabled'] = 1;
+  $vars['fancybox_settings']['helpers']['buttons']['position'] = 'bottom';
+  $vars['fancybox_settings']['helpers']['media_enabled'] = 1;
+
+  $vars['user_register'] = USER_REGISTER_ADMINISTRATORS_ONLY;
+  $vars['pathauto_node_pattern'] = '[node:menu-link:parents:join-path]/[node:menu-link]';
+  $vars['pathauto_node_article_pattern'] = 'news/[node:created:custom:Y]/[node:created:custom:m]/[node:created:custom:d]/[node:title]';
+
+  foreach ($vars as $key => $val) {
+    variable_set($key, $val);
 }
+
+  // Adjust Content-types:
+  module_load_include('inc', 'node', 'content_types');
+  foreach (array('page', 'article') as $content_type_name) {
+    $form_state = form_state_defaults();
+    $form_state['build_info']['args'][0] = node_type_load($content_type_name);
+    $form_state['values'] = array();
+    $form_state['values']['xmlsitemap']['status'] = 1;
+    drupal_form_submit('node_type_form', $form_state);
+  }
+
+  return TRUE;
+}
+

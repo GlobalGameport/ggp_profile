@@ -34,8 +34,6 @@ dependencies[] = jquery_update
 dependencies[] = linkchecker
 dependencies[] = plupload
 dependencies[] = redirect
-dependencies[] = secureshare
-dependencies[] = secureshare_fields
 dependencies[] = imce
 dependencies[] = transliteration
 dependencies[] = media
@@ -56,15 +54,14 @@ dependencies[] = xmlsitemap_engines
 dependencies[] = xmlsitemap_menu
 dependencies[] = xmlsitemap_node
 
-dependencies[] = fontyourface
-dependencies[] = fontyourface_ui
-dependencies[] = google_fonts_api
+
 dependencies[] = google_webfont_loader_api
 
 dependencies[] = ggp
 dependencies[] = ggp_network
 dependencies[] = ggp_board
 dependencies[] = ggp_header
+dependencies[] = ggp_features
 
 files[] = ggp_net.profile
 
