@@ -1,4 +1,4 @@
-name = GGP.NET
+name = GGP Profile
 description = GGP Networksite
 core = 7.x
 ; Core Modules
@@ -27,3 +27,5 @@ dependencies[] = ggp_features
 files[] = ggp_net.profile
 
 
+version = 2.0
+project = ggp_net

@@ -4,3 +4,7 @@ core = 7.x
 package = Global Gameport
 dependencies[] = ggp
 configure = admin/config/ggp
+
+
+version = 1.0
+project = ggp_countdown

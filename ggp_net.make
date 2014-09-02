@@ -23,7 +23,7 @@ projects[ctools][subdir] = "drupalorg"
 projects[disqus][version] = 1.10
 projects[disqus][subdir] = "drupalorg"
 
-projects[fancybox][version] = 2.0-beta2
+projects[fancybox][version] = 2.0-beta3
 projects[fancybox][subdir] = "drupalorg"
 
 projects[features][version] = 2.2

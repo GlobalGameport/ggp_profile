@@ -1,4 +1,4 @@
-name = ggp_features
+name = GGP Features
 description = GGP Main Feature
 core = 7.x
 package = ggp
