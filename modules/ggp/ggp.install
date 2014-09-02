@@ -8,7 +8,7 @@ function ggp_install() {
   for ($i = 7101; $i < 8000; $i++) {
     $candidate = 'ggp_update_' . $i;
     if (function_exists($candidate)) {
-      $candidate(null);
+      $candidate();
     }
   }
 }
@@ -16,11 +16,11 @@ function ggp_install() {
 /**
  * Delete update_notify email variable. Not all pages should send mails with update notif. this would spam some mailboxes.
  */
-function ggp_update_7101(&$sandbox) {
+function ggp_update_7101() {
   variable_del('update_notify_emails');
 }
 
-function ggp_update_7103(&$sandbox) {
+function ggp_update_7103() {
   $vars = array();
   $vars['ggp_board_settings'] = array();
   $vars['ggp_board_settings']['board_url'] = "www.globalgameport.com";
