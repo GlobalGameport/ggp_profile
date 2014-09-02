@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the ggp_features feature.
+ */
+
+include_once 'ggp_features.features.inc';
