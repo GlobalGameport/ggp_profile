@@ -34,7 +34,7 @@ function ggp_countdown_block_view($delta = '') {
     drupal_add_js(array('ggp_countdown' => variable_get('ggp_countdown_settings')), 'setting');
 
     $block['content'] = check_markup($saved_settings['body'], $saved_settings['format'], '', TRUE);
-    $block['content'] = <<EOF
+    $block['content'] = <<<EOF
       <div class="timer-area">
         <ul id="countdown">
             <li><span class="days">00</span>
@@ -51,7 +51,7 @@ function ggp_countdown_block_view($delta = '') {
             </li>
         </ul>
       </div>
-    EOF;
+EOF;
   break;
   }
   return $block;

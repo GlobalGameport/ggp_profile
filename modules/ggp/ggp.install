@@ -8,7 +8,7 @@ function ggp_install() {
   for ($i = 7101; $i < 8000; $i++) {
     $candidate = 'ggp_update_' . $i;
     if (function_exists($candidate)) {
-      $candidate();
+      $candidate(null);
     }
   }
 }
