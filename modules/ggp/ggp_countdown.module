@@ -1,0 +1,108 @@
+<?php
+
+
+/**
+* Generate HTML for the block
+* @param op the operation from the URL
+* @param delta offset
+* @returns block HTML
+*/
+function ggp_header_block_info() {
+  $blocks["ggp_countdown"] = array(
+    'info' => t('Countdown'),
+    'cache' => DRUPAL_CACHE_PER_ROLE,
+  );
+
+    return $blocks;
+}// end ggp_forum_block_info
+
+function ggp_countdown_block_configure($delta = '') {
+  $edit = variable_get('ggp_countdown_settings', array());
+  return ggp_countdown_form($edit);
+}
+
+
+function ggp_countdown_block_view($delta = '') {
+ $block = array();
+
+  switch ($delta) {
+  case 'ggp_countdown':
+    $saved_settings = variable_get('ggp_countdown_settings');
+    drupal_add_js(drupal_get_path('module', 'ggp_countdown') . '/countdown.js');
+    drupal_add_js(drupal_get_path('module', 'ggp_countdown') . '/ggp_countdown.js');
+
+    drupal_add_js(array('ggp_countdown' => variable_get('ggp_countdown_settings')), 'setting');
+
+    $block['content'] = check_markup($saved_settings['body'], $saved_settings['format'], '', TRUE);
+    $block['content'] = <<EOF
+      <div class="timer-area">
+        <ul id="countdown">
+            <li><span class="days">00</span>
+            <p class="timeRefDays">days</p>
+            </li>
+            <li><span class="hours">00</span>
+            <p class="timeRefHours">hours</p>
+            </li>
+            <li><span class="minutes">00</span>
+            <p class="timeRefMinutes">minutes</p>
+            </li>
+            <li><span class="seconds">00</span>
+            <p class="timeRefSeconds">seconds</p>
+            </li>
+        </ul>
+      </div>
+    EOF;
+  break;
+  }
+  return $block;
+}  // end ggp_forum_block_view
+
+
+function ggp_social_menu(){
+  $items = array();
+
+  $items['admin/config/ggp/countdown'] = array(
+    'title' => t('GGP Countdown'),
+    'description' => 'Einstellungen für den Countdown Block',
+    'access callback' => 'user_access',
+    'access arguments' => array('access administration pages'),
+    'page callback' => 'drupal_goto',
+    'page arguments' => array('admin/structure/block/manage/ggp_countdown/ggp_countdown/configure'),
+
+  );
+
+  return $items;
+}
+
+
+/**
+* Form function, called by drupal_get_form()
+* in current_posts_menu().
+*/
+function ggp_countdown_form($edit = array()) {
+$edit += array(
+    'date' => '',
+    'body' => '',
+  );
+  $form['date'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Date to count to'),
+    '#description' => t('The Date to count to. <i>Format: March 07, 2014/i>'),
+    '#default_value' => $edit['date'],
+    '#size' => 50,
+    '#maxlength' => 50,
+  );
+  $form['body_field']['#weight'] = -17;
+  $form['body_field']['body'] = array(
+    '#type' => 'text_format',
+    '#title' => t('Block body'),
+    '#default_value' => $edit['body'],
+    '#format' => isset($edit['format']) ? $edit['format'] : NULL,
+    '#rows' => 15,
+    '#description' => t('The content of the block as shown to the user.'),
+    '#required' => FALSE,
+    '#weight' => -17,
+  );
+  return $form;
+
+}
