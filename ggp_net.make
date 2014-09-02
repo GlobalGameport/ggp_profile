@@ -82,6 +82,9 @@ projects[redirect][patch][] = "https://drupal.org/files/redirect-prevent_circula
 projects[site_verify][version] = 1.1
 projects[site_verify][subdir] = "drupalorg"
 
+projects[scheduler][version] = 1.2
+projects[scheduler][subdir] = "drupalorg"
+
 projects[token][version] = 1.5
 projects[token][subdir] = "drupalorg"
 

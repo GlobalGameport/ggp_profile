@@ -183,15 +183,6 @@ function ggp_features_user_default_permissions() {
     'module' => 'node',
   );
 
-  // Exported permission: 'administer conversion'.
-  $permissions['administer conversion'] = array(
-    'name' => 'administer conversion',
-    'roles' => array(
-      'administrator' => 'administrator',
-    ),
-    'module' => 'node_convert',
-  );
-
   // Exported permission: 'administer disqus'.
   $permissions['administer disqus'] = array(
     'name' => 'administer disqus',
@@ -379,15 +370,6 @@ function ggp_features_user_default_permissions() {
     'module' => 'redirect',
   );
 
-  // Exported permission: 'administer scheduler'.
-  $permissions['administer scheduler'] = array(
-    'name' => 'administer scheduler',
-    'roles' => array(
-      'administrator' => 'administrator',
-    ),
-    'module' => 'scheduler',
-  );
-
   // Exported permission: 'administer search'.
   $permissions['administer search'] = array(
     'name' => 'administer search',
@@ -523,78 +505,6 @@ function ggp_features_user_default_permissions() {
       'administrator' => 'administrator',
     ),
     'module' => 'user',
-  );
-
-  // Exported permission: 'convert from article'.
-  $permissions['convert from article'] = array(
-    'name' => 'convert from article',
-    'roles' => array(
-      'administrator' => 'administrator',
-    ),
-    'module' => 'node_convert',
-  );
-
-  // Exported permission: 'convert from media_gallery'.
-  $permissions['convert from media_gallery'] = array(
-    'name' => 'convert from media_gallery',
-    'roles' => array(
-      'administrator' => 'administrator',
-    ),
-    'module' => 'node_convert',
-  );
-
-  // Exported permission: 'convert from page'.
-  $permissions['convert from page'] = array(
-    'name' => 'convert from page',
-    'roles' => array(
-      'administrator' => 'administrator',
-    ),
-    'module' => 'node_convert',
-  );
-
-  // Exported permission: 'convert from poll'.
-  $permissions['convert from poll'] = array(
-    'name' => 'convert from poll',
-    'roles' => array(
-      'administrator' => 'administrator',
-    ),
-    'module' => 'node_convert',
-  );
-
-  // Exported permission: 'convert to article'.
-  $permissions['convert to article'] = array(
-    'name' => 'convert to article',
-    'roles' => array(
-      'administrator' => 'administrator',
-    ),
-    'module' => 'node_convert',
-  );
-
-  // Exported permission: 'convert to media_gallery'.
-  $permissions['convert to media_gallery'] = array(
-    'name' => 'convert to media_gallery',
-    'roles' => array(
-      'administrator' => 'administrator',
-    ),
-    'module' => 'node_convert',
-  );
-
-  // Exported permission: 'convert to page'.
-  $permissions['convert to page'] = array(
-    'name' => 'convert to page',
-    'roles' => array(
-      'administrator' => 'administrator',
-    ),
-    'module' => 'node_convert',
-  );
-
-  // Exported permission: 'convert to poll'.
-  $permissions['convert to poll'] = array(
-    'name' => 'convert to poll',
-    'roles' => array(
-      'administrator' => 'administrator',
-    ),
-    'module' => 'node_convert',
   );
 
   // Exported permission: 'create article content'.
@@ -1008,15 +918,6 @@ function ggp_features_user_default_permissions() {
       'webmaster' => 'webmaster',
     ),
     'module' => 'node',
-  );
-
-  // Exported permission: 'schedule (un)publishing of nodes'.
-  $permissions['schedule (un)publishing of nodes'] = array(
-    'name' => 'schedule (un)publishing of nodes',
-    'roles' => array(
-      'administrator' => 'administrator',
-    ),
-    'module' => 'scheduler',
   );
 
   // Exported permission: 'search content'.

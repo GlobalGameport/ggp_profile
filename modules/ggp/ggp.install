@@ -1,11 +1,10 @@
 <?php
-define('VERSION', "03");
 /**
 * @file
 * Install, update and uninstall functions for the system module.
 */
 function ggp_install() {
-  for ($i = 7101; $i < 8000; $i++) {
+  for ($i = 7101; $i < 7200; $i++) {
     $candidate = 'ggp_update_' . $i;
     if (function_exists($candidate)) {
       $candidate();
