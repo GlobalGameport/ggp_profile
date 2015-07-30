@@ -7,5 +7,6 @@
 		{
 			"path": "../"
 		}
-	]
+	],
+  "settings": { "build_on_save": 1 }
 }

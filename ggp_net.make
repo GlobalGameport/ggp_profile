@@ -5,34 +5,34 @@ api = 2
 
 ; Modules
 
-projects[admin_menu][version] = 3.0-rc4
+projects[admin_menu][version] = 3.0-rc5
 projects[admin_menu][subdir] = "drupalorg"
 
-projects[administerusersbyrole][version] = 1.0-beta1
+projects[administerusersbyrole][version] = 2.0-rc1
 projects[administerusersbyrole][subdir] = "drupalorg"
 
 projects[backports][version] = 1.0-alpha1
 projects[backports][subdir] = "drupalorg"
 
-projects[ckeditor][version] = 1.15
+projects[ckeditor][version] = 1.16
 projects[ckeditor][subdir] = "drupalorg"
 
-projects[ctools][version] = 1.4
+projects[ctools][version] = 1.7
 projects[ctools][subdir] = "drupalorg"
 
-projects[disqus][version] = 1.10
+projects[disqus][version] = 1.12
 projects[disqus][subdir] = "drupalorg"
 
-projects[fancybox][version] = 2.0-beta3
+projects[fancybox][version] = 2.0-beta6
 projects[fancybox][subdir] = "drupalorg"
 
-projects[features][version] = 2.2
+projects[features][version] = 2.6
 projects[features][subdir] = "drupalorg"
 
-projects[google_webfont_loader_api][version] = 1.11
+projects[google_webfont_loader_api][version] = 1.12
 projects[google_webfont_loader_api][subdir] = "drupalorg"
 
-projects[jquery_update][version] = 2.4
+projects[jquery_update][version] = 3.0-alpha2
 projects[jquery_update][subdir] = "drupalorg"
 
 projects[linkchecker][version] = 1.2
@@ -44,10 +44,10 @@ projects[imce][subdir] = "drupalorg"
 projects[imce_mkdir][version] = 1.0
 projects[imce_mkdir][subdir] = "drupalorg"
 
-projects[l10n_update][version] = 1.0
+projects[l10n_update][version] = 2.0
 projects[l10n_update][subdir] = "drupalorg"
 
-projects[media][version] = 1.4
+projects[media][version] = 1.5
 projects[media][subdir] = "drupalorg"
 
 projects[media_browser_plus][version] = 1.0-beta3
@@ -57,7 +57,7 @@ projects[media_gallery][version] = 1.0-beta8
 projects[media_gallery][patch][] = "http://raw.github.com/GlobalGameport/ggp_profile/7.x-1.x/media_gallery-7.x-1.0-beta8-collection-fix.patch"
 projects[media_gallery][subdir] = "drupalorg"
 
-projects[metatag][version] = 1.0-rc2
+projects[metatag][version] = 1.7
 projects[metatag][subdir] = "drupalorg"
 
 projects[multiform][version] = 1.1
@@ -69,32 +69,31 @@ projects[navigation404][subdir] = "drupalorg"
 projects[pathauto][version] = 1.2
 projects[pathauto][subdir] = "drupalorg"
 
-projects[piwik][version] = 2.5
+projects[piwik][version] = 2.7
 projects[piwik][subdir] = "drupalorg"
 
-projects[plupload][version] = 1.6
+projects[plupload][version] = 1.7
 projects[plupload][subdir] = "drupalorg"
 
-projects[redirect][version] = 1.0-rc1
+projects[redirect][version] = 1.0-rc3
 projects[redirect][subdir] = "drupalorg"
-projects[redirect][patch][] = "https://drupal.org/files/redirect-prevent_circular_redirects_in_hook_path_update-1817976-25_1.patch"
 
 projects[site_verify][version] = 1.1
 projects[site_verify][subdir] = "drupalorg"
 
-projects[scheduler][version] = 1.2
+projects[scheduler][version] = 1.3
 projects[scheduler][subdir] = "drupalorg"
 
-projects[token][version] = 1.5
+projects[token][version] = 1.6
 projects[token][subdir] = "drupalorg"
 
 projects[transliteration][version] = 3.2
 projects[transliteration][subdir] = "drupalorg"
 
-projects[views][version] = 3.8
+projects[views][version] = 3.11
 projects[views][subdir] = "drupalorg"
 
-projects[xmlsitemap][version] = 2.0
+projects[xmlsitemap][version] = 2.2
 projects[xmlsitemap][subdir] = "drupalorg"
 
 projects[joomla][download][type] = git
@@ -114,10 +113,11 @@ projects[adaptivetheme][type] = theme
 
 
 ; Libraries
-libraries[plupload][download][type] = get
-libraries[plupload][download][url] = https://github.com/valkum/plupload/archive/1.5.8-1.zip
-libraries[plupload][directory_name] = plupload
-libraries[plupload][type] = library
+libraries[plupload][download][type] = "get"
+libraries[plupload][download][url] = "https://github.com/moxiecode/plupload/archive/v1.5.8.zip"
+libraries[plupload][directory_name] = "plupload"
+libraries[plupload][type] = "library"
+libraries[plupload][patch][] = "https://www.drupal.org/files/issues/plupload-1_5_8-rm_examples-1903850-21.patch"
 
 libraries[fancybox][download][type] = get
 libraries[fancybox][download][url] = https://github.com/fancyapps/fancyBox/zipball/v2.1.5
