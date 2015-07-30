@@ -6,7 +6,7 @@
 
 /**
  * Implements hook_locale_default_languages().
- 
+ */
 function ggp_features_locale_default_languages() {
   $languages = array();
 
@@ -37,4 +37,4 @@ function ggp_features_locale_default_languages() {
     'weight' => 0,
   );
   return $languages;
-}*/
+}
