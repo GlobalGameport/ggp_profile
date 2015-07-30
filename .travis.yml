@@ -10,12 +10,12 @@ mysql:
   
 before_script:
   - "mysql -e 'create database drupal;'"
+  - composer self-update
   - pear channel-discover pear.drush.org
   - pear install drush/drush
   - phpenv rehash
   - cd ..
   - ls
-  - drush dl coder-7.x-2.x-dev --no-cache
   - cd ggp_profile
   - pwd
   - echo 'sendmail_path=`which true`' >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini

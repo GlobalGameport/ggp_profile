@@ -46,19 +46,12 @@ function ggp_update_7103() {
   $vars['pathauto_node_pattern'] = '[node:menu-link:parents:join-path]/[node:menu-link]';
   $vars['pathauto_node_article_pattern'] = 'news/[node:created:custom:Y]/[node:created:custom:m]/[node:created:custom:d]/[node:title]';
 
+  // Enable xmlsitemap for page and article content types
+  $vars['xmlsitemap_page'] = 1;
+  $vars['xmlsitemap_article'] = 1;
   foreach ($vars as $key => $val) {
     variable_set($key, $val);
 }
-
-  // Adjust Content-types:
-  module_load_include('inc', 'node', 'content_types');
-  foreach (array('page', 'article') as $content_type_name) {
-    $form_state = form_state_defaults();
-    $form_state['build_info']['args'][0] = node_type_load($content_type_name);
-    $form_state['values'] = array();
-    $form_state['values']['xmlsitemap']['status'] = 1;
-    drupal_form_submit('node_type_form', $form_state);
-  }
 
   return TRUE;
 }
