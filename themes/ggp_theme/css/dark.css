@@ -32,7 +32,7 @@
  * green:     #859900
  *
  */
-
+ 
 /* Umfrage */
 .poll {padding:5px;}
 .poll .title {
@@ -41,7 +41,7 @@
   text-shadow: 0px 2px 1px #000;
   border-bottom: 1px solid rgba(221,221,221,0.20);
   padding-bottom:5px;
-  margin-bottom:3px;
+  margin-bottom:3px; 
 }
 .poll .bar {
   background:#777;
@@ -54,7 +54,7 @@
 a:link.latestposts, a:visited.latestposts {color:#aeaeae;}
 a:hover.latestposts { text-decoration:none;color:#fff;background:rgba(0,0,0,0.30); }
 
-.latestposts span.title {font:1.077em/140% helvetica,clean;}
+.latestposts span.title {font:1.077em/140% helvetica,clean;} 
 
 /* Text-Schatten, 1px 1px #000 */
 .latestposts span.title, .article .submitted  p.author-datetime, .poll .text, .poll .total, .poll .percent, .region-sidebar-first ul.menu a, .region-sidebar-first ul.menu a:hover, .region-sidebar-first ul.menu a.active,
@@ -66,10 +66,10 @@ a:hover.latestposts { text-decoration:none;color:#fff;background:rgba(0,0,0,0.30
 .copyright a:hover { text-decoration:none;color:#ccc; }
 
 
-
-
-
-
+ 
+ 
+ 
+ 
 
 body {
   color:#aeaeae;
@@ -537,4 +537,14 @@ form#views-ui-preview-form,
 #center form#views-ui-preview-form,
 .vertical-tabs-list {
   border-color:#073642;
+}
+.social_share_privacy_area li.settings_info .settings_info_menu {
+  display:block;
+}
+.social_share_privacy_area li.help_info {
+  display: list-item;
+}
+.social_share_privacy_area li.settings_info {
+  display:list-item;
+  width: 55px;
 }
