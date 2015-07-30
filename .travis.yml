@@ -12,7 +12,6 @@ before_script:
   - "mysql -e 'create database drupal;'"
   - pear channel-discover pear.drush.org
   - pear install drush/drush
-  - pear install PHP_CodeSniffer
   - phpenv rehash
   - cd ..
   - ls
@@ -26,7 +25,7 @@ script:
   - drush make ggp_net.build ../beta.ggp.com
   - cd ../beta.ggp.com
   - sudo chmod -R 777 sites/all/modules
-  - drush si ggp_net --db-url=mysql://root:@127.0.0.1/drupal --site-name="beta.ggp.com" --yes
+  - drush si ggp_net --db-url=mysql://root:@127.0.0.1/drupal --site-name="beta.ggp.com" --debug --yes
   - drush cc all --yes
   - cd ../ggp_profile
   - test -d ../beta.ggp.com/profiles/ggp_net
