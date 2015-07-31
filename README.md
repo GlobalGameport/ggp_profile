@@ -1,4 +1,4 @@
-[GGP_NET](http://globalgameport.com) [![Build Status](https://travis-ci.org/GlobalGameport/ggp_profile.png?branch=7.x-1.x)](https://travis-ci.org/GlobalGameport/ggp_profile)
+[GGP_NET](http://globalgameport.com) [![Build Status](https://travis-ci.org/GlobalGameport/ggp_profile.svg?branch=7.x-2.x)](https://travis-ci.org/GlobalGameport/ggp_profile)
 ==
 
 Instructions on how to build a GlobalGameport Fansite from Drupal 7.
