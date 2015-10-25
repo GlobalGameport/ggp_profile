@@ -43,7 +43,7 @@ div.terms  {float:left; padding-top:6px; font-size: 8pt;}
 div.terms a, .submitted {color:#888; text-decoration:none; }
 div.terms a:hover {color:#acacac; text-decoration:underline;}
 
-div.links  { padding-top:0px;}
+div.links  { padding-top:4px;}
 div.links a {color:#888;text-decoration:none; }
 div.links a:hover {color:#acacac;text-decoration:underline;}
 

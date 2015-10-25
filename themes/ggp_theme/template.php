@@ -63,13 +63,14 @@ function ggp_theme_process_html(&$vars) {
 /**
  * Override or insert variables into the page templates.
  */
-/* -- Delete this line if you want to use these functions
+
 function ggp_theme_preprocess_page(&$vars) {
 }
 
 function ggp_theme_process_page(&$vars) {
+  $variables['hide_site_name']   = theme_get_setting('toggle_name') ? FALSE : TRUE;
 }
-// */
+// **/
 
 /**
  * Override or insert variables into the node templates.
@@ -93,7 +94,6 @@ function ggp_theme_preprocess_node(&$vars) {
   else {
     $vars['submitted'] = '';
   }
-
 }
 
 function ggp_theme_process_node(&$vars) {
@@ -104,7 +104,6 @@ function ggp_theme_preprocess_username(&$variables) {
   }
   unset($variables['attributes_array']['xml:lang']);
 }
-
 // */
 
 /**
@@ -136,6 +135,7 @@ function ggp_theme_preprocess_block(&$vars) {
 function ggp_theme_process_block(&$vars) {
   $vars['content_attributes'] = empty($vars['content_attributes_array']) ? '' : drupal_attributes($vars['content_attributes_array']);
   $vars['content_processed'] = '<div' . $vars['content_attributes'] . '>' . $vars['content'] . '</div>';
+
 }
 
 /**
@@ -323,6 +323,7 @@ function ggp_theme_media_gallery_item($variables) {
     $url = '';
     preg_match('|src="([\S]*)"|', $image, $url);
     $path = ggp_theme_get_file_scheme($url[1]);
+    //$link_path = file_create_url('public://'.$path);
     $link_path = image_style_url('media_gallery_large', $path);
     $attributes['class'][] = 'fancybox';
     $attributes['rel'][] = 'gallery';

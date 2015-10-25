@@ -28,17 +28,21 @@
  * 29px = 2.231em          51px = 3.923em
  */
 
-.container {background: rgba(0,0,0,0.75);} 
+.container {background: rgba(0,0,0,0.8);}
 #lines_top {background:url(../images/img_lines_top.png) repeat-x center -26px;}
-/* #incredible_bg {background:url(../images/temp_bg_ds3.jpg) no-repeat center top fixed;} */
- 
+
 /* Header */
-#page > header { width:1064px;height:282px;border-bottom: 1px solid #333;margin:0 auto 12px;}
+#page > header { /*width:1064px;height:282px;*/
+  margin:0 12px -4px;
+  text-align:center;
+  margin-bottom: 8px;
+}
+#page > header img { border-bottom: 1px solid #333;}
 #logo {
   margin: 0;padding-top:12px;
 }
 #page > header > hgroup {
-  margin: 0 12px;
+  margin: 0 0;
 }
 #page {box-shadow: 0 0 4px #333;margin:0 auto -18px;}
 
@@ -89,7 +93,7 @@ h1#page-title {
 padding:0;
 }
 #main-content > header {
-  background:none;  
+  background:none;
 }
 
 /* Footer - the main page footer only */
@@ -152,22 +156,4 @@ header[role=banner],
 .region-footer {
   overflow: visible;
   word-wrap: break-word;
-}
-
-/* Add gutters */
-.block-inner,
-.region-help,
-.messages,
-#primary-nav,
-#secondary-nav,
-#breadcrumb,
-#main-content > header,
-#branding,
-#attribution {
-  margin-left: 10px;
-  margin-right: 10px;
-}
-/* Strip block margin inside content column area. */
-.content-inner .block {
-  margin: 0;
 }

@@ -7,7 +7,7 @@
 * @param delta offset
 * @returns block HTML
 */
-function ggp_header_block_info() {
+function ggp_countdown_block_info() {
   $blocks["ggp_countdown"] = array(
     'info' => t('Countdown'),
     'cache' => DRUPAL_CACHE_PER_ROLE,
@@ -34,7 +34,7 @@ function ggp_countdown_block_view($delta = '') {
     drupal_add_js(array('ggp_countdown' => variable_get('ggp_countdown_settings')), 'setting');
 
     $block['content'] = check_markup($saved_settings['body'], $saved_settings['format'], '', TRUE);
-    $block['content'] = <<<EOF
+    $block['content'] .= <<<EOF
       <div class="timer-area">
         <ul id="countdown">
             <li><span class="days">00</span>
@@ -58,7 +58,7 @@ EOF;
 }  // end ggp_forum_block_view
 
 
-function ggp_social_menu(){
+function ggp_countdown_menu(){
   $items = array();
 
   $items['admin/config/ggp/countdown'] = array(
@@ -87,7 +87,7 @@ $edit += array(
   $form['date'] = array(
     '#type' => 'textfield',
     '#title' => t('Date to count to'),
-    '#description' => t('The Date to count to. <i>Format: March 07, 2014/i>'),
+    '#description' => t('The Date to count to. <i>Format: March 07, 2014</i>'),
     '#default_value' => $edit['date'],
     '#size' => 50,
     '#maxlength' => 50,
@@ -106,3 +106,13 @@ $edit += array(
   return $form;
 
 }
+function ggp_countdown_block_save($delta = '', $edit = array()) {
+  $value = array(
+    'body' => $edit['body']['value'],
+    'date' => $edit['date'],
+    'format' => $edit['body']['format'],
+  );
+  variable_set('ggp_countdown_settings', $value);
+  return TRUE;
+}
+

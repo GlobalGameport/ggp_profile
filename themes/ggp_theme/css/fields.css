@@ -21,7 +21,7 @@ table.field-items td:empty {margin:0;padding:0;width:0;}
 }
 
 /* Imagefields */
-.field-type-image {width:11,5625em;display:block;float:right;margin:4px 0 4px 8px;}
+.field-type-image {width:11,5625em;display:block;float:right;margin:-2px 0 4px 8px;}
 .field-type-image img {border: 1px solid rgba(221,221,221,0.15);padding:3px;}
 
 /* Use "datetime" when creating new CCK date fields. */

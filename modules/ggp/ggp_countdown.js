@@ -1,7 +1,7 @@
 
 (function($) {
 
-  Drupal.behaviors.ggp_board = {
+  Drupal.behaviors.ggp_countdown = {
     attach: function(context, settings) {
       $("#countdown").countdown({
               date: settings.ggp_countdown.date,

@@ -36,7 +36,7 @@
 /* Umfrage */
 .poll {padding:5px;}
 .poll .title {
-  font: 400 1.231em/140% arial,clean;
+  font: 400 1.154em/120% arial,clean;
   color:#ccc;
   text-shadow: 0px 2px 1px #000;
   border-bottom: 1px solid rgba(221,221,221,0.20);
@@ -44,10 +44,10 @@
   margin-bottom:3px; 
 }
 .poll .bar {
-  background:#777;
+  background:#444;height:5px;
 }
 .poll .bar .foreground {
-  background:#7f0000;
+  background:#ccc;height:5px;
 }
 
 /* Forendisskussion */
@@ -65,7 +65,81 @@ a:hover.latestposts { text-decoration:none;color:#fff;background:rgba(0,0,0,0.30
 .copyright a:link, .copyright a:visited {color:#727070;}
 .copyright a:hover { text-decoration:none;color:#ccc; }
 
+/* Folge uns */
+#folge_uns {width:216px;display:block;margin:-215px 0 0 -10px;padding:0;float:left;}
+.Lmenu_folge_uns div {height:32px;}
+a .pop_info {
+  visibility:hidden;
+  background:none;
+  color:#eee;
+  font:bold 0.846em/14px arial,serif;
+  margin-left:31px;
+  display:block;
+  height:30px;
+  vertical-align:middle;
+  padding:0 5px;text-align:left;
+}
+a:hover .pop_info {visibility:visible;background:rgba(0,0,0,0.70);}
 
+a#twitter1:link, a#twitter1:visited { margin:0;width:166px;height:32px;display:block;background: url(../images/2013_socials1.png) no-repeat left 0; }
+a#twitter1:hover  { text-decoration: none;background-position:left -96px; }
+a#youtube1:link, a#youtube1:visited { margin:0;width:166px;height:32px;display:block;background: url(../images/2013_socials1.png) no-repeat left -32px; }
+a#youtube1:hover  { text-decoration: none;background-position:left -128px; }
+a#rss1:link, a#rss1:visited { margin:0;width:166px;height:32px;display:block;background: url(../images/2013_socials1.png) no-repeat left -64px; }
+a#rss1:hover { text-decoration: none;background-position:left -160px; }
+
+a#facebook1:link, a#facebook1:visited { margin:0;width:166px;height:32px;display:block;background: url(../images/2013_socials1.png) no-repeat left -192px; }
+a#facebook1:hover { text-decoration: none;background-position:left -224px; }
+
+
+/* Amazon Werbung */
+.amazon_tab { margin:0 auto 7px;font-size:0.846em;line-height:120%;font-family: arial;text-align: center;border-bottom: 1px solid rgba(221,221,221,0.20); }
+.amazon_txt img { border: 1px solid #000;margin:5px 0;-webkit-box-shadow: 0 0 5px rgba(100, 100, 100, 1);-moz-box-shadow:0 0 5px rgba(100, 100, 100, 1);box-shadow:0 0 5px rgba(100, 100, 100, 1);text-align: center; }
+.amazon_tab td, .amazon_txt { font-family: arial;font-weight:normal;color:#eee;padding:2px 0;line-height:120%;text-align: center;  text-shadow: 0px 2px 1px #000; }
+div.amazon_txt { font-size:0.846em;}
+.amazon_txt a:link img, .amazon_txt a:visited img, .amazon_txt a:hover img { margin:2px 0 4px;text-align: center; }
+.amazon_tab a:link, .amazon_tab a:visited { font-weight:normal;color:#f09c00;text-decoration:none;font-family: 'oswald',arial;line-height:120%;text-align: center;font-size:1.077em;text-shadow: 0px 2px 1px #000; }
+.amazon_tab a:hover { text-decoration:underline; }
+.amazon_tab strong { font-family: 'oswald',arial;font-weight:normal;color:#fff;background:none;padding:2px 0;line-height:120%;font-size:1.077em;text-transform: uppercase;  text-shadow: 0px 2px 1px #000; }
+.az_logo { width:100%;height:27px;display:block;background: url(http://static.globalgameport.com/block_logos/a_logo.png) no-repeat center top;margin:0 auto; }
+table.amazon_tab td:hover { background:rgba(0,0,0,0.70);/*border: 1px solid rgba(109,109,109,0.5);*/}
+
+table.amazon_tab td {
+	text-align: center;
+	vertical-align:top;
+    margin:15px 6px;
+	font-weight: normal;
+	padding:6px 1px;
+	background:rgba(40,40,40,0.07);
+/*	border: 1px solid rgba(109,109,109,0.3);
+	border-radius: 5px;
+-webkit-box-shadow: 0 0 2px #444;-moz-box-shadow:0 0 2px #444;box-shadow:0 0 2px #444;*/
+}
+
+/* Infobox */
+.future_infobox { display:block;width:132px;background:rgba(0,0,0,0.40);margin: 0 0 10px 15px;text-align: center;padding:0 0 5px;-webkit-box-shadow: 0 0 4px #444;-moz-box-shadow:0 0 4px #444;box-shadow:0 0 4px #444; }
+.future_infobox ul { list-style-type: none;border-bottom:  1px dotted rgba(221,221,221,0.25);margin: 0 7px;padding: 2px 0;font-style:normal; }
+.future_infobox li { font-family: Tahoma, "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode", Arial, Helvetica, sans-serif;color: #C9C3A9;font-size: 0.923em;font-weight: normal;font-style:normal;margin:0;line-height:120%; }
+.future_infobox li img { border:none; }
+.future_infobox li.xl { color: #fff;font-weight: bold;font-style:normal;margin:0; }
+.future_infobox a:link, .future_infobox a:visited { text-decoration:none;color: #c24747;font-weight:normal; }
+.future_infobox a:hover { color: #ddd; }
+.future_infobox img { margin: 5px auto;border: 1px solid #42444B; }
+
+/* Überschriften */
+h3 { font-size:1.154em;overflow:hidden;line-height:29px;display:block;margin: 8px 0;border-bottom: 1px dotted rgba(221,221,221,0.35);font-family:oswald,Arial,Helvetica,sans-serif;font-weight:normal;color:#bbb;text-align:left;text-transform:uppercase;text-shadow: 3px 3px 4px #000; }
+ 
+/* Listen */
+
+.article-content ul { line-height:150%; }
+.article-content li { font-style:italic;font-family:georgia;margin:0 0 5px; }
+
+
+
+
+
+
+ 
  
  
  
@@ -182,8 +256,8 @@ div.notice {
   border:2px solid #d33682;
 }
 div.status {
-  background:rgba(10, 27, 10, 0.8);
-  border:1px solid rgb(187, 238, 119);
+  background:transparent;
+  border:2px solid #859900;
   color:#839496;
 }
 div.help {
@@ -537,14 +611,4 @@ form#views-ui-preview-form,
 #center form#views-ui-preview-form,
 .vertical-tabs-list {
   border-color:#073642;
-}
-.social_share_privacy_area li.settings_info .settings_info_menu {
-  display:block;
-}
-.social_share_privacy_area li.help_info {
-  display: list-item;
-}
-.social_share_privacy_area li.settings_info {
-  display:list-item;
-  width: 55px;
 }

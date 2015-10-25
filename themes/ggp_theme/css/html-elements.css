@@ -62,17 +62,23 @@ var {
 }
 blockquote,
 q {
-  font-style: italic;
-  quotes: "" "";
+
 }
 blockquote {
-background: none repeat scroll 0 0 #151516;
-    border: 1px solid #262625;
-    border-radius: 6px 6px 6px 6px;
-    box-shadow: 0 0 5px #000000;
-    margin: 10px 20px;
-    padding: 25px 10px 0;
-}
+
+    border-left: 5px solid rgba(221,221,221,0.5);
+/*    border-radius: 6px 6px 6px 6px;
+    box-shadow: 0 0 5px #999; 
+    background: none repeat scroll 0 0 #151516;  */
+    margin: 10px 20px 20px;
+    padding: 10px 10px;
+	display:block;
+	font-family:georgia;
+	color:#eee;
+	line-height:140%;
+	font-size:1.077em;
+	font-style: italic;
+  quotes: "" "";
 }
 blockquote:before,
 blockquote:after,
@@ -93,9 +99,10 @@ th {
 /* Lists */
 ul,
 ol {
-  margin: 0 0 1.5em 40px;
+  margin: 0 0 15px 30px;
   padding: 0;
 }
+
 .item-list ul,
 .item-list ol {
   margin: 0 0 0 15px;
@@ -120,7 +127,7 @@ ol ul,
   margin-bottom: 0;
 }
 ul {
-  list-style-type: disc;
+  list-style-type: square;
 }
 ul ul ul {
   list-style-type: square;
