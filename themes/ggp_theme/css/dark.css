@@ -101,7 +101,7 @@ div.amazon_txt { font-size:0.846em;}
 .amazon_tab a:link, .amazon_tab a:visited { font-weight:normal;color:#f09c00;text-decoration:none;font-family: 'oswald',arial;line-height:120%;text-align: center;font-size:1.077em;text-shadow: 0px 2px 1px #000; }
 .amazon_tab a:hover { text-decoration:underline; }
 .amazon_tab strong { font-family: 'oswald',arial;font-weight:normal;color:#fff;background:none;padding:2px 0;line-height:120%;font-size:1.077em;text-transform: uppercase;  text-shadow: 0px 2px 1px #000; }
-.az_logo { width:100%;height:27px;display:block;background: url(http://static.globalgameport.com/block_logos/a_logo.png) no-repeat center top;margin:0 auto; }
+.az_logo { width:100%;height:27px;display:block;background: url(https://static.globalgameport.com/block_logos/a_logo.png) no-repeat center top;margin:0 auto; }
 table.amazon_tab td:hover { background:rgba(0,0,0,0.70);/*border: 1px solid rgba(109,109,109,0.5);*/}
 
 table.amazon_tab td {
@@ -126,7 +126,7 @@ table.amazon_tab td {
 .future_infobox a:hover { color: #ddd; }
 .future_infobox img { margin: 5px auto;border: 1px solid #42444B; }
 
-/* Überschriften */
+/* ï¿½berschriften */
 h3 { font-size:1.154em;overflow:hidden;line-height:29px;display:block;margin: 8px 0;border-bottom: 1px dotted rgba(221,221,221,0.35);font-family:oswald,Arial,Helvetica,sans-serif;font-weight:normal;color:#bbb;text-align:left;text-transform:uppercase;text-shadow: 3px 3px 4px #000; }
  
 /* Listen */

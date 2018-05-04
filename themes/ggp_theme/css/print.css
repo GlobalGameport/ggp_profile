@@ -144,11 +144,14 @@ a:visited {
   color: #333;
 }
 a:link[href^="http://"]:after,
-a[href^="http://"]:visited:after {
+a:link[href^="https://"]:after,
+a[href^="http://"]:visited:after,
+a[href^="https://"]:visited:after {
   content:" (" attr(href) ") ";
   font-size: 10pt;
  }
-a[href^="http://"] {
+a[href^="http://"],
+a[href^="https://"] {
   color: #000;
 }
 

@@ -85,7 +85,7 @@ function _ggp_network_doheader() {
 	return; // Don't add the JavaScript and CSS on specified paths.
 	}
 
-	drupal_add_js('http://static.globalgameport.com/network/leiste.min.js', array('type' => 'external', 'scope' => 'footer', 'weight' => 5));
+	drupal_add_js('https://static.globalgameport.com/network/leiste.min.js', array('type' => 'external', 'scope' => 'footer', 'weight' => 5));
 	drupal_add_js("jQuery.ggpleiste({adcont: 'h1dden'});", array('type' => 'inline', 'scope' => 'footer', 'weight' => 6));
 	$already_added = TRUE;
 }

@@ -1,0 +1,37 @@
+<?php
+
+/**
+ * Implementation of hook_uninstall().
+ */
+function joomla_myblog_uninstall() {
+  variable_del('joomla_myblog_vocabulary');
+}
+
+/**
+ * Implementation of hook_schema().
+ */
+function joomla_myblog_schema() {
+
+  $schema['joomla_myblog_categories'] = array(
+  'description' => 'Stores the original Joomla MyBlog category ID and links to the {term_data} table',
+    'fields' => array(
+      'myblogcategoryid' => array(
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+        'description' => "The myblog category id from the Joomla database.",
+      ),
+      'tid' => array(
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+        'description' => "The {term_data}.tid.",
+      ),
+    ),
+    'primary key' => array('myblogcategoryid'),
+  );
+
+  return $schema;
+}

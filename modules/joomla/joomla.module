@@ -1,0 +1,1207 @@
+<?php
+
+/**
+ * @file
+ * The joomla module used for migrate Joomla to Drupal.
+ */
+
+define('JOOMLA_IMPORT_CONTENT', TRUE);
+define('JOOMLA_IMPORT_CATEGORIES', TRUE);
+define('JOOMLA_IMPORT_USERS', TRUE);
+define('JOOMLA_RUN_CRON', FALSE);
+define('JOOMLA_DATABASE_HOST', 'localhost');
+define('JOOMLA_DATABASE_NAME', 'joomla');
+define('JOOMLA_DATABASE_USER', 'joomla');
+define('JOOMLA_DATABASE_PASS', FALSE);
+define('JOOMLA_DATABASE_PORT', 3306);
+define('JOOMLA_PREFIX', 'jos_');
+define('JOOMLA_PATH', FALSE);
+define('JOOMLA_LIVE_URL', FALSE);
+define('JOOMLA_DELAY_ROW', 1000);
+define('JOOMLA_DELAY_SEC', 1);
+define('JOOMLA_INPUT_FORMAT', 'filtered_html');
+define('JOOMLA_UPDATE_DUPLICATE', FALSE);
+define('JOOMLA_IMG_FOLDER', 'images');
+define('JOOMLA_ENTITY_TYPE', 'node');
+define('JOOMLA_DEFAULT_STATIC_NODETYPE', 'page');
+define('JOOMLA_DEFAULT_BLOG_NODETYPE', 'article');
+define('JOOMLA_VERSION_1_0_X' , TRUE);
+
+/**
+ * Implementation of hook_help().
+ */
+function joomla_help($section) {
+  switch ($section) {
+    case 'admin/help#joomla':
+      $output = "The joomla module used for migrate Joomla to Drupal.";
+      return $output;
+    case 'admin/modules#description':
+      return 'The joomla module used for migrate Joomla to Drupal.';
+  }
+}
+
+/**
+ * Implementation of hook_permission().
+ */
+function joomla_permission() {
+  return array('administer joomla' => array(
+      'description' => t('Access Joomla Import Settings'),
+      'title' => t('Administer Joomla'),
+      'restrict access' => TRUE,
+    ),);
+}
+
+/**
+ * Menu callback. Prints a listing of active nodes on the site.
+ */
+
+function joomla_menu() {
+  $items = array();
+
+  $items['admin/content/joomla_import'] = array(
+    'title' => 'Import from Joomla',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('joomla_import_form'),
+    'access arguments' => array('administer joomla'),
+    'description' => 'Import content, categories and users from a Joomla website',
+    'type' => MENU_LOCAL_TASK | MENU_NORMAL_ITEM,
+  );
+
+  $items['admin/config/content/joomla'] = array(
+    'title' => 'Joomla to Drupal',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('joomla_admin_settings'),
+    'access arguments' => array('administer joomla'),
+    'description' => 'Migrate Joomla to Drupal.',
+  );
+  $items['admin/config/content/joomla/settings'] = array(
+    'title' => 'Settings',
+    'type' => MENU_DEFAULT_LOCAL_TASK,
+    'weight' => -10,
+  );
+
+  return $items;
+}
+
+function joomla_import_form() {
+
+  if (!joomla_database_test()) {
+    $form['error'] = array(
+      '#markup' => '<p>'. t('The joomla database settings are not currently valid.  Please set the correct database settings at <a href="@url">Joomla to Drupal settings</a> page', array('@url' => url('admin/settings/joomla'))) .'</p>',
+    );
+    return $form;
+  }
+
+  $form = joomla_import_form_checkboxes($form_state);
+
+  $form['joomla_update_submit'] = array(
+    '#type' => 'submit',
+    '#value' => t('Import'),
+  );
+
+  return $form;
+}
+
+/**
+ * These checkboxes are used on both the admin and import forms
+ */
+function joomla_import_form_checkboxes(&$form_state = NULL) {
+
+  $form['joomla_import'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Items to import'),
+    '#collapsible' => FALSE,
+    '#collapsed' => FALSE,
+  );
+
+  $form['joomla_import']['joomla_import_content'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Import content'),
+    '#default_value' => variable_get('joomla_import_content', JOOMLA_IMPORT_CONTENT),
+  );
+
+  $form['joomla_import']['joomla_import_categories'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Import categories'),
+    '#default_value' => variable_get('joomla_import_categories', JOOMLA_IMPORT_CATEGORIES),
+  );
+
+  $form['joomla_import']['joomla_import_users'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Import users'),
+    '#default_value' => variable_get('joomla_import_users', JOOMLA_IMPORT_USERS),
+  );
+
+  $form['joomla_update_duplicate'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Update previously imported items?'),
+    '#description' => t('If selected, any items which have already been imported, and which have been updated on the Joomla website, will be updated.'),
+    '#default_value' => variable_get('joomla_update_duplicate', JOOMLA_UPDATE_DUPLICATE),
+  );
+  $form['joomla_import']['joomla_version_1_0_x'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Version 1.0.x?'),
+    '#default_value' => variable_get('joomla_version_1_0_x', JOOMLA_VERSION_1_0_X),
+  );
+
+  return $form;
+}
+
+function joomla_import_form_submit($form, &$form_state) {
+  variable_set('pathauto_transliterate', 1);
+  if ($form_state['values']['joomla_import_users']) {
+    joomla_import_users($form_state['values']['joomla_update_duplicate']);
+  }
+
+  if ($form_state['values']['joomla_import_categories']) {
+    joomla_import_categories($form_state['values']['joomla_update_duplicate']);
+  }
+
+  if ($form_state['values']['joomla_import_content']) {
+    joomla_import_content($form_state['values']['joomla_update_duplicate'], $form_state['values']['joomla_version_1_0_x']);
+  }
+}
+
+function joomla_admin_settings() {
+
+  // only administrators can access this function
+
+  $weight = -20;
+
+  // Generate the form - settings applying to all patterns first
+  $form['joomla_import_settings'] = array(
+    '#type' => 'fieldset',
+    '#weight' => $weight,
+    '#title' => t('Import defaults'),
+    '#collapsible' => FALSE,
+    '#collapsed' => FALSE,
+    '#description' => 'Set the default values for the '. l('Import from Joomla', 'admin/content/joomla_import') .' form',
+  );
+
+  $form['joomla_import_settings'][] = joomla_import_form_checkboxes();
+
+  $form['joomla_import_settings']['joomla_run_cron'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Run automatic updates from cron?'),
+    '#description' => t('If checked, content will be automatically imported periodically using cron.  Only the content types selected in the form above will be imported.  This will allow you to keep changes to the Joomla site automatically syncronised.'),
+    '#default_value' => variable_get('joomla_run_cron', JOOMLA_RUN_CRON),
+  );
+
+  $weight++;
+  if(!isset($status)) $status='';
+  
+  $form['joomla_settings_database'] = array(
+    '#type' => 'fieldset',
+    '#weight' => $weight,
+    '#title' => t('Joomla settings'),
+    '#description' => $status,
+    '#collapsible' => TRUE,
+    '#collapsed' => FALSE
+  );
+
+  $form['joomla_settings_database']['joomla_database_host'] = array(
+    '#type' => 'textfield',
+    '#title' => 'Joomla database host name',
+    '#default_value' => variable_get('joomla_database_host', JOOMLA_DATABASE_HOST),
+    '#description' => 'Host name of Joomla database server.'
+  );
+
+  $form['joomla_settings_database']['joomla_database_name'] = array(
+    '#type' => 'textfield',
+    '#title' => 'Joomla database name',
+    '#default_value' => variable_get('joomla_database_name', JOOMLA_DATABASE_NAME),
+    '#description' => 'Joomla database name.'
+  );
+
+  $form['joomla_settings_database']['joomla_database_user'] = array(
+    '#type' => 'textfield',
+    '#title' => 'Joomla database user name',
+    '#default_value' => variable_get('joomla_database_user', JOOMLA_DATABASE_USER),
+    '#description' => 'User name for Joomla database server.'
+  );
+
+  $form['joomla_settings_database']['joomla_database_pass'] = array(
+    '#type' => 'textfield',
+    '#title' => 'Joomla database password',
+    '#default_value' => variable_get('joomla_database_pass', JOOMLA_DATABASE_PASS),
+    '#description' => 'Password for Joomla database server.'
+  );
+
+  $form['joomla_settings_database']['advanced'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Advanced database settings'),
+    '#collapsible' => TRUE,
+    '#collapsed' => TRUE
+  );
+
+  $form['joomla_settings_database']['advanced']['joomla_database_port'] = array(
+    '#type' => 'textfield',
+    '#title' => 'Joomla database port number',
+    '#default_value' => variable_get('joomla_database_port', JOOMLA_DATABASE_PORT),
+    '#description' => 'Port number for Joomla database server.  The default (3306) is usually fine.'
+  );
+
+  $form['joomla_settings_database']['advanced']['joomla_prefix'] = array(
+    '#type' => 'textfield',
+    '#title' => 'Table Prefix of Joomla',
+    '#default_value' => variable_get('joomla_prefix', JOOMLA_PREFIX),
+    '#description' => 'Table Prefix for Joomla tables.'
+  );
+
+  $form['joomla_settings_database']['joomla_path'] = array(
+    '#type' => 'textfield',
+    '#title' => 'Path of your Joomla installation',
+    '#default_value' => variable_get('joomla_path', JOOMLA_PATH),
+    '#description' => 'The path name where you install Joomla. Example:<br />'
+      .'<ul><li>Apache: <b>/home/YOUR_USERNAME/public_html/joomla</b></li>'
+      .'<li>Windows using WAMP: <b>c:/wamp/www/joomla</b></li>'
+      .'<li>Windows using IIS: <b>C:/Inetpub/wwwroot/joomla</b></li></ul>'
+  );
+
+  $form['joomla_settings_database']['joomla_live_url'] = array(
+    '#type' => 'textfield',
+    '#title' => 'URL of your Joomla site',
+    '#default_value' => variable_get('joomla_live_url', JOOMLA_LIVE_URL),
+    '#description' => 'The URL of a live version of your Joomla site'
+  );
+
+  $weight++;
+
+  $form['joomla_settings_content'] = array(
+    '#type' => 'fieldset',
+    '#weight' => $weight,
+    '#title' => t('Content settings'),
+    '#collapsible' => TRUE,
+    '#collapsed' => FALSE
+  );
+
+  $filter_node_options = array();
+  foreach (node_type_get_types() as $key => $val) {
+    if (node_access('create', $key)) {
+      $filter_node_options[$key] = $val->name;
+    }
+  }
+
+  $form['joomla_settings_content']['joomla_default_static_nodetype'] = array(
+    '#type' => 'select',
+    '#title' => t('Default node type for static items'),
+    '#required' => true,
+    '#options' => $filter_node_options,
+    '#default_value' => variable_get('joomla_default_static_nodetype', JOOMLA_DEFAULT_STATIC_NODETYPE),
+  );
+
+  $form['joomla_settings_content']['joomla_default_blog_nodetype'] = array(
+    '#type' => 'select',
+    '#title' => t('Default node type for content items'),
+    '#required' => true,
+    '#options' => $filter_node_options,
+    '#default_value' => variable_get('joomla_default_blog_nodetype', JOOMLA_DEFAULT_BLOG_NODETYPE),
+  );
+  
+  $formats = array();
+    foreach (filter_formats() as $key => $format) {
+      $formats[$key] = $format->name;
+    }
+    
+  $form['joomla_settings_content']['joomla_input_format'] = array(
+    '#type' => 'select',
+    '#title' => t('Input Format'),
+    '#default_value' => variable_get('joomla_input_format', JOOMLA_INPUT_FORMAT),
+    '#options' => array('' => '') + $formats,
+    '#description' => t('The filter format selected below will be applied to all imported content.'),
+  );
+
+  $form['joomla_settings_content']['joomla_img_folder'] = array(
+    '#type' => 'textfield',
+    '#title' => 'Image/Picture folder',
+    '#default_value' => variable_get('joomla_img_folder', JOOMLA_IMG_FOLDER),
+    '#description' => "A folder to save any images from Joomla contents. This folder related to Drupal 'files' folder, i.e: if you enter '<b>images</b>' then all imported images will be save to Drupal '<b>files/images</b>'."
+  );
+
+  $weight++;
+
+  $form['joomla_settings_import'] = array(
+    '#type' => 'fieldset',
+    '#weight' => $weight,
+    '#title' => t('Import settings'),
+    '#collapsible' => TRUE,
+    '#collapsed' => FALSE
+  );
+
+  $form['joomla_settings_import']['joomla_delay_row'] = array(
+    '#type' => 'textfield',
+    '#title' => 'Number of imported rows before delay',
+    '#default_value' => variable_get('joomla_delay_row', JOOMLA_DELAY_ROW),
+    '#description' => "How many rows will be imported before this module add delay, see below option."
+  );
+
+  $form['joomla_settings_import']['joomla_delay_sec'] = array(
+    '#type' => 'textfield',
+    '#title' => 'Delay before process next batch records (in second)',
+    '#default_value' => variable_get('joomla_delay_sec', JOOMLA_DELAY_SEC),
+    '#description' => "If you import huge amount of Joomla-contents then you need to increase this DELAY to avoid timeout."
+  );
+
+  return system_settings_form($form);
+}
+
+function joomla_cron() {
+  if (variable_get('joomla_run_cron', JOOMLA_RUN_CRON)) {
+    if (variable_get('joomla_import_users', JOOMLA_IMPORT_USERS)) {
+      watchdog('joomla', 'Importing users via cron');
+      joomla_import_users();
+    }
+    if (variable_get('joomla_import_categories', JOOMLA_IMPORT_CATEGORIES)) {
+      watchdog('joomla', 'Importing categories via cron');
+      joomla_import_categories();
+    }
+    if (variable_get('joomla_import_content', JOOMLA_IMPORT_CONTENT)) {
+      watchdog('joomla', 'Importing content via cron');
+      joomla_import_content();
+    }
+  }
+}
+
+function joomla_import_users($joomla_update_duplicate = NULL) {
+
+  joomla_database_init();
+
+  if ($joomla_update_duplicate === NULL) {
+    $joomla_update_duplicate = variable_get('joomla_update_duplicate', JOOMLA_UPDATE_DUPLICATE);
+  }
+
+  $joomla_prefix           = variable_get('joomla_prefix', JOOMLA_PREFIX);
+
+
+  //Add Realname to Profile
+  if (db_query("SELECT COUNT(*) FROM {profile_field} WHERE name='profile_realname'")->fetchField() == 0) {
+    db_query(" INSERT INTO {profile_field} (title,name,type,weight) VALUES ('Real Name','profile_realname','textfield','0')");
+  }
+  $results_fid = db_query("SELECT fid from {profile_field} WHERE name='profile_realname'");
+  
+  foreach ($results_fid as $data_fid) {
+    $fid      = $data_fid->fid;
+
+    //Check Users
+
+    $accounts_total = 0;
+    $accounts_updated = 0;
+    $accounts_new = 0;
+    $accounts_failed =  0;
+    $accounts_duplicate = 0;
+
+    db_set_active('joomla');
+    
+    $results_user = db_query("SELECT * FROM {$joomla_prefix}users ORDER BY id");
+
+    foreach ($results_user as $data) {
+      $accounts_total++;
+
+      db_set_active();
+      $uid = db_query("SELECT uid FROM {joomla_users} WHERE juid = :juid", array('juid'=>$data->id))->fetchField();
+      $converted = db_query("SELECT converted FROM {joomla_users} WHERE juid = :juid", array('juid'=>$data->id))->fetchField();
+
+      // Check if the user has selected to update previously imported users
+      if ($uid && !$joomla_update_duplicate) {
+        continue;
+      }
+      //if this user has his password converted to drupals hash then we must not update him   
+      if ($converted && $joomla_update_duplicate) {
+        continue;
+      }
+
+      $account = new stdClass();
+
+      // Set uid if we are updating an existing record
+      if ($uid) {
+        $account->uid = $uid;
+      }
+      $account->name = $data->username;
+      $account->mail = $data->email;
+      $account->status = !$data->block;
+      if(isset($data->registerdate))
+        $account->created = strtotime($data->registerdate);
+      else
+        $account->created = strtotime("1.9.2009");
+      if(isset($data->lastvisitdate))
+        $account->access = strtotime($data->lastvisitdate);
+      else
+        $account->access = strtotime("1.9.2009");
+      
+      //no negative values for d7
+      if($account->access < 0) $account->access=0;
+      if($account->created < 0) $account->created=0;
+      
+      /**
+       * Older versions of Joomla used an unsalted MD5 password hash.  If this
+       * is the case we can use this hash as the Drupal password.
+       */
+      if (strlen($data->password) == 32) {
+        $account->pass = $data->password;
+      }
+
+      $res = FALSE;
+      if (!$uid) {
+        //check username to be unique 
+        $duplicate=db_query("SELECT name FROM {users} WHERE name = :name LIMIT 1",array(':name' => $account->name ))->fetchField();
+        if(!empty($duplicate)) {
+          //the username already exists
+          $accounts_duplicate++;
+          continue;
+        }
+        
+        // d7 uid is not auto-increment so we must make it
+        //get biggest uid
+        $biggest_uid=db_query("SELECT MAX(uid) AS maxuid FROM {users}")->fetchField();
+
+        $account->uid=intval($biggest_uid);
+        $account->uid++;
+        $res = drupal_write_record('users', $account);
+      }
+      elseif ($joomla_update_duplicate) {
+        $res = drupal_write_record('users', $account, 'uid');
+      }
+
+      if ($res) {
+        // Write into the joomla -> drupal user mapping table
+        $joomla_user = new stdClass();
+        $joomla_user->uid = $account->uid;
+        $joomla_user->juid = $data->id;
+        $joomla_user->password = $data->password;
+
+        if ($uid) {
+          drupal_write_record('joomla_users', $joomla_user, 'uid');
+        }
+        else {
+          drupal_write_record('joomla_users', $joomla_user);
+        }
+
+        //Check and Update Realname
+        $profile_value = new stdClass();
+        $profile_value->fid = $fid;
+        $profile_value->uid = $account->uid;
+        $profile_value->value = $data->name;
+
+        if ($uid) {
+          drupal_write_record('profile_value', $profile_value, array('fid', 'uid'));
+        }
+        else {
+          drupal_write_record('profile_value', $profile_value);
+        }
+      }
+
+      switch ($res) {
+        case SAVED_NEW:
+          $accounts_new++;
+          break;
+
+        case SAVED_UPDATED;
+          $accounts_updated++;
+          break;
+
+        default:
+          $accounts_failed++;
+          break;
+      }
+
+      // Hook to allow other modules to modify the user
+      module_invoke_all('joomla', 'user', $account, $data->id);
+      joomla_sleep($accounts_total);
+    }
+  }
+
+  drupal_set_message(t('Processed @users_total users (@users_new new, @users_duplicate duplicates found, @users_updated updated, @users_failed errors)', array('@users_total' => $accounts_total, '@users_duplicate' => $accounts_duplicate, '@users_new' => $accounts_new, '@users_updated' => $accounts_updated, '@users_failed' => $accounts_failed)));
+}
+
+function joomla_import_categories($joomla_update_duplicate = NULL) {
+
+  joomla_database_init();
+
+  if ($joomla_update_duplicate === NULL) {
+    $joomla_update_duplicate = variable_get('joomla_update_duplicate', JOOMLA_UPDATE_DUPLICATE);
+  }
+
+  $joomla_prefix = variable_get('joomla_prefix', JOOMLA_PREFIX);
+
+  db_set_active('joomla');
+  
+  $results_joomla_sec = db_query("SELECT * FROM {$joomla_prefix}sections");
+
+  $sections_total = 0;
+  $sections_updated = 0;
+  $sections_new = 0;
+  $sections_failed =  0;
+
+  $section_vocabulary_map = array();
+
+  //Joomla Sections to Drupal
+  foreach ($results_joomla_sec as $section) {
+    $sections_total++;
+    db_set_active();
+
+    $vid = db_query("SELECT vid FROM {joomla_sections} WHERE jsectionid = :jsectionid", array(':jsectionid'=>$section->id))->fetchField();
+
+    if ($vid && !$joomla_update_duplicate) {
+      continue;
+    }
+
+    $vocabulary = NULL;
+
+    if($vid) {
+      $vocabulary = taxonomy_vocabulary_load($vid);
+      if(!$vocabulary) {
+        drupal_set_message(t('Unable to load vocabulary id @id', array('@id' => $vid)), 'error');
+        $sections_failed++;
+        continue;
+      }
+    }
+    else {
+      $vocabulary = new stdClass();
+    }
+
+    $vocabulary->name = $section->title;
+    if (function_exists('transliteration_get')) {
+      $section->title = transliteration_get($section->title, '?', language_default('language'));
+    }
+    $vocabulary->machine_name = strtolower(str_replace(' ','_',$section->title));
+    $vocabulary->description = $section->name;
+    $vocabulary->weight = $section->ordering;
+  
+    //check vocabulary name to be unique 
+    $duplicate=db_query("SELECT name FROM {taxonomy_vocabulary} WHERE name = :name LIMIT 1",array(':name' => $vocabulary->name ))->fetchField();
+    if(!empty($duplicate) && !$vid) {
+      //the vocabulary name already exists
+      continue;
+    }
+
+    $res = FALSE;
+    if ($vid) {
+      $res = drupal_write_record('taxonomy_vocabulary', $vocabulary, 'vid');
+    }
+    else {
+      $res = drupal_write_record('taxonomy_vocabulary', $vocabulary);
+
+      // Create an entry in the section <-> vocabulary map table
+      $joomla_section = new Stdclass();
+      $joomla_section->vid = $vocabulary->vid;
+      $joomla_section->jsectionid = $section->id;
+
+      drupal_write_record('joomla_sections', $joomla_section);
+    }
+
+    // Also, store this in a map for use when importing categories
+    $section_vocabulary_map[$section->id] = $vocabulary->vid;
+    switch ($res) {
+
+      case SAVED_NEW:
+        $sections_new++;
+        break;
+
+      case SAVED_UPDATED:
+        $sections_updated++;
+        break;
+
+      default:
+        $sections_failed++;
+        break;
+    }
+
+    // Hook to allow other modules to modify the vocabulary
+    module_invoke_all('joomla', 'taxonomy_vocabulary', $vocabulary, $section->id);
+
+    db_set_active('joomla');
+
+    joomla_sleep($sections_total);
+  }
+
+  //Process Joomla categories -> Drupal terms
+
+  $categories_total = 0;
+  $categories_updated = 0;
+  $categories_new = 0;
+  $categories_failed =  0;
+
+  db_set_active('joomla');
+  
+  $categories = db_query("SELECT id,title,name,section,ordering FROM {$joomla_prefix}categories");
+
+  foreach ($categories as $category) {
+    // We have some sections that are non-integers. Ignore those.
+    if ($category->section <= 0) {
+      continue;
+    }
+    $categories_total++;
+
+    db_set_active();
+
+    $term_map = db_query("SELECT tid,jsectionid FROM {joomla_categories} WHERE jcategoryid = :jcategoryid", array(':jcategoryid'=>$category->id))->fetch();
+
+    if (isset($term_map->tid) && !$joomla_update_duplicate) {
+      continue;
+    }
+
+    $term = NULL;
+
+    if ($term_map) {
+      $term = db_query('SELECT * FROM {taxonomy_term_data} WHERE tid = :tid',array(':tid' => $term_map->tid))->fetch();
+      if(!$term) {
+        drupal_set_message(t('Unable to load term id @id', array('@id' => $term_map->tid)), 'error');
+        $categories_failed++;
+        continue;
+      }
+    }
+    else {
+      $term = new stdClass();
+    }
+
+    $term->name = $category->title;
+    $term->description = $category->name;
+    $term->weight = $category->ordering;
+    $term->vid = $section_vocabulary_map[$category->section];
+
+    $res = FALSE;
+    if ($term_map) {
+      $res = drupal_write_record('taxonomy_term_data', $term, 'tid');
+
+      // Check if the Joomla category's section has changed
+      if ($term_map->jsectionid != $category->section) {
+        $term_map->jsectionid = $category->section;
+
+        drupal_write_record('joomla_categories', $term_map, 'jsectionid');
+      }
+    }
+    else {
+      $res = drupal_write_record('taxonomy_term_data', $term);
+
+      // Create an entry in the section <-> vocabulary map table
+      $joomla_category = new Stdclass();
+      $joomla_category->tid = $term->tid;
+      $joomla_category->jsectionid = $category->section;
+      $joomla_category->jcategoryid = $category->id;
+
+      drupal_write_record('joomla_categories', $joomla_category);
+
+      $term_hierarchy = new stdClass();
+      $term_hierarchy->tid = $term->tid;
+      $term_hierarchy->parent = 0;
+
+      drupal_write_record('taxonomy_term_hierarchy', $term_hierarchy);
+    }
+
+    switch ($res) {
+
+      case SAVED_NEW:
+        $categories_new++;
+        break;
+
+      case SAVED_UPDATED:
+        $categories_updated++;
+        break;
+
+      default:
+        $categories_failed++;
+        break;
+    }
+  }
+
+  // Hook to allow other modules to modify the term
+  module_invoke_all('joomla', 'term', $term, $category->id);
+  joomla_sleep($categories_total);
+
+  drupal_set_message(t('Processed @total sections (@new new, @updated updated, @failed errors)', array('@total' => $sections_total, '@new' => $sections_new, '@updated' => $sections_updated, '@failed' => $sections_failed)));
+  drupal_set_message(t('Processed @total categories (@new new, @updated updated, @failed errors)', array('@total' => $categories_total, '@new' => $categories_new, '@updated' => $categories_updated, '@failed' => $categories_failed)));
+}
+
+function joomla_import_content($joomla_update_duplicate = NULL, $joomla_version_1_0_x == TRUE) {
+
+  joomla_database_init();
+
+  if ($joomla_update_duplicate === NULL) {
+    $joomla_update_duplicate = variable_get('joomla_update_duplicate', JOOMLA_UPDATE_DUPLICATE);
+  }
+
+  $joomla_prefix = variable_get('joomla_prefix', JOOMLA_PREFIX);
+
+  $content_total = 0;
+  $content_updated = 0;
+  $content_new = 0;
+  $content_failed =  0;
+
+  $images = array();
+
+  db_set_active('joomla');
+
+  $results_joomla = db_query("SELECT c.*,cf.content_id FROM {$joomla_prefix}content c LEFT JOIN {$joomla_prefix}content_frontpage cf ON cf.content_id = c.id");
+
+  db_set_active();
+
+  foreach ($results_joomla as $data_joomla) {
+
+    $content_total++;
+
+    $content_map = db_query('SELECT n.nid,jcontentid,changed FROM {joomla_content} jc JOIN {node} n ON n.nid = jc.nid WHERE jc.jcontentid = :contentid',array(':contentid' => $data_joomla->id))->fetch();
+
+    if ($content_map && !$joomla_update_duplicate) {
+      // Content item has already been imported and update is off
+      continue;
+    }
+
+    /**
+     * If the content item already exists, but has not been updated
+     * since the last import, skip it
+     */
+    $joomla_changed = strtotime($data_joomla->modified);
+    
+    //if changed is negative drupal will throw an error so:
+    if ($joomla_changed<0) {
+      $joomla_changed = 0;
+    }
+    
+    if ($content_map && $joomla_changed == $content_map->changed) {
+      continue;
+    }
+
+    $node = new stdClass();
+    $node_revision = new stdClass();
+
+    if ($content_map) {
+      $node->nid = $content_map->nid;
+      $node_revision->nid = $content_map->nid;
+    }
+
+    $author_uid = db_query('SELECT uid FROM {joomla_users} WHERE juid = :juid',array(':juid' => $data_joomla->created_by) )->fetch();
+    if(isset($author_uid->uid))
+      $node->uid = intval($author_uid->uid);
+    else
+      $node->uid = 0;
+    $node_revision->uid = $node->uid;
+
+    $node->title = joomla_fix_encoding($data_joomla->title, true);
+    $node_revision->title = joomla_fix_encoding($data_joomla->title, true);
+
+    $node->status = $data_joomla->state;
+    $node_revision->status = $data_joomla->state;
+
+    $node->created = strtotime($data_joomla->created);
+    
+    //if created is negative drupal will throw an error so:
+    if ($node->created < 0) {
+      $node->created = 0;
+    }
+    
+    $node->language = 'und';
+
+    $node->changed = $joomla_changed;
+    $node_revision->timestamp = $joomla_changed;
+
+    // Set content type
+    if ($data_joomla->sectionid==0) {
+      $joomla_type = variable_get('joomla_default_static_nodetype', JOOMLA_DEFAULT_STATIC_NODETYPE);
+    }
+    else {
+      $joomla_type = variable_get('joomla_default_blog_nodetype', JOOMLA_DEFAULT_BLOG_NODETYPE);
+    }
+
+    $node->type = $joomla_type;
+
+    if (!empty($data_joomla->introtext)) {
+      $joomla_body = $data_joomla->introtext ."<!--break-->". $data_joomla->fulltext;
+      $joomla_teaser = $data_joomla->introtext;
+    }
+    else {
+      $joomla_body = $data_joomla->fulltext;
+      $joomla_teaser = text_summary($joomla_body);
+    }
+
+    $joomla_body   = str_replace("{mospagebreak}", "", $joomla_body);
+     
+    //images
+    if ($data_joomla->images) {
+      $joomla_teaser = joomla_replace_mos_image($data_joomla->images, $joomla_teaser);
+      $joomla_body   = joomla_replace_mos_image($data_joomla->images, $joomla_body);
+    }
+
+    $joomla_teaser = joomla_replace_image_link($joomla_teaser);
+    $joomla_body   = joomla_replace_image_link($joomla_body);
+    if($joomla_version_1_0_x === TRUE) {
+      $joomla_body = joomla_fix_encoding($joomla_body);
+      $joomla_teaser = joomla_fix_encoding($joomla_teaser);
+    }
+
+    //in d7 we need to store body in the fields table not node_revision,so:
+    $body_field = new stdClass();
+    $body_field->entity_type = variable_get('joomla_entity_type', JOOMLA_ENTITY_TYPE);
+    $body_field->bundle = $node->type;
+    $body_field->language = 'und';
+    $body_field->body_value = $joomla_body;
+    $body_field->body_summary = $joomla_teaser;
+    $body_field->body_format = variable_get('joomla_input_format', JOOMLA_INPUT_FORMAT);
+    $body_field->delta = 0;
+    
+    // This is used to make the taxonomy association
+    $term_node = new stdClass();
+    $term_node->tid = db_query('SELECT tid FROM {joomla_categories} WHERE jcategoryid = :jcategoryid AND jsectionid = :jsectionid', array(':jcategoryid' => $data_joomla->catid, ':jsectionid' => $data_joomla->sectionid))->fetchField();
+    
+    // Promote to front page?
+    if ($data_joomla->content_id) {
+      $joomla_promote = 1;
+    }
+    else {
+      $joomla_promote = 0;
+    }
+
+    $node->promote = $joomla_promote;
+    $node_revision->promote = $joomla_promote;
+
+    $status = FALSE;
+
+    if ($content_map) {
+      // Updating an existing node 
+
+      $node_status = drupal_write_record('node', $node, 'nid');
+
+      /*
+       * Even though Joomla doesn't have revision info, no reason
+       * why we can't use Drupals revision system when making an update!
+       */
+      $node_revision->log='Updated from Joomla module';
+      $node_revision_status = drupal_write_record('node_revision', $node_revision);
+      $node->vid = $node_revision->vid;
+      db_query('UPDATE {node} SET vid = :vid WHERE nid = :nid',array(':vid'=>$node_revision->vid, ':nid'=>$node->nid));
+
+      $body_field->entity_id=$node->nid;
+      $body_field->revision_id=$node_revision->vid;
+      
+      drupal_write_record('field_revision_body', $body_field);
+      drupal_write_record('field_data_body', $body_field, 'entity_id');
+      
+      if ($term_node->tid) {
+        $term_node->nid = $node->nid;
+        drupal_write_record('taxonomy_index', $term_node);
+      }
+    }
+    else {
+      // Creating a new node 
+      $node_status = drupal_write_record('node', $node);
+
+      $node_revision->nid = $node->nid;
+      $node_revision->log='Initial creation from Joomla module';
+      $node_revision_status = drupal_write_record('node_revision', $node_revision);
+
+      $node->vid = $node_revision->vid;
+      db_query('UPDATE {node} SET vid = :vid WHERE nid = :nid', array(':vid'=>$node_revision->vid, ':nid'=>$node->nid));
+              
+      $body_field->entity_id=$node->nid;
+      $body_field->revision_id=$node_revision->vid;
+      
+      drupal_write_record('field_data_body', $body_field);
+      drupal_write_record('field_revision_body', $body_field);
+
+      $joomla_content = new stdClass();
+      $joomla_content->nid = $node->nid;
+      $joomla_content->jcontentid = $data_joomla->id;
+
+      drupal_write_record('joomla_content', $joomla_content);
+
+      if ($term_node->tid) {
+        $term_node->nid = $node->nid;
+        drupal_write_record('taxonomy_index', $term_node);
+        
+      }
+    }
+
+    if ($node_status == SAVED_NEW && $node_revision_status == SAVED_NEW) {
+      module_invoke_all('node_insert', $node);
+	
+      $redirect = new stdClass();
+      redirect_object_prepare($redirect);
+      $redirect->source = "content/view/$data_joomla->id";
+      $redirect->redirect = "node/$node->nid";
+      redirect_save($redirect);
+
+      $redirect = new stdClass();
+      redirect_object_prepare($redirect);
+      $redirect->source = "content/view/$data_joomla->id/1";
+      $redirect->redirect = "node/$node->nid";
+      redirect_save($redirect); 
+
+      $content_new++;
+    }
+    elseif ($node_status == SAVED_UPDATED && $node_revision_status == SAVED_NEW) { 
+      module_invoke_all('node_update', $node);
+      $content_updated++;
+    }
+    else {
+      $content_failed++;
+    }
+
+    // Hook to allow other modules to modify the node
+    module_invoke_all('joomla', 'node', $node, $data_joomla->id);
+
+    joomla_sleep($content_total);
+  }
+  /*
+   * The node_comment_statistics table must be populated with a row for
+   * all of the created nodes, even if the nodes have no comments.  This
+   * query is probably only valid on MySQL, but this module can currently
+   * only go from MySQL -> MySQL anyway.
+   */
+  //db_query('INSERT IGNORE INTO {node_comment_statistics} (nid,last_comment_timestamp,last_comment_uid) SELECT n.nid, n.created,1 FROM {node} n LEFT JOIN {node_comment_statistics} ncs ON n.nid = ncs.nid WHERE ISNULL(ncs.nid)');
+
+  drupal_set_message(t('Processed @total content items (@new new, @updated updated, @failed errors)', array('@total' => $content_total, '@new' => $content_new, '@updated' => $content_updated, '@failed' => $content_failed)));
+}
+
+function joomla_replace_mos_image($images_source, $text_source) {
+  $joomla_img_folder       = variable_get('joomla_img_folder', JOOMLA_IMG_FOLDER);
+  $joomla_path             = variable_get('joomla_path', JOOMLA_PATH);
+
+  $images = array();
+  $images = explode("\n", $images_source);
+  $image_string = '{mosimage}';
+
+  $n=0;
+  $images_items =array();
+  while (!(strpos($text_source, $image_string) === FALSE))  {
+
+    $images_items = explode("|", $images[$n]);
+
+    if (!file_exists('public://' . $joomla_img_folder)) {
+      mkdir('public://' . $joomla_img_folder);
+    }
+
+    if (dirname($images_items[0])) {
+      if (!file_exists('public://' . $joomla_img_folder ."/". dirname($images_items[0]))) {
+        mkdir('public://' . $joomla_img_folder .'/'. dirname($images_items[0]));
+      }
+    }
+    if(!isset($image_items) || $image_items[0] === "")
+      return $text_source ;
+    if(!isset($images_items[1]))
+	$images_items[1] = 'center';
+    if(!isset($images_items[2]))
+        $images_items[2] = '';
+
+    copy($joomla_path ."/images/stories/". $images_items[0], "public://$joomla_img_folder/". $images_items[0]);
+    $images_replace = '<img src="'. base_path() . variable_get('file_public_path', conf_path() . '/files') . "/$joomla_img_folder/{$images_items[0]}" .'"'
+                 .' align="'. $images_items[1] .'" title="'. $images_items[2] .'" alt="'. $images_items[2] .'"/>';
+    $text_source = substr_replace($text_source, $images_replace, strpos($text_source, $image_string), 10) ;
+    $n++;
+  }
+
+  return $text_source;
+}
+
+function joomla_replace_image_link($text_source) {
+  //Fixs image string: src="images/
+  $image_string = 'src="images/';
+  $images_replace = 'src="/files/' . variable_get('joomla_img_folder', JOOMLA_IMG_FOLDER) .'/';
+
+  $text_result = str_replace('src="images/', "$images_replace", $text_source);
+
+  return $text_result;
+}
+
+function joomla_fix_encoding($body, $plain = false) {
+$replace = array('Ã¤'=>'&auml;', "\xC3\x83\xC2\xA4"=>'&auml;', 'Ã¶'=>'&ouml;', "\xC3\x83\xC2\xB6"=>'&ouml;', 'Ã¼'=>'&uuml;', "\xC3\x83\xC2\xBC"=>'&uuml;',
+  'Ã„'=>'&Auml;', "\xC3\x83\xE2\x80\x9E"=>'&Auml;', 'Ã–'=>'&Ouml;', "\xC3\x83\xE2\x80\x93"=>'&Ouml;', 'Ãœ'=>'&Uuml;', "\xC3\x83\xC2\x9C" => '&Uuml;',
+  'ÃŸ'=>'&szlig;', "\xC3\x83\xC2\x9F" => '&szlig;',
+  'Ã '=>'&agrave;', 'Ã¢'=>'&acirc;', 'Ã£'=>'&atilde;', 'Ã¥'=>'&aring;', 'Ã¦'=>'&aelig;',
+  'Ã€'=>'&Agrave;', 'Ã‚'=>'&Acirc;', 'Ãƒ'=>'&Atilde;', 'Ã…'=>'&Aring;',
+  'Ã¹'=>'&ugrave;', 'Ã»'=>'&ucric;',
+  'Ã™'=>'&Ugrave;', 'Ã›'=>'&Ucirc;',
+  'Ã²'=>'$ograve;', 'Ã´'=>'&ocirc;', 'Ãµ'=>'$otilde;', 'Ã¸'=>'&oslash;',
+  'Ã’'=>'&Ograve;', 'Ã”'=>'&Ocirc;', 'Ã•'=>'&Otilde;', 'Ã˜'=>'&Oslash;',
+  'Ã¨'=>'&egrave;', 'Ãª'=>'&ecirc;', 'Ã«'=>'&euml;',
+  'Ãˆ'=>'&Egrave;', 'ÃŠ'=>'&Ecirc;', 'Ã‹'=>'&Euml;',
+  'Ã¬'=>'&igrave;', 'Ã®'=>'&icirc;', 'Ã¯'=>'&iuml;',
+  'ÃŒ'=>'&Igrave;', 'ÃŽ'=>'&Icirc;', 'Ã'=>'&Iuml;',
+  'Ã±'=>'&ntilde;', 'Ã‘'=>'&Ntilde;',
+  'Ã¿'=>'&yuml;', "\xC3\xA2\xC2\x82\xC2\xAC" => '&euro;', "\xC3\xA2\xC2\x80\xC2\x99" => '&rsquo;',
+  'Ă˘âŹâ˘'=>'&rsquo;', 'ĂÂ´' => '&rsqou;', 'Ă˘âŹË'=>'&lsquo;', 'Ă˘âŹâ˘' => '&lsqou;', 'â' => '&rsquo;');
+
+$replacePlain = array("\xC3\x83\xC2\xA4"=>'ä', "\xC3\x83\xC2\xB6"=>'ö', "\xC3\x83\xC2\xBC"=>'ü', 
+  "\xC3\x83\xE2\x80\x9E"=>'Ä', "\xC3\x83\xE2\x80\x93"=>'Ö', "\xC3\x83œ" => 'Ü', "\xC3\x83\xC2\x9C" => 'Ü', 
+  'ÃŸ'=>'ß', "\xC3\x83\xC2\x9F" => 'ß', "\xC3\xA2\xC2\x80\xC2\x99" => '\'', "\xC3\xA2\xC2\x82\xC2\xAC" =>'€', 
+  'â' => '\'', 'Ă˘âŹË'=>'´' );
+
+  if(!$plain) {
+    $body = str_replace(array_keys($replace), array_values($replace), $body);
+  } else {
+    $body = str_replace(array_keys($replacePlain), array_values($replacePlain), $body);  }
+  return $body;
+}
+
+function joomla_form_alter(&$form, $form_state, $form_id) {
+  if ($form_id == 'user_login' || $form_id == 'user_login_block') {
+    if (isset($form_state['input']['name'])) {
+      $last_validator = array_pop($form['#validate']);
+      $form['#validate'][] = 'joomla_login_validate';
+      $form['#validate'][] = $last_validator;
+    }
+  }
+}
+
+function joomla_login_validate($form, &$form_state) {
+  joomla_authenticate($form_state['values'],$form_state['uid']);
+}
+
+function joomla_authenticate($form_values = array(),&$form_uid) {
+  global $user;
+
+  if (!empty($user->uid) || $form_uid) {
+    // User has already sucessfully authenticated
+    return;
+  }
+
+  if (form_get_errors() || empty($form_values['name']) || empty($form_values['pass'])) {
+    return;
+  }
+  
+  //d7 user_load requires $uid as parameter
+  $form_user = db_query("SELECT uid FROM {users} WHERE name = :name", array('name'=>$form_values['name']))->fetch();
+  $account = user_load($form_user->uid);
+
+  // The user doesn't exist
+  if (!$account) {
+    return;
+  }
+
+  // See if the user has a password record from Joomla import
+  $joomla_user = db_query('SELECT * FROM {joomla_users} WHERE uid = :uid',array(':uid' => $account->uid))->fetch();
+  if (!$joomla_user) {
+    return;
+  }
+
+  /**
+   * If the password doesn't contain a colon, it is an unsalted password.
+   * It will have been inserted into the drupal users table during the
+   * import, and to get here the Drupal login must have already failed
+   * against it, so nothing left to do
+   */
+  if(strpos($joomla_user->password,':')) {
+    list($password, $salt) = explode(':', $joomla_user->password, 2);
+  }
+  else {
+    $password = $joomla_user->password;
+    $salt='';
+  }
+  
+  // Check the supplied password against the md5sum
+  if (md5($form_values['pass'] . $salt) == $password || (!$salt && md5($form_values['pass']) == $password)) {
+    $user = $account;
+    watchdog('joomla', 'Converting password for user @name (Joomla id @juid)', array('@name' => $user->name, '@juid' => $joomla_user->juid));
+
+    // Update the users Drupal password
+    user_save($user, array('pass' => $form_values['pass']));
+
+    $joomla_user->converted = 1;
+    drupal_write_record('joomla_users', $joomla_user, array('uid'));
+    
+    $form_uid=$user->uid;
+    user_login_finalize($form_values);
+    return $user;
+  }
+}
+
+/**
+ * Initialise settings for communicating with the Joomla database.  This
+ * makes it possible to switch between the Drupal and Joomla databases with
+ * db_set_active().
+ */
+function joomla_database_init() {
+  $joomla_db=Database::getConnectionInfo('joomla');
+  if (empty($joomla_db)) {
+    /**
+     * It's not possible to use a combination of database engines, e.g.
+     * mysql and mysqli, at the same time.  So, determine which one is
+     * in use on the Drupal site and use it for the Joomla connection
+     */
+     
+    $dbs=Database::getConnectionInfo('default');
+    $engine = $dbs['default']['driver'];// same engine for two db: Drupal's limit
+    
+    $joomla_url = array(
+        'database' => variable_get('joomla_database_name', JOOMLA_DATABASE_NAME),
+        'username' => variable_get('joomla_database_user', JOOMLA_DATABASE_USER), 
+        'password' => variable_get('joomla_database_pass', JOOMLA_DATABASE_PASS),
+        'host' => variable_get('joomla_database_host', JOOMLA_DATABASE_HOST),
+        'port' => variable_get('joomla_database_port', JOOMLA_DATABASE_PORT),
+        'driver' => $engine,
+    );
+    Database::addConnectionInfo('joomla', 'default', $joomla_url);
+  }
+  //Database::getConnection('joomla')->query("SET NAMES 'latin1'");
+}
+
+/**
+ * Test whether a valid joomla database has been configured
+ */
+function joomla_database_test() {
+
+  $connection = @mysql_connect(variable_get('joomla_database_host', JOOMLA_DATABASE_HOST) .':'. variable_get('joomla_database_port', JOOMLA_DATABASE_PORT), variable_get('joomla_database_user', JOOMLA_DATABASE_USER), variable_get('joomla_database_pass', JOOMLA_DATABASE_PASS), TRUE, 2);
+
+  if (!$connection) {
+    return FALSE;
+  }
+
+  if (!mysql_select_db(variable_get('joomla_database_name', JOOMLA_DATABASE_NAME))) {
+    return FALSE;
+  }
+
+  return TRUE;
+}
+
+/**
+ * Sleep if required
+ */
+function joomla_sleep($row_number) {
+  if ($row_number % variable_get('joomla_delay_row', JOOMLA_DELAY_ROW) == 0 ) {
+    sleep(variable_get('joomla_delay_sec', JOOMLA_DELAY_SEC));
+  }
+}
+
+/**
+ * Implementation of hook_block().
+ */
+function joomla_block($op='list', $delta=0, $edit=array()) {
+
+  switch ($op) {
+
+    case 'list':
+      $blocks = array(
+        array(
+          'info' => t('Joomla Backlinks'),
+        ),
+      );
+      return $blocks;
+      break;
+
+    case 'view':
+      // only show this block on node/* pages
+      if ($node = menu_get_object()) {
+        $joomla_live_url = variable_get('joomla_live_url', JOOMLA_LIVE_URL);
+
+        // only show links if the base URL has been set
+        if($joomla_live_url) {
+          $ids = db_query('SELECT nid, jcontentid FROM {joomla_content} WHERE nid = :nid',array(':nid' => $node->nid))->fetch();
+
+          if (!$ids) {
+            return;
+          }
+  
+          $blocks['subject'] = t('Link Back to Joomla');
+          $blocks['content'] = sprintf("<a href='http://%s/index.php?option=com_content&task=view&id=%d&Itemid=1'>View this node in Joomla</a>", $joomla_live_url, $ids->jcontentid);
+
+          return $blocks;
+
+        } else {
+
+          $blocks['subject'] = t('Links Disabled');
+          $blocks['content'] = t('You have not set your Joomla Live URL. ') . l("Settings", "admin/settings/joomla");
+          return $blocks;
+        }
+    	}
+      return;
+      break;
+  }
+}

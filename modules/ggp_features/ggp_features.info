@@ -207,5 +207,5 @@ features_exclude[menu_links][main-menu_umfragen-archiv:poll] = main-menu_umfrage
 features_exclude[menu_links][main-menu_team--kontakt:node/2] = main-menu_team--kontakt:node/2
 features_exclude[menu_links][main-menu_impressum:impressum] = main-menu_impressum:impressum
 features_exclude[menu_links][main-menu_disclaimer:disclaimer] = main-menu_disclaimer:disclaimer
-features_exclude[menu_links][main-menu_globalgameportcom:http://www.globalgameport.com/] = main-menu_globalgameportcom:http://www.globalgameport.com/
-features_exclude[menu_links][main-menu_jobs-bei-ggp:http://www.globalgameport.com/forumdisplay.php?694-GGP-sucht-dich-Mach-mit!] = main-menu_jobs-bei-ggp:http://www.globalgameport.com/forumdisplay.php?694-GGP-sucht-dich-Mach-mit!
+features_exclude[menu_links][main-menu_globalgameportcom:https://www.globalgameport.com/] = main-menu_globalgameportcom:https://www.globalgameport.com/
+features_exclude[menu_links][main-menu_jobs-bei-ggp:https://www.globalgameport.com/forumdisplay.php?694-GGP-sucht-dich-Mach-mit!] = main-menu_jobs-bei-ggp:https://www.globalgameport.com/forumdisplay.php?694-GGP-sucht-dich-Mach-mit!

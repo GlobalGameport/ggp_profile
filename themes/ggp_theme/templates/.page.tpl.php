@@ -70,8 +70,8 @@ body {
     <div id="partner-title" class="grid_right omega">
 		<!-- PARTNER CONTENT -->
 		<div>
-		<a href="http://twitter.com/globalgameport"><img src="/<?php print $directory ?>/twitter.png" alt="GGP bei Twitter" /></a>
-		<a href="http://www.youtube.com/user/globalgameport"><img src="/<?php print $directory ?>/youtube.png" alt="GGP bei Yout Tube" /></a>
+		<a href="https://twitter.com/globalgameport"><img src="/<?php print $directory ?>/twitter.png" alt="GGP bei Twitter" /></a>
+		<a href="https://www.youtube.com/user/globalgameport"><img src="/<?php print $directory ?>/youtube.png" alt="GGP bei Yout Tube" /></a>
 		</div>
     </div><!-- end #partner-title -->
   </div><!-- end #top -->
