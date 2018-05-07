@@ -20,6 +20,7 @@ dependencies[] = search
 dependencies[] = overlay
 dependencies[] = field_ui
 dependencies[] = file
+dependencies[] = memcache
 
 dependencies[] = ggp_features
 

@@ -113,11 +113,23 @@ projects[transliteration][subdir] = "drupalorg"
 projects[views][version] = 3.20
 projects[views][subdir] = "drupalorg"
 
+projects[views_bulk_operations][version] = 3.4
+projects[views_bulk_operations][subdir] = "drupalorg"
+
+projects[entity][version] = 1.9
+projects[entity][subdir] = "drupalorg"
+
+projects[views_tree][version] = 2.0
+projects[views_tree][subdir] = "drupalorg"
+
 projects[xmlsitemap][version] = 2.3
 projects[xmlsitemap][subdir] = "drupalorg"
 
 projects[libraries][version] = 2.3
 projects[libraries][subdir] = "drupalorg"
+
+projects[memcache][version] = 1.6
+projects[memcache][subdir] = "drupalorg"
 
 projects[adaptivetheme][download][type] = git
 projects[adaptivetheme][download][url] = http://git.drupal.org/project/adaptivetheme.git
