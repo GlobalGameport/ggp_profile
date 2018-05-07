@@ -29,6 +29,9 @@ projects[ckeditor][subdir] = "drupalorg"
 projects[ctools][version] = 1.14
 projects[ctools][subdir] = "drupalorg"
 
+projects[file_entity][version] = 2.20
+projects[file_entity][subdir] = "drupalorg"
+
 projects[disqus][version] = 1.12
 projects[disqus][subdir] = "drupalorg"
 
@@ -58,6 +61,14 @@ projects[l10n_update][subdir] = "drupalorg"
 
 projects[media][version] = 2.19
 projects[media][subdir] = "drupalorg"
+
+
+projects[media_oembed][version] = 2.7
+projects[media_oembed][subdir] = "drupalorg"
+
+projects[media_ckeditor][version] = 2.5
+projects[media_ckeditor][subdir] = "drupalorg"
+
 
 projects[media_browser_plus][version] = 3.0-beta4
 projects[media_browser_plus][subdir] = "drupalorg"
@@ -115,14 +126,23 @@ projects[adaptivetheme][type] = theme
 
 
 ; Libraries
-libraries[plupload][download][type] = "get"
+libraries[plupload][download][type] = file
 libraries[plupload][download][url] = "https://github.com/moxiecode/plupload/archive/v1.5.8.zip"
 libraries[plupload][directory_name] = "plupload"
 libraries[plupload][type] = "library"
 libraries[plupload][patch][] = "https://www.drupal.org/files/issues/plupload-1_5_8-rm_examples-1903850-21.patch"
 
-libraries[fancybox][download][type] = get
+libraries[fancybox][download][type] = file
 libraries[fancybox][download][url] = https://github.com/fancyapps/fancyBox/zipball/v2.1.5
 libraries[fancybox][directory_name] = fancybox
 libraries[fancybox][type] = library
 
+
+
+libraries[ckeditor][download][type] = file
+libraries[ckeditor][download][url] = http://download.cksource.com/CKEditor/CKEditor/CKEditor%204.9.2/ckeditor_4.9.2_full.zip
+
+
+libraries[lineutils][download][type] = file
+libraries[lineutils][download][url] = http://download.ckeditor.com/lineutils/releases/lineutils_4.9.2.zip
+libraries[lineutils][destination] = "libraries/ckeditor/plugins"
