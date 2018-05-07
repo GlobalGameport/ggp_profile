@@ -1,28 +1,37 @@
 language: php
 
 php:
-  - 5.4
+  - 5.6
+  - 7.1
 
 mysql:
   database: drupal
   username: root
   encoding: utf8
-  
-before_script:
-  - "mysql -e 'create database drupal;'"
+
+before_install:
+  - sudo apt-get update > /dev/null
+
+install:
+  - export PATH="$HOME/.composer/vendor/bin:$PATH"
   - composer self-update
-  - pear channel-discover pear.drush.org
-  - pear install drush/drush
+  - composer global require drush/drush:8.x.x
+
+
+before_script:
+  - mysql -e 'create database drupal'
   - phpenv rehash
   - cd ..
   - ls
   - cd ggp_profile
   - pwd
-  - echo 'sendmail_path=`which true`' >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
+  - echo 'sendmail_path=`which true`' >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
+  - echo $PATH
+  - ls $HOME/.composer/vendor/bin
+  - drush make ggp_net.build ../beta.ggp.com
   
 
 script: 
-  - drush make ggp_net.build ../beta.ggp.com
   - cd ../beta.ggp.com
   - sudo chmod -R 777 sites/all/modules
   - drush si ggp_net --db-url=mysql://root:@127.0.0.1/drupal --site-name="beta.ggp.com" --debug --yes
