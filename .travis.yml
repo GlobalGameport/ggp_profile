@@ -3,6 +3,9 @@ language: php
 php:
   - 5.6
   - 7.1
+cache:
+  directories:
+  - $HOME/.composer/cache/files
 
 mysql:
   database: drupal
@@ -13,7 +16,7 @@ before_install:
   - sudo apt-get update > /dev/null
 
 install:
-  - export PATH="$HOME/.composer/vendor/bin:$PATH"
+  - export PATH="$HOME/.config/composer/vendor/bin:$HOME/.composer/vendor/bin:$PATH"
   - composer self-update
   - composer global require drush/drush:8.x.x
 
@@ -27,7 +30,7 @@ before_script:
   - pwd
   - echo 'sendmail_path=`which true`' >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
   - echo $PATH
-  - ls $HOME/.composer/vendor/bin
+  - ls $HOME/.config/composer/vendor/bin || ls $HOME/.composer/vendor/bin || true
   - drush make ggp_net.build ../beta.ggp.com
   
 
