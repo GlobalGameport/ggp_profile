@@ -6,10 +6,8 @@ api = 2
 ; Modules
 
 projects[admin_menu][download][type] = git
-projects[admin_menu][download][url] = "https://git.drupal.org/project/admin_menu.git
 projects[admin_menu][download][branch] = 7.x-3.x
 projects[admin_menu][type] = module
-projects[admin_menu][version] = 3.0-dev
 projects[admin_menu][subdir] = "drupalorg"
 ; See https://www.drupal.org/project/admin_menu/issues/2929025
 projects[admin_menu][patch][] = https://www.drupal.org/files/issues/admin-menu-2929025-each-function-deprecated-php-7.2.patch
